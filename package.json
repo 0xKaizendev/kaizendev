@@ -9,18 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@trpc/client": "11.0.0-rc.456",
+    "@trpc/server": "11.0.0-rc.456",
+    "next": "14.2.5",
+    "next-intl": "^3.16.0",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.5"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "typescript": "^5"
   }
 }

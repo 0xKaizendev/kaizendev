@@ -1,0 +1,9 @@
+{
+    "editor.fontFamily": "Fira Code semibold",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+    "editor.fontWeight": "500",
+    "terminal.integrated.fontWeight": "600",
+    "files.exclude": {
+        "**/node_modules": true,
+    },
+}
