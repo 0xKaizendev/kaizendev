@@ -1,5 +1,7 @@
+import "@/styles/globals.css"
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { Metadata } from "next"
 // Can be imported from a shared config
 const locales = ['en', 'de'];
 
