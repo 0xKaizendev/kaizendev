@@ -13,19 +13,19 @@ import { Icons } from "@/components/icons"
 import Link from 'next/link'
 export function LangToggle() {
   const pathName = usePathname()
-//   const redirectedPathName = (locale: typeof i18n['locales'][number],) => {
-//     if (!pathName) return '/'
-//     const segments = pathName.split('/')
-//     segments[1] = locale
-//     return segments.join('/')
-//   }
+  //   const redirectedPathName = (locale: typeof i18n['locales'][number],) => {
+  //     if (!pathName) return '/'
+  //     const segments = pathName.split('/')
+  //     segments[1] = locale
+  //     return segments.join('/')
+  //   }
 
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className=" gap-3">
-          <Icons.lang className=" " />   
+          <Icons.lang className=" " />
           <span className="sr-only">Toggle Language</span>
         </Button>
       </DropdownMenuTrigger>
@@ -33,6 +33,12 @@ export function LangToggle() {
         {/* {i18n.locales.map((locale, index) => <DropdownMenuItem key={index} >
         <Link href={redirectedPathName(locale)}>{locale==='en'?"English":"Français"}</Link>
         </DropdownMenuItem>)} */}
+        <DropdownMenuItem  >
+          <Link href={''}>English</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem  >
+          <Link href={''}>Français</Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

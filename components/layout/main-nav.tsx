@@ -25,7 +25,10 @@ import {
 import { ModeToggle } from "@/components/theme-toggle"
 
 import { Icons } from "../icons"
-// import MobileNav from "./mobile-nav"
+import MobileNav from "./mobile-nav"
+import { LangToggle } from "../lang-toggle"
+import { siteConfig } from "@/config/site"
+import { buttonVariants } from "../ui/button"
 
 interface MainNavbarProps {
   children?: ReactNode
@@ -33,6 +36,7 @@ interface MainNavbarProps {
 
 const MainNavbar = ({ children }: MainNavbarProps) => {
   const segment = useSelectedLayoutSegment()
+  console.log(segment)
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false)
 
   return (
@@ -65,10 +69,10 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
                 <Link href={link.href as string} legacyBehavior passHref>
                   <NavigationMenuLink
                     target={link?.href?.startsWith("http") ? "_blank" : "_self"}
-                    className={cn("font-bold text-sm",
+                    className={cn(
                       navigationMenuTriggerStyle(),
-                      link?.href?.startsWith(`/${segment}`) &&
-                      "bg-accent font-semibold",
+                      link?.href?.includes(`/${segment}`) &&
+                      "text-sky-500 font-semibold",
                       link.disabled && "cursor-not-allowed opacity-80"
                     )}
                   >
@@ -82,10 +86,46 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
       </NavigationMenu>
 
       <div className="hidden items-center gap-4 lg:flex">
-        {/* <div className="flex-1 sm:grow-0">
-          <SearchCommand />
-        </div> */}
+        <Link
+          href={siteConfig.links.github}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div
+            className={cn(
+              buttonVariants({
+                size: "sm",
+                variant: "ghost",
+              }),
+              "w-9 px-0"
+            )}
+          >
+            <Icons.gitHub className="h-5 w-5 text-sky-500" />
+            <span className="sr-only">GitHub</span>
+          </div>
+        </Link>
+        <Link
+          href={siteConfig.links.github}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div
+            className={cn(
+              buttonVariants({
+                size: "sm",
+                variant: "ghost",
+              }),
+              "w-9 px-0"
+            )}
+          >
+            <Icons.twitter className="h-5 w-5 text-sky-500" />
+            <span className="sr-only">GitHub</span>
+          </div>
+        </Link>
+        <span className="w-[2px] bg-secondary h-5/6" />
+        <LangToggle />
         <ModeToggle />
+
       </div>
 
       <button
@@ -95,9 +135,9 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
         {showMobileMenu ? <Icons.close /> : <Icons.menu />}
       </button>
 
-      {/* {showMobileMenu && navbarLinks && (
+      {showMobileMenu && navbarLinks && (
         <MobileNav items={navbarLinks}>{children}</MobileNav>
-      )} */}
+      )}
     </div>
   )
 }

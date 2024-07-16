@@ -3,7 +3,7 @@
 @layer components {
   .content-wrapper {
     @apply mx-auto max-w-[75rem] px-4;
-    @apply sm:px-12 md:px-10 lg:px-16 xl:px-6;
+    @apply sm:px-12 md:px-10 lg:px-16 xl:px-6 ;
   }
 
   .content-wrapper-max {
@@ -48,66 +48,24 @@
     }
   }
 
-  /* .button {
-    @apply inline-flex h-10 items-center justify-center gap-1.5 rounded-md border border-transparent px-4 text-center text-sm font-bold transition duration-150;
-    @apply md:rounded-xl;
-
-    &--solid {
-      @apply bg-accent-600 text-white;
-      @apply hover:bg-accent-700;
-      @apply dark:bg-accent-600 dark:hover:bg-accent-500;
-    }
-
-    &--ghost {
-      @apply text-slate-600;
-      @apply hover:text-slate-700;
-      @apply dark:text-slate-400 dark:hover:text-slate-300;
-    }
-
-    &--outline {
-      @apply border-divider-light;
-      @apply dark:border-divider-dark;
-      @apply hover:bg-slate-200/40 dark:hover:bg-slate-600/10;
-    }
-
-    &--soft {
-      @apply bg-accent-600/[0.08] text-accent-600 rounded-full px-5 font-bold;
-      @apply dark:bg-accent-400/10 dark:text-accent-400 dark:font-semibold;
-    }
-
-    &--big {
-      @apply h-12 rounded-xl px-6;
-
-      &.button--underline {
-        &::after {
-          @apply bottom-2;
-        }
-      }
-    }
-
-    &--underline {
-      @apply relative;
-
-      &::after {
-        @apply absolute left-2 right-2 bottom-1 border-b-2 border-dotted border-slate-600/50 content-[''];
-        @apply dark:border-slate-400/50;
-      }
-    }
-  } */
+  .button {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+   
+  }
 
   /* .nav-link {
-    @apply text-accent-600 flex h-9 items-center gap-1 rounded-xl px-2 text-[13px] font-bold;
-    @apply dark:text-accent-400 dark:font-semibold;
+    @apply text-sky-600 flex h-9 items-center gap-1 rounded-xl px-2 text-[13px] font-bold;
+    @apply dark:text-sky-400 dark:font-semibold;
 
     &:hover,
     &[aria-expanded='true'] {
-      @apply text-accent-700;
-      @apply dark:text-accent-300;
+      @apply text-sky-700;
+      @apply dark:text-sky-300;
     }
 
     &--label {
-      @apply bg-accent-600/[0.08] rounded-full px-5;
-      @apply dark:bg-accent-400/10;
+      @apply bg-sky-600/[0.08] rounded-full px-5;
+      @apply dark:bg-sky-400/10;
 
       svg {
         @apply -mr-1;
@@ -130,8 +88,8 @@
     @apply dark:bg-slate-800;
 
     &__indicator {
-      @apply absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-accent-400;
-      @apply dark:bg-accent-800;
+      @apply absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-sky-400;
+      @apply dark:bg-sky-800;
     }
   } */
 
@@ -147,8 +105,8 @@
   } */
 
   /* .toc-link {
-    @apply hover:text-accent-700 relative z-10 flex p-1 px-2 text-[13px] font-bold text-slate-700;
-    @apply dark:hover:text-accent-300 dark:font-semibold dark:text-slate-300;
+    @apply hover:text-sky-700 relative z-10 flex p-1 px-2 text-[13px] font-bold text-slate-700;
+    @apply dark:hover:text-sky-300 dark:font-semibold dark:text-slate-300;
 
     &--depth-2 {
       @apply ml-4 font-normal text-slate-600;
@@ -156,14 +114,14 @@
     }
 
     &--active {
-      @apply text-accent-600 hover:text-accent-700;
-      @apply dark:text-accent-400 dark:hover:text-accent-300;
+      @apply text-sky-600 hover:text-sky-700;
+      @apply dark:text-sky-400 dark:hover:text-sky-300;
     }
   } */
 
   /* .link {
-    @apply text-accent-600 relative inline-flex items-center gap-1;
-    @apply dark:text-accent-400;
+    @apply text-sky-600 relative inline-flex items-center gap-1;
+    @apply dark:text-sky-400;
 
     svg {
       @apply h-3.5 w-3.5;
@@ -176,7 +134,7 @@
     }
 
     &::after {
-      @apply bg-accent-600/20 absolute bottom-1 left-0 right-0 z-[-1] h-2 origin-bottom scale-y-[.4] transition-transform content-[''];
+      @apply bg-sky-600/20 absolute bottom-1 left-0 right-0 z-[-1] h-2 origin-bottom scale-y-[.4] transition-transform content-[''];
     }
   } */
 

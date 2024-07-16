@@ -8,18 +8,18 @@ const moreContent: ContentNavItem[] = [
 export const navbarLinks: NavItem[] = [
     {
         title: "Home",
-        href: "/projects",
+        href: "/",
         description: "Collections of posts on a particular topic.",
     },
     {
         title: "About",
-        href: "/blog",
+        href: "/about",
         description:
             "Code snippets that I use often. Mostly for personal reference.",
     },
     {
         title: "Blog",
-        href: "/notes",
+        href: "/blog",
         description: "My notes on various topics. Mostly for personal reference.",
     },
     //   {

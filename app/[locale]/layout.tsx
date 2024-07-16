@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Metadata } from "next"
 import { ThemeProvider } from "@/components/providers/theme-provider"
-import { Roboto_Mono as FontCode, Inter as FontSans, } from "next/font/google"
+import { Roboto_Mono as FontCode, Inter as FontSans, Plus_Jakarta_Sans } from "next/font/google"
 import { siteConfig } from "@/config/site";
 import localFont from "next/font/local"
 import { cn } from "@/lib/utils";
@@ -16,13 +16,17 @@ import MainNavbar from "@/components/layout/main-nav";
 //   return locales.map((locale) => ({ locale }));
 // }
 const fontSans = FontSans({
-  subsets: ["cyrillic"],
+  subsets: ["latin"],
   variable: "--font-sans",
 })
 
 const fontCode = FontCode({
   subsets: ["latin"],
   variable: "--font-code",
+})
+const fontHeading = Plus_Jakarta_Sans({
+  variable: "--font-heading",
+  subsets: ["latin"],
 })
 
 // const fontHeading = localFont({
@@ -56,10 +60,10 @@ export const metadata: Metadata = {
     },
   ],
   creator: "Trịnh Đình Tài",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "white" },
+  //   { media: "(prefers-color-scheme: dark)", color: "black" },
+  // ],
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -76,12 +80,12 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: siteConfig.handle,
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: `${siteConfig.url}/site.webmanifest`,
+  // icons: {
+  //   icon: "/favicon.ico",
+  //   shortcut: "/favicon-16x16.png",
+  //   apple: "/apple-touch-icon.png",
+  // },
+  // manifest: `${siteConfig.url}/site.webmanifest`,
 }
 export default async function LocaleLayout({
   children,
@@ -101,7 +105,7 @@ export default async function LocaleLayout({
           "min-h-screen font-sans antialiased background-grid--fade-out background-grid",
           fontSans.variable,
           fontCode.variable,
-          // fontHeading.variable
+          fontHeading.variable,
           fontLogo.variable
         )}
       >
@@ -121,7 +125,7 @@ export default async function LocaleLayout({
                   </div>
                 </div>
               </header>
-              <main className="container flex-1 py-6 md:py-10 lg:max-w-4xl xl:max-w-6xl">
+              <main className="content-wrapper flex-1 py-6 md:py-10 lg:max-w-4xl xl:max-w-6xl">
                 {children}
               </main>
               {/* <Footer /> */}

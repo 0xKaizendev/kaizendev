@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
   handle: "@kaizendev",
   description:
     "This website is my personal blog. I write about web/web3 development, JavaScript, TypeScript, React, Node.js, CSS, and more.",
-  url: "https://www.framer.com/motion/introduction/",
+  url: "https://kaizendev.me/",
   ogImage: "/images/og.png",
   links: {
     mail: "",

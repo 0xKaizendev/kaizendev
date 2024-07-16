@@ -64,6 +64,7 @@ const config = {
         mono: ["var(--font-code)", ...fontFamily.mono],
         heading: ["var(--font-heading)", ...fontFamily.sans],
         logo: ["var(--font-logo)", ...fontFamily.sans],
+        
       },
       borderRadius: {
         lg: "var(--radius)",
