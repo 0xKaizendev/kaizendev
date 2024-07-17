@@ -9,7 +9,7 @@ export const CodeEditor = ({
     language: CodeGroupProps["language"];
 }) => {
     return (
-        <figure className="relative  justify-self-end flex-col overflow-hidden rounded-md border-2 border-gray-200/40 bg-gray-900 p-2.5 shadow-2xl drop-shadow-lg d:border-gray-600/40">
+        <figure className="relative  justify-self-end flex-col overflow-hidden rounded-md border-2 border-gray-200/40 bg-gray-900 p-2.5 shadow-2xl drop-shadow-lg dark:border-gray-600/40 w-full">
             <header
                 className="mb-2 grid items-center border-b border-b-gray-800 pb-2"
                 style={{ gridTemplateColumns: "50px 1fr 50px" }}
@@ -18,17 +18,17 @@ export const CodeEditor = ({
                     <button
                         tabIndex={-1}
                         aria-hidden
-                        className="h-3 w-3 rounded-full bg-gray-700 transition-colors h:bg-[#EC6A5F]"
+                        className="h-3 w-3 rounded-full transition-colors bg-[#EC6A5F]"
                     />
                     <button
                         tabIndex={-1}
                         aria-hidden
-                        className="h-3 w-3 rounded-full bg-gray-700 transition-colors h:bg-[#F4BF50]"
+                        className="h-3 w-3 rounded-full transition-colors bg-sky-500"
                     />
                     <button
                         tabIndex={-1}
                         aria-hidden
-                        className="h-3 w-3 rounded-full bg-gray-700 transition-colors h:bg-[#61C454]"
+                        className="h-3 w-3 rounded-full transition-colors bg-[#61C454]"
                     />
                 </i>
                 <div className="color select-none text-center text-[13px] leading-none tracking-wide text-gray-500">
@@ -41,10 +41,10 @@ export const CodeEditor = ({
                     />
                 </div>
             </header>
-            <main className=" relative  overflow-hidden  before:absolsute ">
-                <div className="sm:scrollbar-none relative h-full overflow-auto ">
+            <main className="relative overflow-hidden before:absolute w-full">
+                {/* <div className="sm:scrollbar-none relative h-full overflow-auto "> */}
                     <Code className="text-[13px]" code={code} language={language} plugins={["highlight-keywords"]} />
-                </div>
+                {/* </div> */}
             </main>
         </figure>
     );

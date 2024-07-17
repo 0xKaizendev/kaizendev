@@ -1,8 +1,6 @@
 "use client"
-import { Button } from '@/components/ui/button';
 import clsx from 'clsx';
-import { motion as m, useAnimationControls } from 'framer-motion';
-import Image from 'next/image';
+import { motion as m,  } from 'framer-motion';
 import HeaderCta from './header-cta';
 
 const animation = {
@@ -14,10 +12,9 @@ const animation = {
 };
 
 function HeaderTitle() {
-  const controls = useAnimationControls();
 
   return (
-    <div className='flex-1'>
+    <div className=''>
       <m.div
         className={clsx(
           'mb-1 flex items-center gap-1 text-2xl ',
@@ -27,7 +24,7 @@ function HeaderTitle() {
         animate={animation.show}
         transition={{ delay: 0.1 }}
       >
-        Hello World, I'm
+        Hello World, I&apos;m
       </m.div>
       <div >
         <m.span

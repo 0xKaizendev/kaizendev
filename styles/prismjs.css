@@ -1,75 +1,38 @@
-/**
- * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
- * Based on https://github.com/chriskempson/tomorrow-theme
- * @author Rose Pritchard
- */
-
-code[class*="language-"],
-pre[class*="language-"] {
-  color: #ccc;
-  background: none;
-  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
-  font-size: 13px;
-  text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  line-height: 1.5;
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  padding: 1em;
-  margin: 0.5em 0;
-  overflow: auto;
-}
-
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
   --container-width: calc(100vw - (100vw - 100%));
   margin-left: max(-62px, calc(((100vw - var(--container-width))) / -2) + 4px);
   margin-right: max(-62px, calc(((100vw - var(--container-width))) / -2) + 4px);
   @apply !rounded-none md:!rounded-md;
 }
-
 code[class*="language"] {
   @apply text-white/95 font-normal;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   transition: 0.15s color;
 }
 
 .token.tag,
 .token.class-name {
-  color: #b7e2f8;
+  color: #B7E2F8;
 }
 .token.tag > .token.punctuation {
-  color: #65c6ff;
+  color: #65C6FF;
 }
-
 .token.selector,
 .token.selector .class,
 .token.selector.class,
 .token.function {
-  @apply text-sky-600;
+  @apply text-lime-400;
 }
 
 .token.constant {
-  @apply font-medium text-orange-400;
+  @apply font-medium text-orange-400
 }
 .token.script {
   @apply text-white font-normal;
-  color: #fd971f;
+  color: #FD971F;
 }
 .token.attr-name {
-  color: #a6e22e;
+  color: #A6E22E;
 }
 .token.builtin,
 .token.keyword,
@@ -77,7 +40,7 @@ code[class*="language"] {
 .token.pseudo-class,
 .token.important {
   @apply font-bold;
-  color: #f92672;
+  color: #F92672;
 }
 
 .token.attr-value,
@@ -125,8 +88,7 @@ code[class*="language"] {
   @apply text-slate-400/80;
 }
 
-.code-inactive,
-.code-inactive * {
+.code-inactive, .code-inactive *  {
   @apply text-slate-400/50;
   transition: 0.15s color;
 }
@@ -148,10 +110,10 @@ code[class*="language"] {
   @apply bg-rose-500/[0.15] border-rose-400 before:content-['-'] before:text-rose-400;
 }
 
-pre[class^="language-diff-"] {
+pre[class^='language-diff-'] {
   @apply flex px-9;
 }
 
-pre[class^="language-diff-"] > code {
+pre[class^='language-diff-'] > code {
   @apply flex-none min-w-full;
 }

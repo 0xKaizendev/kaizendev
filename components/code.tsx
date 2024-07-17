@@ -27,8 +27,6 @@ export type CodeGroupProps = {
 };
 
 export const Code: FC<CodeGroupProps> = ({ language, plugins, lineHighlight, code, className }) => {
-    const router = useRouter()
-    const { theme } = useTheme()
     const loadDependencies = useCallback(async () => {
         if (language === "tsx") {
             // @ts-ignore
@@ -64,36 +62,22 @@ export const Code: FC<CodeGroupProps> = ({ language, plugins, lineHighlight, cod
         loadDependencies();
     }, [language, loadDependencies]);
 
-
-    // useEffect(() => {
-    //     router.refresh()
-    //     console.log(theme)
-    //     const loadTheme = async () => {
-    //         if (theme === "dark") {
-    //             await import("prismjs/themes/prism-okaidia.css");
-    //         } else {
-    //             await import("prismjs/themes/prism.css");
-    //         }
-    //         highlightAll();
-    //     };
-
-    //     loadTheme();
-    // }, [theme]);
     return (
         <pre
-            // className={clsx(
-            //     plugins,
-            //     lineHighlight && "line-highlight",
-            //     `language-${language}`,
-            //     className
-            // )}
+            className={clsx(
+                plugins,
+                lineHighlight && "line-highlight",
+                `language-${language}`,
+                className,
+                "w-48"
+            )}
             data-line={lineHighlight}
             tabIndex={-1}
         >
             {(Array.isArray(code) ? code : [code]).map((code, index) => {
                 return (
                     <Fragment key={index}>
-                        <code className={`language-${language} text-xs`} data-selected-index={index}>
+                        <code className={`text-xs `} data-selected-index={index}>
                             {code}
                         </code>
                     </Fragment>

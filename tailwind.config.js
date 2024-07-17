@@ -1,4 +1,3 @@
-import type { Config } from "tailwindcss"
 const { fontFamily } = require("tailwindcss/defaultTheme")
 const svgToDataUri = require("mini-svg-data-uri");
 const defaultTheme = require('tailwindcss/defaultTheme');
@@ -62,9 +61,9 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
         mono: ["var(--font-code)", ...fontFamily.mono],
-        heading: ["var(--font-heading)", ...fontFamily.sans],
+        poppins: ["var(--font-poppins)", ...fontFamily.sans],
         logo: ["var(--font-logo)", ...fontFamily.sans],
-        
+
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -106,6 +105,6 @@ const config = {
     //   root: 'violet',
     // }),
   ],
-} satisfies Config
+} 
 
 export default config

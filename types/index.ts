@@ -27,3 +27,11 @@ export type NavItem = {
 export interface ContentNavItem extends NavItem {
   href: string
 }
+
+export interface UseData {
+  name: string
+  description?: string
+  icon: (props: React.ComponentProps<"svg">) => JSX.Element
+  link?: string
+  hoverColor?: string
+}

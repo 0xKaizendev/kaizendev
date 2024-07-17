@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Metadata } from "next"
 import { ThemeProvider } from "@/components/providers/theme-provider"
-import { Roboto_Mono as FontCode, Inter as FontSans, Plus_Jakarta_Sans } from "next/font/google"
+import { Roboto_Mono as FontCode, Plus_Jakarta_Sans, Poppins } from "next/font/google"
 import { siteConfig } from "@/config/site";
 import localFont from "next/font/local"
 import { cn } from "@/lib/utils";
@@ -15,27 +15,29 @@ import MainNavbar from "@/components/layout/main-nav";
 // export function generateStaticParams() {
 //   return locales.map((locale) => ({ locale }));
 // }
-const fontSans = FontSans({
+const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+  adjustFontFallback:false
 })
 
 const fontCode = FontCode({
   subsets: ["latin"],
   variable: "--font-code",
+  adjustFontFallback:false
 })
-const fontHeading = Plus_Jakarta_Sans({
-  variable: "--font-heading",
+const fontPoppins = Poppins({
   subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  adjustFontFallback:false
+
 })
 
-// const fontHeading = localFont({
-//   src: "../assets/fonts/CalSans-SemiBold.woff2",
-//   variable: "--font-heading",
-// })
 const fontLogo = localFont({
   src: "../../assets/fonts/AquataDisplay-SemiBold.woff2",
   variable: "--font-logo",
+  adjustFontFallback:false
 })
 
 
@@ -105,7 +107,7 @@ export default async function LocaleLayout({
           "min-h-screen font-sans antialiased background-grid--fade-out background-grid",
           fontSans.variable,
           fontCode.variable,
-          fontHeading.variable,
+          fontPoppins.variable,
           fontLogo.variable
         )}
       >
@@ -116,7 +118,7 @@ export default async function LocaleLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div className="flex min-h-screen flex-col">
+            <div className="flex min-h-screen flex-col ">
               <header className="sticky top-0 z-40 w-full border-b bg-background/90 backdrop-blur-md">
                 <div className="container lg:max-w-4xl xl:max-w-6xl">
                   <div className="flex h-20 items-center space-x-8 py-6">
