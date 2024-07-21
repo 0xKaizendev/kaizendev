@@ -135,6 +135,9 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
         {showMobileMenu ? <Icons.close /> : <Icons.menu />}
       </button>
 
+
+      {/* <MobileNav items={navbarLinks}>{children}</MobileNav> */}
+
       {showMobileMenu && navbarLinks && (
         <MobileNav items={navbarLinks}>{children}</MobileNav>
       )}

@@ -1,8 +1,7 @@
 import { skills } from '@/config/use-data';
 import React from 'react';
 const Skills = () => {
-  
-
+    const colors = ["text-black", "text-[#31648c]", "text-[#1d63ed]", "text-sky-500", "text-[#fff100]", "text-purple-400", "text-black","text-[#00ed64]","text-blue-500"];
     return (
         <div className='w-full py-10'>
             <div className='container mx-auto text-center'>
@@ -14,7 +13,7 @@ const Skills = () => {
                 </p>
                 <div className='flex flex-wrap justify-center'>
                     {skills.map((skill, index) => (
-                        <div key={index} className={`flex items-center m-2 p-4 rounded-xl shadows bg-secondary/50 `}>
+                        <div key={index} className={`flex items-center m-2 p-4 rounded-xl shadow bg-secondary/50 `}>
                             <skill.icon className={`text-2xl mr-2 w-6 h-6 ${skill.bgColor}` }/>
                             <span className='text-lg'>{skill.name}</span>
                         </div>

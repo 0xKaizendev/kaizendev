@@ -3,7 +3,7 @@ import { RiNextjsFill } from "react-icons/ri";
 import { FaHardHat, FaDocker } from "react-icons/fa";
 import { BiLogoPostgresql, } from "react-icons/bi";
 import { FaReact, FaFire, FaNodeJs, FaBolt, FaCss3Alt, FaTools } from 'react-icons/fa';
-import { SiNextdotjs, SiChakraui, SiSemanticuireact, SiAntdesign, SiGraphql, SiFramer, SiStyledcomponents, SiApollographql } from 'react-icons/si';
+import { SiNextdotjs, SiChakraui, SiSemanticuireact, SiAntdesign, SiGraphql, SiFramer, SiStyledcomponents, SiApollographql, SiMongodb } from 'react-icons/si';
 
 import {
 
@@ -22,4 +22,7 @@ export const skills = [
     { name: 'HardHat', icon: FaHardHat, bgColor: 'text-[#fff100]' },
     { name: 'Framer Motion', icon: SiFramer, bgColor: 'text-purple-400' },
     { name: 'Vercel', icon: SiVercel, bgColor: 'text-black' },
+    { name: "MongoDB", icon: SiMongodb, bgColor: "text-[#00ed64]" },
 ];
+// create an array of all these colors
+export const colors = ["text-black", "text-[#31648c]", "text-[#1d63ed]", "text-sky-500", "text-[#fff100]", "text-purple-400", "text-black"];
