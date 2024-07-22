@@ -38,16 +38,16 @@ import {
 } from "react-icons/si"
 import { BsFillBootstrapFill, BsRobot } from "react-icons/bs";
 const iconSize = 24; // Define your icon size here
-export const STACKS = [
+export const skills = [
     { name: "Next.js", icon: <SiNextdotjs size={iconSize} /> },
     { name: "Solidity", icon: <SiSolidity className="text-black" />, },
     { name: "TypeScript", icon: <SiTypescript className="text-blue-500" />, },
     { name: 'Postgresql', icon: <BiLogoPostgresql className="text-[#31648c]" />, },
     { name: 'Docker', icon: <FaDocker className="text-[#1d63ed]" />, },
     { name: 'Tailwind CSS', icon: <FaCss3Alt className="text-sky-500" />, },
-    { name: 'HardHat', icon: <FaHardHat className="text-[#fff100]" />,  },
-    { name: 'Framer Motion', icon: <SiFramer className="text-purple-400" />, },
-    { name: 'Vercel', icon: <SiVercel className="text-black" />, },
+    { name: 'HardHat', icon: <FaHardHat className="text-[#fff100]" />, bgColor: '' },
+    { name: 'Framer Motion', icon: <SiFramer className="text-purple-400" />, bgColor: '' },
+    { name: 'Vercel', icon: <SiVercel className="text-black" />, bgColor: 'text-black' },
     { name: "MongoDB", icon: <SiMongodb className="text-[#00ed64]" />, },
     { name: "TailwindCSS", icon: <SiTailwindcss size={iconSize} className="text-cyan-300" /> },
     // { name: "GraphQL", icon: <SiGraphql size={iconSize} className="text-pink-600" /> },

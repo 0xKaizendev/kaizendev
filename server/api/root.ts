@@ -3,9 +3,10 @@
 // import { reactionRouter } from "@/server/api/routers/reaction"
 import { viewRouter } from "@/server/api/routers/view"
 import { createCallerFactory, createTRPCRouter, publicProcedure } from "@/server/api/trpc"
+import { projectsRouter } from "@/server/api/routers/projects"
 
 export const appRouter = createTRPCRouter({
-
+  projects: projectsRouter,
   // comment: commentRouter,
   // reaction: reactionRouter,
   view: viewRouter,

@@ -22,6 +22,7 @@ import { TRPCReactProvider } from "@/_trpc/client"
 const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
+  weight: [ "200", "300", "400", "500", "600", "700", "800", ],
   adjustFontFallback: false
 })
 
