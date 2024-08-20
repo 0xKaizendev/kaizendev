@@ -5,7 +5,7 @@ import AboutKaizen from './about-kaizen';
 import Projects from './projects';
 const IndexContents = () => {
     return (
-        <div className='space-y-12 overflow-auto '>
+        <div className='space-y-6 overflow-auto '>
             <Header />
             <Skills />
             <AboutKaizen />

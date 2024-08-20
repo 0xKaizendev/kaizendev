@@ -22,6 +22,11 @@ export const navbarLinks: NavItem[] = [
         href: "/blog",
         description: "My notes on various topics. Mostly for personal reference.",
     },
+    {
+        title: "Projects",
+        href: "/projects",
+        description: "My notes on various topics. Mostly for personal reference.",
+    },
     //   {
     //     title: "More",
     //     content: moreContent,

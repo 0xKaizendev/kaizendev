@@ -1,78 +1,78 @@
 import type { ComponentProps } from 'react';
 import {
-    AlertTriangle,
-    ArrowRight,
-    Check,
-    ChevronLeft,
-    ChevronRight,
-    Command,
-    CreditCard,
-    File,
-    FileText,
-    HelpCircle,
-    Image,
-    Laptop,
-    Loader2,
-    LucideProps,
-    Moon,
-    MoreVertical,
-    Pizza,
-    Plus,
-    Settings,
-    SunMedium,
-    Trash,
-    Twitter,
-    User,
-    Menu,
-    X,Brain,Languages,
-    type Icon as LucideIcon,
-  } from "lucide-react"
+  AlertTriangle,
+  ArrowRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Command,
+  CreditCard,
+  File,
+  FileText,
+  HelpCircle,
+  Image,
+  Laptop,
+  Loader2,
+  LucideProps,
+  Moon,
+  MoreVertical,
+  Pizza,
+  Plus,
+  Settings,
+  SunMedium,
+  Trash,
+  Twitter,
+  User,
+  Menu,
+  X, Brain, Languages,
+  type Icon as LucideIcon,
+} from "lucide-react"
 
-  
-  export const Icons = {
-    menu: Menu,
-    logo: Brain,
-    lang: Languages,
-    close: X,
-    spinner: Loader2,
-    chevronLeft: ChevronLeft,
-    chevronRight: ChevronRight,
-    trash: Trash,
-    post: FileText,
-    page: File,
-    media: Image,
-    settings: Settings,
-    billing: CreditCard,
-    ellipsis: MoreVertical,
-    add: Plus,
-    warning: AlertTriangle,
-    user: User,
-    arrowRight: ArrowRight,
-    help: HelpCircle,
-    pizza: Pizza,
-    sun: SunMedium,
-    moon: Moon,
-    laptop: Laptop,
-    gitHub: ({ ...props }: LucideProps) => (
-      <svg
-        aria-hidden="true"
-        focusable="false"
-        data-prefix="fab"
-        data-icon="github"
-        role="img"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 496 512"
-        {...props}
-      >
-        <path
-          fill="currentColor"
-          d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
-        ></path>
-      </svg>
-    ),
-    twitter:  ({ ...props }: LucideProps) => (<svg       {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path   fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>),
-    check: Check,
-  }
+
+export const Icons = {
+  menu: Menu,
+  logo: Brain,
+  lang: Languages,
+  close: X,
+  spinner: Loader2,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  trash: Trash,
+  post: FileText,
+  page: File,
+  media: Image,
+  settings: Settings,
+  billing: CreditCard,
+  ellipsis: MoreVertical,
+  add: Plus,
+  warning: AlertTriangle,
+  user: User,
+  arrowRight: ArrowRight,
+  help: HelpCircle,
+  pizza: Pizza,
+  sun: SunMedium,
+  moon: Moon,
+  laptop: Laptop,
+  gitHub: ({ ...props }: LucideProps) => (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      data-prefix="fab"
+      data-icon="github"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 496 512"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+      ></path>
+    </svg>
+  ),
+  twitter: ({ ...props }: LucideProps) => (<svg       {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" /></svg>),
+  check: Check,
+}
 
 export function LightIcon(props: ComponentProps<'svg'>) {
   return (
@@ -718,5 +718,18 @@ export function PnpmIcon(props: ComponentProps<'svg'>) {
       <title>pnpm Icon</title>
       <path d="M0 0v7.5h7.5V0zm8.25 0v7.5h7.498V0zm8.25 0v7.5H24V0zM8.25 8.25v7.5h7.498v-7.5zm8.25 0v7.5H24v-7.5zM0 16.5V24h7.5v-7.5zm8.25 0V24h7.498v-7.5zm8.25 0V24H24v-7.5z" />
     </svg>
+  );
+}
+
+
+export function InfoButtonIcon(props: ComponentProps<'svg'>) {
+  return (
+    <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor" xmlns="http://www.w3.org/2000/svg"     {...props}>
+      <path d="M5.80616 11.9834L10.2248 16.9544C11.0508 17.8837 11.4638 18.3483 11.9515 18.5195C12.3798 18.6699 12.8465 18.6699 13.2748 18.5195C13.7625 18.3483 14.1755 17.8837 15.0016 16.9544L19.4201 11.9834C19.795 11.5617 19.9825 11.3509 19.9891 11.1718C19.9949 11.0162 19.9278 10.8668 19.8077 10.7677C19.6694 10.6538 19.3873 10.6538 18.8231 10.6538L16.0369 10.6538C16.0369 8.22906 16.8158 5.66811 18.1981 3.79801C18.9178 2.82456 19.2777 2.33774 19.2636 2.1523C19.2497 1.97165 19.1792 1.85691 19.024 1.76314C18.8649 1.66697 18.3677 1.75195 17.3733 1.92182C10.916 3.02529 9.18934 7.46911 9.18934 10.6538H6.40326C5.83902 10.6538 5.5569 10.6538 5.41859 10.7677C5.29843 10.8668 5.23134 11.0162 5.23717 11.1718C5.24387 11.3509 5.4313 11.5617 5.80616 11.9834Z" fill="white" />
+      <g opacity="0.5">
+        <path fillRule="evenodd" clipRule="evenodd" d="M4.61384 14.6378C4.31073 14.9193 4.29318 15.3932 4.57464 15.6963L9.41155 20.9053C10.2896 21.8509 11.5218 22.3882 12.8122 22.3882C14.1725 22.3882 15.4644 21.7913 16.3461 20.7555L20.673 15.6721C20.9411 15.3571 20.9032 14.8844 20.5881 14.6163C20.2731 14.3482 19.8005 14.3862 19.5324 14.7012L15.2055 19.7845C14.6083 20.4861 13.7335 20.8903 12.8122 20.8903C11.9383 20.8903 11.1039 20.5264 10.5092 19.886L5.67231 14.677C5.39085 14.374 4.91696 14.3564 4.61384 14.6378Z" fill="white" />
+      </g>
+    </svg>
+
   );
 }

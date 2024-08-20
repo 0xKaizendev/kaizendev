@@ -1,5 +1,4 @@
 # docker exec -it localsql bash 
-version: '3.3'
 services:
   db:
     image: postgres

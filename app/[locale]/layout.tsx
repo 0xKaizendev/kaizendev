@@ -127,6 +127,7 @@ export default async function LocaleLayout({
               >
                 <div className="flex min-h-screen flex-col ">
                   {/* <MainNavbar /> */}
+                  <p className="text-center font-medium my-4">🚧 Work in Progress! My portfolio is currently under construction. Stay tuned! 🚧</p>
                   <ScrollBar />
                   <header className="sticky top-2 z-40 w-full border-b bg-background/90 backdrop-blur-md">
                     <div className="container lg:max-w-4xl xl:max-w-6xl">
