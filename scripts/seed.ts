@@ -1,5 +1,5 @@
-const { PrismaClient } = require("@prisma/client")
-
+// const { PrismaClient } = require("@prisma/client")
+import { PrismaClient } from "@prisma/client";
 const database = new PrismaClient()
 
 async function run() {
@@ -29,6 +29,7 @@ async function run() {
         const project = await database.project.create({
             data: {
                 title: "Personal portfolio",
+                
                 slug: "kaizendev.me",
                 description: "My personal portfolio website, built with Next.js, Tailwind CSS, TRPC, and TypeScript. It's a place where I can showcase my work and share my thoughts.",
                 imageUrl: "/images/projects/blog.png",

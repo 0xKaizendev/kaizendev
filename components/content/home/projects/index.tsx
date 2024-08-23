@@ -40,11 +40,6 @@ const Projects = () => {
                                             title: 'kaizendev/tailwindcss-accent - GitHub',
                                             isActive: currentState === 'github',
                                         },
-                                        {
-                                            icon: <NpmIcon className="h-4 w-4" />,
-                                            title: 'tailwindcss-accent - npm',
-                                            isActive: currentState === 'npm',
-                                        },
                                     ]}
                                 >
                                     {currentState === 'github' && (

@@ -31,6 +31,8 @@ model Project {
   slug        String   @unique
   description String
   imageUrl    String
+  license     String?
+  repository  String?
   githubUrl   String?
   demoUrl     String?
   content     String?  @db.Text
