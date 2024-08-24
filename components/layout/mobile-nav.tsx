@@ -1,19 +1,19 @@
-import { ReactNode } from "react"
-import Link from "next/link"
-import { NavItem } from "@/types"
+import { ReactNode } from "react";
+import Link from "next/link";
+import { NavItem } from "@/types";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface MobileNavProps {
-  children?: ReactNode
-  items: NavItem[]
+  children?: ReactNode;
+  items: NavItem[];
 }
 
 const MobileNav = ({ items, children }: MobileNavProps) => {
   return (
     <div
       className={cn(
-        "fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-top-8"
+        "fixed inset-0 top-16 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-top-8",
       )}
     >
       <div className="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md">
@@ -26,7 +26,7 @@ const MobileNav = ({ items, children }: MobileNavProps) => {
                   href={subItem.disabled ? "#" : subItem.href}
                   className={cn(
                     "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
-                    subItem.disabled && "cursor-not-allowed opacity-60"
+                    subItem.disabled && "cursor-not-allowed opacity-60",
                   )}
                 >
                   {subItem.title}
@@ -38,18 +38,18 @@ const MobileNav = ({ items, children }: MobileNavProps) => {
                 href={item.disabled ? "#" : item?.href!}
                 className={cn(
                   "flex w-full items-center rounded-md p-2 text-sm font-bold hover:underline",
-                  item.disabled && "cursor-not-allowed opacity-60"
+                  item.disabled && "cursor-not-allowed opacity-60",
                 )}
               >
                 {item.title}
               </Link>
-            )
+            ),
           )}
         </nav>
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MobileNav
+export default MobileNav;

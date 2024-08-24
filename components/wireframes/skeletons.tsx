@@ -1,6 +1,6 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
-import type { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from "react";
 
 interface SkeletonProps {
   /**
@@ -16,8 +16,8 @@ export function SkeletonSm({
   return (
     <div
       className={clsx(
-        'flex h-4 items-center rounded-md bg-slate-200/80',
-        'dark:bg-slate-100/5'
+        "flex h-4 items-center rounded-md bg-slate-200/80",
+        "dark:bg-slate-100/5",
       )}
       style={{ width: w }}
     >
@@ -33,8 +33,8 @@ export function SkeletonMd({
   return (
     <div
       className={clsx(
-        'flex h-6 items-center rounded-lg bg-slate-200/80',
-        'dark:bg-slate-100/5'
+        "flex h-6 items-center rounded-lg bg-slate-200/80",
+        "dark:bg-slate-100/5",
       )}
       style={{ width: w }}
     >

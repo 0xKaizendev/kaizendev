@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   ComponentPropsWithoutRef,
@@ -6,12 +6,12 @@ import {
   forwardRef,
   ReactNode,
   useState,
-} from "react"
-import Link from "next/link"
-import { useSelectedLayoutSegment } from "next/navigation"
+} from "react";
+import Link from "next/link";
+import { useSelectedLayoutSegment } from "next/navigation";
 
-import { navbarLinks } from "@/config/nav-links"
-import { cn } from "@/lib/utils"
+import { navbarLinks } from "@/config/nav-links";
+import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,24 +20,24 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 // import SearchCommand from "@/components/command-menu"
-import { ModeToggle } from "@/components/theme-toggle"
+import { ModeToggle } from "@/components/theme-toggle";
 
-import { Icons } from "../icons"
-import MobileNav from "./mobile-nav"
-import { LangToggle } from "../lang-toggle"
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "../ui/button"
+import { Icons } from "../icons";
+import MobileNav from "./mobile-nav";
+import { LangToggle } from "../lang-toggle";
+import { siteConfig } from "@/config/site";
+import { buttonVariants } from "../ui/button";
 
 interface MainNavbarProps {
-  children?: ReactNode
+  children?: ReactNode;
 }
 
 const MainNavbar = ({ children }: MainNavbarProps) => {
-  const segment = useSelectedLayoutSegment()
-  console.log(segment)
-  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false)
+  const segment = useSelectedLayoutSegment();
+  console.log(segment);
+  const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (
     <div className="flex flex-1 justify-end gap-6 md:gap-10 lg:justify-between">
@@ -72,8 +72,8 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
                     className={cn(
                       navigationMenuTriggerStyle(),
                       link?.href?.includes(`/${segment}`) &&
-                      "text-sky-500 font-semibold",
-                      link.disabled && "cursor-not-allowed opacity-80"
+                        "text-sky-500 font-semibold",
+                      link.disabled && "cursor-not-allowed opacity-80",
                     )}
                   >
                     {link.title}
@@ -86,36 +86,28 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
       </NavigationMenu>
 
       <div className="hidden items-center gap-4 lg:flex">
-        <Link
-          href={siteConfig.links.github}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
           <div
             className={cn(
               buttonVariants({
                 size: "sm",
                 variant: "ghost",
               }),
-              "w-9 px-0"
+              "w-9 px-0",
             )}
           >
             <Icons.gitHub className="h-5 w-5 text-sky-500" />
             <span className="sr-only">GitHub</span>
           </div>
         </Link>
-        <Link
-          href={siteConfig.links.github}
-          target="_blank"
-          rel="noreferrer"
-        >
+        <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
           <div
             className={cn(
               buttonVariants({
                 size: "sm",
                 variant: "ghost",
               }),
-              "w-9 px-0"
+              "w-9 px-0",
             )}
           >
             <Icons.twitter className="h-5 w-5 text-sky-500" />
@@ -125,7 +117,6 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
         <span className="w-[2px] bg-secondary h-5/6" />
         <LangToggle />
         <ModeToggle />
-
       </div>
 
       <button
@@ -135,15 +126,14 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
         {showMobileMenu ? <Icons.close /> : <Icons.menu />}
       </button>
 
-
       {/* <MobileNav items={navbarLinks}>{children}</MobileNav> */}
 
       {showMobileMenu && navbarLinks && (
         <MobileNav items={navbarLinks}>{children}</MobileNav>
       )}
     </div>
-  )
-}
+  );
+};
 
 const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
   ({ className, title, children, ...props }, ref) => {
@@ -156,7 +146,7 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
             ref={ref}
             className={cn(
               "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-              className
+              className,
             )}
             {...props}
           >
@@ -167,9 +157,9 @@ const ListItem = forwardRef<ElementRef<"a">, ComponentPropsWithoutRef<"a">>(
           </Link>
         </NavigationMenuLink>
       </li>
-    )
-  }
-)
-ListItem.displayName = "ListItem"
+    );
+  },
+);
+ListItem.displayName = "ListItem";
 
-export default MainNavbar
+export default MainNavbar;

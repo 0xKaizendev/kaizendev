@@ -1,7 +1,7 @@
-"use client"
-import clsx from 'clsx';
-import { motion as m,  } from 'framer-motion';
-import HeaderCta from './header-cta';
+"use client";
+import clsx from "clsx";
+import { motion as m } from "framer-motion";
+import HeaderCta from "./header-cta";
 
 const animation = {
   hide: { x: -32, opacity: 0 },
@@ -12,13 +12,12 @@ const animation = {
 };
 
 function HeaderTitle() {
-
   return (
-    <div className=''>
+    <div className="">
       <m.div
         className={clsx(
-          'mb-1 flex items-center gap-1 text-2xl ',
-          'md:mb-0 md:gap-2 md:text-4xl',
+          "mb-1 flex items-center gap-1 text-2xl ",
+          "md:mb-0 md:gap-2 md:text-4xl",
         )}
         initial={animation.hide}
         animate={animation.show}
@@ -26,48 +25,41 @@ function HeaderTitle() {
       >
         Hello World, I&apos;m
       </m.div>
-      <div >
+      <div>
         <m.span
           className={clsx(
-            'mb-4 block text-[2.5rem]  leading-none font-logo',
-            'md:mb-6 md:text-7xl'
+            "mb-4 block text-[2.5rem]  leading-none font-logo",
+            "md:mb-6 md:text-7xl",
           )}
           initial={animation.hide}
           animate={animation.show}
           transition={{ delay: 0.2 }}
         >
-          <strong className={clsx('text-sky-500')}>
-            Rozales <span className='text-foreground'>a.k.a,</span> Kaizendev
-          </strong>{' '}
+          <strong className={clsx("text-sky-500")}>
+            Rozales <span className="text-foreground">a.k.a,</span> Kaizendev
+          </strong>{" "}
         </m.span>
         <m.h1
-          className={clsx(
-            'block text-base',
-            'md:text-lg',
-          )}
+          className={clsx("block text-base", "md:text-lg")}
           initial={animation.hide}
           animate={animation.show}
           transition={{ delay: 0.3 }}
         >
-          <strong
-            className={clsx(
-              'font-semibold lowercase ',
-            )}
-          >
+          <strong className={clsx("font-semibold lowercase ")}>
             a Software Engineer
-          </strong>{' '}
-          With a deep expertise in blockchain technology and a proven track record of developing innovative web3 applications.
+          </strong>{" "}
+          With a deep expertise in blockchain technology and a proven track
+          record of developing innovative web3 applications.
         </m.h1>
         <m.div
-          className='mt-4'
+          className="mt-4"
           initial={animation.hide}
           animate={animation.show}
-          transition={{ delay: 0.3 }}>
-
+          transition={{ delay: 0.3 }}
+        >
           <HeaderCta isFree={false} />
         </m.div>
       </div>
-
     </div>
   );
 }

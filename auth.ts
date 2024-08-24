@@ -1,10 +1,10 @@
-import authConfig from "@/auth.config"
-import { db } from "@/server/db"
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import type { NextAuthConfig } from "next-auth"
-import NextAuth from "next-auth"
+import authConfig from "@/auth.config";
+import { db } from "@/server/db";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import type { NextAuthConfig } from "next-auth";
+import NextAuth from "next-auth";
 
-import { env } from "@/env"
+import { env } from "@/env";
 
 export const config = {
   adapter: PrismaAdapter(db),
@@ -17,17 +17,17 @@ export const config = {
   callbacks: {
     async session({ token, session }) {
       if (token.sub && session.user) {
-        session.user.id = token.sub
+        session.user.id = token.sub;
       }
-      return session
+      return session;
     },
   },
   ...authConfig,
-} satisfies NextAuthConfig
+} satisfies NextAuthConfig;
 
 export const {
   handlers: { GET, POST },
   auth,
   signIn,
   signOut,
-} = NextAuth(config)
+} = NextAuth(config);

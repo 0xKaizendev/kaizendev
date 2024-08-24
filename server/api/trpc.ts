@@ -1,4 +1,3 @@
-
 /**
  * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
  * 1. You want to modify request context (see Part 1).
@@ -6,11 +5,11 @@
  *
  * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
  * need to use are documented accordingly near the end.*/
-import { initTRPC, TRPCError } from '@trpc/server';
+import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
-import { db } from '../db';
-import { auth } from "@/auth"
+import { db } from "../db";
+import { auth } from "@/auth";
 /**
  * Initialization of tRPC backend
  * Should be done only once per backend!
@@ -21,7 +20,6 @@ import { auth } from "@/auth"
  * Export reusable router and procedure helpers
  * that can be used throughout the router
  */
-
 
 /**
  * 1. CONTEXT
@@ -36,15 +34,14 @@ import { auth } from "@/auth"
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-    const session = await auth()
+  const session = await auth();
 
-    return {
-        db,
-        session,
-        ...opts,
-    }
-}
-
+  return {
+    db,
+    session,
+    ...opts,
+  };
+};
 
 /**
  * 2. INITIALIZATION
@@ -55,17 +52,17 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
  */
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
-    transformer: superjson,
-    errorFormatter({ shape, error }) {
-        return {
-            ...shape,
-            data: {
-                ...shape.data,
-                zodError:
-                    error.cause instanceof ZodError ? error.cause.flatten() : null,
-            },
-        };
-    },
+  transformer: superjson,
+  errorFormatter({ shape, error }) {
+    return {
+      ...shape,
+      data: {
+        ...shape.data,
+        zodError:
+          error.cause instanceof ZodError ? error.cause.flatten() : null,
+      },
+    };
+  },
 });
 
 /**
@@ -74,7 +71,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
  * @see https://trpc.io/docs/server/server-side-calls
  */
 
-export const { createCallerFactory } = t
+export const { createCallerFactory } = t;
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
  *
@@ -97,20 +94,19 @@ export const createTRPCRouter = t.router;
  * are logged in.
  */
 export const publicProcedure = t.procedure.use(async (opts) => {
-    const start = Date.now();
+  const start = Date.now();
 
-    const result = await opts.next();
+  const result = await opts.next();
 
-    const durationMs = Date.now() - start;
-    const meta = { path: opts.path, type: opts.type, durationMs };
+  const durationMs = Date.now() - start;
+  const meta = { path: opts.path, type: opts.type, durationMs };
 
-    result.ok
-        ? console.log('OK request timing:', meta)
-        : console.error('Non-OK request timing', meta);
+  result.ok
+    ? console.log("OK request timing:", meta)
+    : console.error("Non-OK request timing", meta);
 
-    return result;
+  return result;
 });
-
 
 /**
  * Protected (authenticated) procedure
@@ -121,13 +117,13 @@ export const publicProcedure = t.procedure.use(async (opts) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
-    if (!ctx.session || !ctx.session.user) {
-        throw new TRPCError({ code: "UNAUTHORIZED" })
-    }
-    return next({
-        ctx: {
-            // infers the `session` as non-nullable
-            session: { ...ctx.session, user: ctx.session.user },
-        },
-    })
-})
+  if (!ctx.session || !ctx.session.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  return next({
+    ctx: {
+      // infers the `session` as non-nullable
+      session: { ...ctx.session, user: ctx.session.user },
+    },
+  });
+});
