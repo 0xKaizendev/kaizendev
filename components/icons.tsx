@@ -630,6 +630,15 @@ export function TailwindCssIcon(props: ComponentProps<'svg'>) {
     </svg>
   );
 }
+export function PreviewArrowIcon(props: ComponentProps<'svg'>) {
+  return (
+    <svg  viewBox="0 0 29 28" xmlns="http://www.w3.org/2000/svg" fill="none"   {...props}>
+      <path opacity="0.5" d="M26.1654 11.6665C26.1316 7.68352 25.9104 5.48773 24.4625 4.03967C22.7534 2.33073 20.0029 2.33073 14.5017 2.33073C9.00058 2.33073 6.25001 2.33073 4.54102 4.03967C2.83203 5.74872 2.83203 8.49925 2.83203 14.0004C2.83203 19.5016 2.83203 22.2522 4.54102 23.9612C5.98902 25.4092 8.18478 25.6303 12.1678 25.6641" stroke="#0EA5E9" strokeWidth="2.31" strokeLinecap="round" />
+      <path d="M26.1667 19.8307H16.8333C14.7128 19.8307 13.4345 18.79 12.9605 18.3137C12.8137 18.1662 12.7403 18.0924 12.7393 18.0914C12.7383 18.0904 12.6645 18.017 12.517 17.8702C12.0407 17.3962 11 16.1179 11 13.9974V10.4974M26.1667 19.8307L20.3333 25.6641M26.1667 19.8307L20.3333 13.9974" stroke="#0EA5E9" strokeWidth="2.31" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+  );
+}
 
 export function FramerMotionIcon(props: ComponentProps<'svg'>) {
   return (

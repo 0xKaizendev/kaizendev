@@ -65,28 +65,26 @@ function AppWindow({
                 >
                     <div
                         className={clsx(
-                            'h-3 w-3 rounded-full bg-red-300',
-                            'dark:bg-slate-500'
+                            'h-3 w-3 rounded-full bg-[#EC6A5F]',
                         )}
                     />
                     <div
                         className={clsx(
-                            'h-3 w-3 rounded-full bg-amber-300',
-                            'dark:bg-slate-500'
+                            'h-3 w-3 rounded-full bg-sky-500',
                         )}
                     />
                     <div
                         className={clsx(
-                            'h-3 w-3 rounded-full bg-green-300',
-                            'dark:bg-slate-500'
+                            'h-3 w-3 rounded-full bg-[#61C454]',
                         )}
                     />
                 </div>
-                {type === 'browser' && (
-                    <>
-                        <div className={clsx('flex h-10 items-center justify-center')}>
+                <div className={clsx('flex h-10 items-center justify-center')}>
                             <SkeletonMd w={160} />
                         </div>
+                {type === 'browser' && (
+                    <>
+                      
                         {isWithBrowserTabs && (
                             <div className={clsx('mt-2 flex gap-2 px-3')}>
                                 {browserTabs.map(({ icon, title, isActive }) => (

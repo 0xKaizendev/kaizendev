@@ -1,10 +1,11 @@
-// const { PrismaClient } = require("@prisma/client")
-import { PrismaClient } from "@prisma/client";
+const { PrismaClient } = require("@prisma/client")
+// import { PrismaClient } from "@prisma/client";
 const database = new PrismaClient()
 
 async function run() {
     try {
         const stackNames = [
+            "Foundry",
             "TypeScript",
             "Solidity",
             "Git",
@@ -28,13 +29,13 @@ async function run() {
         // Create a new project and connect it to the created stacks
         const project = await database.project.create({
             data: {
-                title: "Personal portfolio",
+                title: "Zkevm Investment Manager",
                 
-                slug: "kaizendev.me",
-                description: "My personal portfolio website, built with Next.js, Tailwind CSS, TRPC, and TypeScript. It's a place where I can showcase my work and share my thoughts.",
+                slug: "zkevm-bridge-investment-managere",
+                repository: "zkevm-bridge-investment-manager",
+                description: "A smart contract suite for optimizing hosted ETH on LxLy investments using RocketPool. Features an InvestmentManager role, reserve/target percentages, and seamless ETH to rETH conversions.",
                 imageUrl: "/images/projects/blog.png",
-                githubUrl: "https://github.com/0xKaizendev/kaizendev",
-                demoUrl: "https://kaizendev.me",
+                githubUrl: "https://github.com/0xKaizendev/zkevm-bridge-investment-manager",
                 content: "Kaizendev.me is my personal portfolio website, built with Next.js, Tailwind CSS, TRPC, and TypeScript. It's a place where I can showcase my work and share my thoughts.",
                 isFeature: true,
                 stacks: {

@@ -19,7 +19,7 @@ const ProjectCard = ({ project }: {
                 {truncateText(project.description, 50)}
             </p>
             <div className="relative">
-                <Image src={project.imageUrl} alt={project.title} width={800} height={400} className="rounded-lg" />
+                <Image src={project.imageUrl} alt={project.title} width={600} height={300} className="rounded-lg" />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent rounded-lg"></div>
             </div>
             <div className="flex flex-wrap gap-2">

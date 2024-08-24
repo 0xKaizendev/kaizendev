@@ -7,49 +7,38 @@ import clsx from 'clsx'
 import AppWindow from '@/components/wireframes/appWindow'
 import { GitHubIcon, NpmIcon } from '@/components/icons'
 import GitHubWireframe from '@/components/wireframes/github'
+import WebAppWireframe from '@/components/wireframes/webapp'
 const Projects = () => {
     const { data: projects, isLoading } = api.projects.get.useQuery({ limit: 4 })
-    console.log(projects)
-    const [currentState, setCurrentState] = useState<'npm' | 'github'>('github');
     return (
         <div>
             <InfoButton title='Latest projects' />
-            {/* {
-                isLoading ? (
-                    <div>Loading...</div>
-                ) : (
-                    <div className='flex gap-4'>
-                        {projects?.map(project => (
-                            <ProjetCard key={project.id} project={project} />
-                        ))}
-                    </div>
-                )
-            } */}
             {
                 isLoading ? (
                     <div>Loading...</div>
                 ) : (
-                    <div className='flex gap-4 flex-wrap'>
+                    <div className='flex gap-4 flex-wrap items-center justify-center'>
                         {projects?.map(project => (
-                            <div className='lg:max-w-xl max-w-md'>
+                            <div className='lg:max-w-md max-w-md' key={project.id}>
                                 <AppWindow
-                                    type="browser"
-                                    browserTabs={[
-                                        {
-                                            icon: <GitHubIcon className="h-4 w-4" />,
-                                            title: 'kaizendev/tailwindcss-accent - GitHub',
-                                            isActive: currentState === 'github',
-                                        },
-                                    ]}
+                                    // type={project.demoUrl ? "app" : "browser"}
+                                    type="app"
+                                    // browserTabs={!project.demoUrl ? [
+                                    //     {
+                                    //         icon: <GitHubIcon className="h-4 w-4" />,
+                                    //         title: `0xKaizendev/${project.title}`,
+                                    //         isActive: true
+                                    //     },
+                                    // ] : undefined}
+
                                 >
-                                    {currentState === 'github' && (
-                                        <GitHubWireframe
-                                            author="kaizendev"
-                                            license="MIT"
-                                            repository="zkevm-bridge-investment-manager"
-                                            description="A smart contract suite for optimizing hosted ETH on LxLy investments using RocketPool. Features an InvestmentManager role, reserve/target percentages, and seamless ETH to rETH conversions "
+                                    {
+                                        project.demoUrl ? <WebAppWireframe
+                                            project={project}
+                                        /> : <GitHubWireframe
+                                            project={project}
                                         />
-                                    )}
+                                    }
 
                                 </AppWindow>
                             </div>
@@ -57,10 +46,6 @@ const Projects = () => {
                     </div>
                 )
             }
-
-
-
-
 
         </div>
     )
