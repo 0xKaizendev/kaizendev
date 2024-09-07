@@ -18,13 +18,11 @@ const Skills = () => {
     "text-cyan-300",
   ];
   return (
-    <div className="w-full py-10">
-      <div className="container mx-auto text-center">
+    <div className="w-full py-10 ">
+      <div className="container mx-auto text-center space-y-4">
         <InfoButton title="Skills & Tools" />
-        {/* <button className='bg-secondary px-4 py-2 rounded-xl shadow mb-4 text-2xl font-semibold'>
-                    Skills
-                </button> */}
-        <p className="mb-8 ">
+    
+        <p >
           The skills, tools and technologies I am really good at:
         </p>
         <div className="flex flex-wrap justify-center">

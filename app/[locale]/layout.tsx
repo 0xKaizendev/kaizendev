@@ -151,6 +151,13 @@ export default async function LocaleLayout({
           </NextIntlClientProvider>
           {/* </SessionProvider> */}
         </TRPCReactProvider>
+        <Footer dictionary={
+          {
+            built_by: "Rozales Assimpah",
+            hosted_on: "Hostinger",
+            source_code: ""
+          }
+        } />
       </body>
     </html>
   );
