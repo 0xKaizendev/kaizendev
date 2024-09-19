@@ -36,7 +36,7 @@ export const CopyButton = ({
       <span className="sr-only">Copy code</span>
       {
         //   toasts.some((notification) => notification.id === "copy-code")
-        "" ? (
+        content ? (
           <ClipboardDocumentCheckIcon className="h-5 w-5 text-sky-400" />
         ) : (
           <ClipboardDocumentIcon className="h-5 w-5" />

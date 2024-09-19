@@ -14,18 +14,23 @@ export const navbarLinks: NavItem[] = [
     description:
       "Code snippets that I use often. Mostly for personal reference.",
   },
-  {
-    title: "Blog",
-    href: "/blog",
-    description: "My notes on various topics. Mostly for personal reference.",
-  },
+  // {
+  //   title: "Blog",
+  //   href: "/blog",
+  //   description: "My notes on various topics. Mostly for personal reference.",
+  // },
   {
     title: "Projects",
-    href: "/projects",
+    href: "#projects",
     description: "My notes on various topics. Mostly for personal reference.",
   },
-  //   {
-  //     title: "More",
-  //     content: moreContent,
-  //   },
+  {
+    title: "Resume",
+    href: "/resume",
+    description: "My notes on various topics. Mostly for personal reference.",
+  },
+    // {
+    //   title: "More",
+    //   content: moreContent,
+    // },
 ];

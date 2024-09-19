@@ -18,7 +18,7 @@ const Skills = () => {
     "text-cyan-300",
   ];
   return (
-    <div className="w-full py-10 ">
+    <div className="w-full">
       <div className="container mx-auto text-center space-y-4">
         <InfoButton title="Skills & Tools" />
     
