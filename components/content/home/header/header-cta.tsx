@@ -38,7 +38,7 @@ function ButtonResume() {
     <a
       target="_blank"
       rel="noreferrer nofollow"
-      href="https://www.figma.com/community/file/1176377524040948926"
+      href="/resume.pdf"
       className={buttonVariants({ variant: "secondary", size: "default" })}
     >
       <DocumentIcon className={clsx("h-5 w-5")} />
