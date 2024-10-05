@@ -5,6 +5,7 @@ import { OrbitControls } from '@react-three/drei';
 // import Developer from '../components/Developer.jsx';
 import { workExperiences } from '@/constants/experience';
 import CanvasLoader from '@/components/loading';
+import Image from 'next/image';
 
 const WorkExperience = () => {
     const [animationName, setAnimationName] = useState('idle');
@@ -15,17 +16,12 @@ const WorkExperience = () => {
                 <p className="sm:text-4xl text-3xl font-semibold ">My Work Experience</p>
 
                 <div className=" grid lg:grid-cols-3 grid-cols-1 gap-5 mt-12">
-                    <div className="col-span-1 rounded-lg bg-black-200 border border-black-300">
-                        <Canvas>
-                            <ambientLight intensity={7} />
-                            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-                            <directionalLight position={[10, 10, 10]} intensity={1} />
-                            <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} />
+                    <div className="col-span-1 rounded-lg bg-black-200 border border-black-300 ">
+                  
+                        <Suspense fallback={<CanvasLoader />}>
+                            <Image src={'/astronaut-skateboarding-different-planets-space.jpg'} alt="me" width={150} height={100} className='w-full h-full rounded-lg' />
 
-                            <Suspense fallback={<CanvasLoader />}>
-                                {/* <Developer position-y={-3} scale={3} animationName={animationName} /> */}
-                            </Suspense>
-                        </Canvas>
+                        </Suspense>
                     </div>
 
                     <div className="col-span-2 rounded-lg bg-black-200 border border-black-300">
