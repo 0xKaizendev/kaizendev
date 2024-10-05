@@ -21,10 +21,8 @@ const Skills = () => {
     <div className="w-full">
       <div className="container mx-auto text-center space-y-4">
         <InfoButton title="Skills & Tools" />
-    
-        <p >
-          The skills, tools and technologies I am really good at:
-        </p>
+
+        <p>The skills, tools and technologies I am really good at:</p>
         <div className="flex flex-wrap justify-center">
           {skills.map((skill, index) => (
             <div

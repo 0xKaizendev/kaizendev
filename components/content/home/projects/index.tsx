@@ -16,9 +16,7 @@ const Projects = () => {
         <div className="flex gap-4 flex-wrap items-center justify-center">
           {projects?.map((project) => (
             <div className="lg:max-w-md max-w-md" key={project.id}>
-              <AppWindow
-                type="app"
-              >
+              <AppWindow type="app">
                 {project.demoUrl ? (
                   <WebAppWireframe project={project} />
                 ) : (

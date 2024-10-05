@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 import {
   Roboto_Mono as FontCode,
   Plus_Jakarta_Sans,
@@ -151,16 +151,15 @@ export default async function LocaleLayout({
             </ThemeProvider>
           </NextIntlClientProvider>
           {/* </SessionProvider> */}
-
         </TRPCReactProvider>
-        <Footer dictionary={
-          {
+        <Footer
+          dictionary={{
             built_by: "Rozales Assimpah",
             hosted_on: "Hostinger",
-            source_code: ""
-          }
-        } />
-              <Analytics  />
+            source_code: "",
+          }}
+        />
+        <Analytics />
       </body>
     </html>
   );

@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:setup": "node scripts/seed.ts",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache --write"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.0.0",
