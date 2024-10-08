@@ -142,23 +142,28 @@ function GitHubWireframe({ project }: GithubWireframeProps) {
           ))}
         </div>
       </div>
-      <div className=" flex gap-5 items-center">
+      <div className=" flex gap-5 items-center ">
         {project?.demoUrl && (
-          <Link
+       <div className="flex gap-2 items-center ">
+          <PreviewArrowIcon />
+           <Link
             href={project.demoUrl}
-            className="flex gap-2 items-center text-foreground font-medium"
+            className="text-foreground font-medium"
           >
-            <PreviewArrowIcon /> Live Demo
+           Live Demo
           </Link>
+       </div>
         )}
         {project?.githubUrl && (
-          <Link
-            href={project.githubUrl}
-            className="flex gap-2 items-center text-foreground font-medium"
-          >
+          <div className="flex gap-2 items-center">
             <Icons.gitHub className="h-7 w-7 text-sky-500" />
-            Github
-          </Link>
+            <Link
+              href={project.githubUrl}
+              className=" text-foreground font-medium animated-link "
+            >
+              Github
+            </Link>
+          </div>
         )}
       </div>
     </div>

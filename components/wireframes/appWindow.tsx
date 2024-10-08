@@ -47,7 +47,7 @@ function AppWindow({
     <div
       role="presentation"
       className={clsx(
-        "border-divider-light pointer-events-none flex h-full w-full select-none flex-col overflow-hidden rounded-xl border bg-white",
+        "border-divider-light  flex h-full w-full select-none flex-col overflow-hidden rounded-xl border bg-white",
         "dark:border-divider-dark dark:bg-[#0c1222]",
       )}
     >

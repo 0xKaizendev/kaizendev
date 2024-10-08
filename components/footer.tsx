@@ -23,7 +23,7 @@ const Footer = ({ className, dictionary }: footerProps) => {
               href={siteConfig.links.twitter}
               target="_blank"
               rel="noreferrer"
-              className="font-medium underline underline-offset-4"
+              className="font-medium animated-link"
             >
               Rozales
             </a>
@@ -32,7 +32,7 @@ const Footer = ({ className, dictionary }: footerProps) => {
               href="https://vercel.com"
               target="_blank"
               rel="noreferrer"
-              className="font-medium underline underline-offset-4"
+              className="font-medium animated-link"
             >
               Vercel
             </a>
@@ -41,7 +41,7 @@ const Footer = ({ className, dictionary }: footerProps) => {
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"
-              className="font-medium underline underline-offset-4"
+              className="font-medium animated-link "
             >
               GitHub
             </a>
