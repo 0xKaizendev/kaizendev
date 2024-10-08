@@ -169,7 +169,7 @@
       transform-origin: bottom right;
     }
   }
-  .animated-link{
+  .animated-link {
     @apply after:bg-foreground;
   }
 }

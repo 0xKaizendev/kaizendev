@@ -13,7 +13,7 @@ const Projects = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className="flex gap-4 flex-wrap items-center justify-center">
+        <div className="flex gap-4 flex-wrap items-center">
           {projects?.map((project) => (
             <div className="lg:max-w-md max-w-md" key={project.id}>
               <AppWindow type="app">
