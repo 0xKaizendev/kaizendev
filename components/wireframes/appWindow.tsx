@@ -51,6 +51,7 @@ function AppWindow({
         "dark:border-divider-dark dark:bg-[#0c1222]",
       )}
     >
+
       <div
         className={clsx(
           "border-divider-light relative box-border border-b",

@@ -18,6 +18,7 @@ import MainNavbar from "@/components/layout/main-nav";
 import { ScrollBar } from "@/components/progress-bar";
 import Footer from "@/components/footer";
 import { TRPCReactProvider } from "@/_trpc/client";
+import { Container } from "@/components/container";
 // Can be imported from a shared config
 // const locales = ['en', 'de'];
 
@@ -128,37 +129,43 @@ export default async function LocaleLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <div className="flex min-h-screen flex-col ">
-                {/* <MainNavbar /> */}
-                <p className="text-center font-medium my-4">
-                  🚧 Work in Progress! My portfolio is currently under
-                  construction. Stay tuned! 🚧
-                </p>
-                <ScrollBar />
-                <header className="sticky top-2 z-40 w-full border-b bg-background/90 backdrop-blur-md">
-                  <div className="container lg:max-w-4xl xl:max-w-6xl">
-                    <div className="flex h-20 items-center space-x-8 py-6">
-                      <Logo />
-                      <MainNavbar />
-                    </div>
+              {/* <MainNavbar /> */}
+              <p className="text-center font-medium my-4">
+                🚧 Work in Progress! My portfolio is currently under
+                construction. Stay tuned! 🚧
+              </p>
+              <ScrollBar />
+              <header className="sticky top-2 z-40 w-full border-b bg-background/90 backdrop-blur-md">
+                <Container>
+                  <div className="flex h-20 items-center space-x-8 py-6">
+                    <Logo />
+                    <MainNavbar />
                   </div>
-                </header>
-                <main className="content-wrapper flex-1 py-6 md:py-10 lg:max-w-4xl xl:max-w-6xl">
+                </Container>
+              </header>
+              {/* <main className="content-wrapper flex-1 py-6 md:py-10 lg:max-w-4xl xl:max-w-6xl "> */}
+              <main className="relative">
+                <Container className="mt-10 ">
+
                   {children}
-                </main>
-                {/* <Footer /> */}
-              </div>
+
+                </Container>
+                <Container className="mt-10 ">
+                  <Footer
+                    dictionary={{
+                      built_by: "Built by",
+                      hosted_on: "Hosted on",
+                      source_code: "Source code on",
+                    }}
+                  />
+                </Container>
+              </main>
+              {/* <Footer /> */}
             </ThemeProvider>
           </NextIntlClientProvider>
           {/* </SessionProvider> */}
         </TRPCReactProvider>
-        <Footer
-          dictionary={{
-            built_by: "Rozales Assimpah",
-            hosted_on: "Hostinger",
-            source_code: "",
-          }}
-        />
+
         <Analytics />
       </body>
     </html>

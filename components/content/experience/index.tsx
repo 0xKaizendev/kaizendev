@@ -6,16 +6,17 @@ import { OrbitControls } from "@react-three/drei";
 import { workExperiences } from "@/constants/experience";
 import CanvasLoader from "@/components/loading";
 import Image from "next/image";
+import Heading from "@/components/ui/heading";
 
 const WorkExperience = () => {
   const [animationName, setAnimationName] = useState("idle");
 
   return (
     <section className="c-space my-20" id="work">
-      <div className="w-full text-white-600">
-        <p className="sm:text-4xl text-3xl font-semibold ">
+      <div className="w-full" >
+        <Heading >
           My Work Experience
-        </p>
+        </Heading>
 
         <div className=" grid lg:grid-cols-3 grid-cols-1 gap-5 mt-12">
           <div className="col-span-1 rounded-lg bg-black-200 border border-black-300 ">

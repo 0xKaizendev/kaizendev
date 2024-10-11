@@ -36,7 +36,6 @@ interface MainNavbarProps {
 
 const MainNavbar = ({ children }: MainNavbarProps) => {
   const segment = useSelectedLayoutSegment();
-  console.log(segment);
   const [showMobileMenu, setShowMobileMenu] = useState<boolean>(false);
 
   return (

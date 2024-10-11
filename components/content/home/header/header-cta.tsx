@@ -1,5 +1,5 @@
 "use client";
-import { DocumentIcon } from "@/components/icons";
+import { ResumeIcon } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
 import clsx from "clsx";
 import { motion as m, useReducedMotion } from "framer-motion";
@@ -38,10 +38,10 @@ function ButtonResume() {
     <a
       target="_blank"
       rel="noreferrer nofollow"
-      href="/resume.pdf"
+      href="files/resume.pdf"
       className={buttonVariants({ variant: "secondary", size: "default" })}
     >
-      <DocumentIcon className={clsx("h-5 w-5")} />
+      <ResumeIcon className={clsx("h-5 w-5")} />
       RESUME
     </a>
   );

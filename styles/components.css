@@ -6,9 +6,6 @@
     @apply sm:px-12 md:px-10 lg:px-16 xl:px-6;
   }
 
-  .content-wrapper-max {
-    @apply mx-auto max-w-[120rem];
-  }
 
   .background-grid {
     @apply relative z-0;
