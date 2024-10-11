@@ -46,10 +46,9 @@ function HeaderTitle() {
           transition={{ delay: 0.3 }}
         >
           <strong className={clsx("font-semibold lowercase ")}>
-            a Software Engineer
+            a Full-stack software engineer, Gamer and occasional blogger
           </strong>{" "}
-          With a deep expertise in blockchain technology and a proven track
-          record of developing innovative web3 applications.
+          with a focus on blockchain development and building practical web3 solutions.
         </m.h1>
         <m.div
           className="mt-4"
