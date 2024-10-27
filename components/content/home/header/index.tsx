@@ -15,11 +15,11 @@ const animation = {
 const Header = () => {
   return (
     <header id="page-header">
-      <div className={"w-full  overflow-hidden"}>
-        <div className={clsx("relative w-full overflow-hidden")}>
+      <div className={"w-full "}>
+        <div className={clsx("relative w-full ")}>
           <div
             className={clsx(
-              "relative z-10 flex flex-col  lg:flex-row gap-10 overflow-hidden",
+              "relative z-10 flex flex-col  lg:flex-row gap-10 ",
             )}
           >
             <HeaderTitle />
@@ -27,7 +27,7 @@ const Header = () => {
               initial={animation.hide}
               animate={animation.show}
               transition={{ delay: 0.1 }}
-              className="overflow-hidden md:w-full"
+              className=" md:w-full"
             >
               <CodeEditor
                 code={`type WelcomeMessage = 

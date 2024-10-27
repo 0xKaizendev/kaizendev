@@ -7,6 +7,8 @@ import GitHubWireframe from "@/components/wireframes/github";
 import WebAppWireframe from "@/components/wireframes/webapp";
 const Projects = () => {
   const { data: projects, isLoading } = api.projects.get.useQuery({ limit: 4 });
+  console.log("PROJECTS ",projects);
+  
   return (
     <div className="space-y-4">
       <InfoButton title="Latest projects" />

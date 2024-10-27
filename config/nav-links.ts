@@ -21,7 +21,7 @@ export const navbarLinks: NavItem[] = [
   // },
   {
     title: "Projects",
-    href: "#projects",
+    href: "/projects",
     description: "My notes on various topics. Mostly for personal reference.",
   },
   {

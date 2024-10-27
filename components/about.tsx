@@ -13,6 +13,7 @@ import { ResumeIcon } from "./icons";
 import Heading from "./ui/heading";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import PageHeader from "./page-header";
 
 function SocialLink({
     icon: Icon,
@@ -28,16 +29,15 @@ function SocialLink({
     );
 }
 
-export default async function About() {
+export default function About() {
     return (
+
         <div className="max-w-3xl mt-4">
+            <PageHeader title= {about.name} caption="About me"  />
             <Avatar className="w-20 h-20">
                 <AvatarImage src="/images/me.jpg" />
                 <AvatarFallback>RA</AvatarFallback>
             </Avatar>
-            <Heading className="text-3xl sm:text-5xl">
-                {about.name}
-            </Heading>
             <h2 className="text-gray-600 dark:text-gray-400 tracking-tighter mb-4">
                 {about.designation} at{" "}
                 <Link
@@ -106,5 +106,7 @@ export default async function About() {
                 />
             </div>
         </div>
-    );
+
+
+    )
 }

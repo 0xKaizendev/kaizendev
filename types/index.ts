@@ -45,3 +45,16 @@ export interface UseData {
   link?: string;
   hoverColor?: string;
 }
+
+export type Project = {
+  title: string;
+  description: string;
+  link: {
+    href: string;
+    label: string;
+  };
+  logo: {
+    src: string;
+    alt: string;
+  };
+};

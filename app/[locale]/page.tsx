@@ -5,8 +5,9 @@ import { useTranslations } from "next-intl";
 export default function Index() {
   const t = useTranslations("Index");
   return (
-    <div className="overflow-hidden">
+    <div className="mt-4">
       <IndexContents />
     </div>
   );
 }
+

@@ -146,22 +146,21 @@ export default async function LocaleLayout({
               </header>
               {/* <main className="content-wrapper flex-1 py-6 md:py-10 lg:max-w-4xl xl:max-w-6xl "> */}
               <main className="relative">
-                <Container className="mt-10 ">
+                <Container className="mt-10">
 
                   {children}
 
                 </Container>
                 <Container className="mt-10 ">
-                  <Footer
+                  {/* <Footer
                     dictionary={{
                       built_by: "Built by",
                       hosted_on: "Hosted on",
                       source_code: "Source code on",
                     }}
-                  />
+                  /> */}
                 </Container>
               </main>
-              {/* <Footer /> */}
             </ThemeProvider>
           </NextIntlClientProvider>
           {/* </SessionProvider> */}
