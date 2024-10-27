@@ -12,6 +12,7 @@ import Link from "next/link";
 import { ResumeIcon } from "./icons";
 import Heading from "./ui/heading";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 function SocialLink({
     icon: Icon,
@@ -30,6 +31,10 @@ function SocialLink({
 export default async function About() {
     return (
         <div className="max-w-3xl mt-4">
+            <Avatar className="w-20 h-20">
+                <AvatarImage src="/images/me.jpg" />
+                <AvatarFallback>RA</AvatarFallback>
+            </Avatar>
             <Heading className="text-3xl sm:text-5xl">
                 {about.name}
             </Heading>
