@@ -24,7 +24,7 @@ const config = {
     },
     extend: {
       colors: {
-        
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -80,10 +80,22 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        tilt: {
+          "0%, 50%, 100%": {
+            transform: "rotate(0deg)",
+          },
+          "25%": {
+            transform: "rotate(5deg) ",
+          },
+          "75%": {
+            transform: "rotate(-5deg)",
+          },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "tilt": "tilt 10s infinite linear",
       },
     },
   },
@@ -106,6 +118,6 @@ const config = {
     //   root: 'violet',
     // }),
   ],
-} 
+}
 
 export default config

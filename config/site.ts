@@ -8,12 +8,12 @@ export const siteConfig: SiteConfig = {
   url: "https://kaizendev.me/",
   ogImage: "/images/og.png",
   links: {
-    mail: "",
-    twitter: "",
-    github: "",
+    mail: "rozales@kaizendev.me",
+    twitter: "https://x.com/0xkaizendev",
+    github: "https://github.com/0xKaizendev",
   },
   author: {
     name: "Rozales Assimpah",
-    email: "",
+    email: "rozales@kaizendev.me",
   },
 };

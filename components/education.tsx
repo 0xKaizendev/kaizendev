@@ -24,7 +24,7 @@ export default function Educations(): JSX.Element {
                         <div
                             key={index}
                             className={
-                                "h-0 overflow-hidden transition-height ease-in-out duration-[400ms] "
+                                "h-0 overflow-hidden transition-height ease-in-out duration-500 "
                             }
                             ref={parentRef as any}
                             style={{

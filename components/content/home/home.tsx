@@ -10,7 +10,7 @@ const IndexContents = () => {
       <Header />
       <Skills />
       <AboutKaizen />
-      <Projects />
+      {/* <Projects /> */}
       {/* <WorkExperience /> */}
     </div>
   );

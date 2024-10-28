@@ -13,9 +13,9 @@ export function Card({
 }): JSX.Element {
   return (
     <Component
-      className={clsx(className, "group relative flex flex-col items-start")}
+      className={clsx(className, "group relative flex flex-col items-start ")}
     >
-      <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-accent sm:-inset-x-6 sm:rounded-2xl" />
+      <div className="absolute border border-sky-500 -inset-y-6 -inset-x-4 z-0  scale-95  opacity-50 transition group-hover:scale-100 group-hover:opacity-100 bg-accent sm:-inset-x-6 sm:rounded-2xl shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_2px_#08f,0_0_15px_#08f,0_0_30px_#08f] " />
       {children}
     </Component>
   );
