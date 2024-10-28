@@ -55,7 +55,6 @@ export const STACKS = [
   { name: "Docker", icon: <FaDocker className="text-[#1d63ed]" /> },
   { name: "Tailwind CSS", icon: <FaCss3Alt className="text-sky-500" /> },
   { name: "HardHat", icon: <FaHardHat className="text-[#fff100]" /> },
-  { name: "Framer Motion", icon: <SiFramer className="text-purple-400" /> },
   { name: "Vercel", icon: <SiVercel className="text-black" /> },
   { name: "MongoDB", icon: <SiMongodb className="text-[#00ed64]" /> },
   {
@@ -74,7 +73,6 @@ export const STACKS = [
   // { name: "Webpack", icon: <SiWebpack size={iconSize} className="text-blue-500" /> },
   // { name: "PWA", icon: <SiPwa size={iconSize} className="text-amber-600" /> },
   // { name: "Nginx", icon: <SiNginx size={iconSize} className="text-green-500" /> },
-  { name: "Jest", icon: <SiJest size={iconSize} className="text-red-600" /> },
   // { name: "Storybook", icon: <SiStorybook size={iconSize} className="text-amber-500" /> },
   // { name: "CSS", icon: <SiCss3 size={iconSize} className="text-blue-300" /> },
   { name: "Socket", icon: <SiSocketdotio size={iconSize} /> },

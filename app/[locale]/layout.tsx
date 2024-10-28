@@ -152,13 +152,13 @@ export default async function LocaleLayout({
 
                 </Container>
                 <Container className="mt-10 ">
-                  {/* <Footer
+                  <Footer
                     dictionary={{
                       built_by: "Built by",
                       hosted_on: "Hosted on",
                       source_code: "Source code on",
                     }}
-                  /> */}
+                  />
                 </Container>
               </main>
             </ThemeProvider>

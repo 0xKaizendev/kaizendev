@@ -114,7 +114,7 @@ const MainNavbar = ({ children }: MainNavbarProps) => {
           </div>
         </Link>
         <span className="w-[2px] bg-secondary h-5/6" />
-        <LangToggle />
+        {/* <LangToggle /> */}
         <ModeToggle />
       </div>
 

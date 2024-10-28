@@ -4,7 +4,6 @@ export const educations: Education[] = [
     {
         "school": "Our Lady of the Church Graduate School of Administration, Togo",
         "schoolURL": "https://iub.edu.bd/",
-        "schoolLogo": "/images/iub.png",
         "schoolLocation": "52 boulevard des armees, Tokoin seminaire dans l'enceinte du CESAL",
         "degree": "Bachelor of Science - BS",
         "major": "Computer Science and Engineering",
@@ -17,5 +16,4 @@ export const educations: Education[] = [
             "Smart Contract Hackathon Team",
         ],
     },
-
 ]
