@@ -30,28 +30,27 @@ const Header = () => {
               className=" md:w-full"
             >
               <CodeEditor
-                code={`type WelcomeMessage = 
-  | "explore blockchain tech"
-  | "showcase Web3 projects"
-  | "connect with the community"
-  | "find collaboration"
-  | "share my Web3 journey";
+                code={`// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-function generateWelcomeMessage(uses: WelcomeMessage): string {
-  return [
-    "Welcome to my Web3 Space!",
-    "This site is for " + uses + ".",
-    "Feel free to explore!"
-  ].join('\n');
+contract MerkleVerifier  {
+    bytes32 public merkleRoot;
+
+    constructor(bytes32 _merkleRoot) {
+        merkleRoot = _merkleRoot;
+    }
+
+    function verify(bytes32[] memory proof, bytes32 leaf) public view returns (bool) {
+        bytes32 hash = leaf;
+        for (uint256 i = 0; i < proof.length; i++) {
+            hash = hash <= proof[i] ? keccak256(abi.encodePacked(hash, proof[i])) : keccak256(abi.encodePacked(proof[i], hash));
+        }
+        return hash == merkleRoot;
+    }
 }
 
-// Example usage
-const welcomeText = generateWelcomeMessage("explore blockchain tech");
-console.log(welcomeText);
-
-
 `}
-                language="tsx"
+                language="solidity"
               />
             </m.div>
             {/*  */}

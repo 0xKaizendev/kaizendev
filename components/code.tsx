@@ -19,7 +19,8 @@ export type CodeGroupProps = {
     | "Rust"
     | "bash"
     | "html"
-    | "javascript";
+    | "javascript"
+    |"solidity"
   className?: string;
   lineHighlight?: string;
   plugins?: ("line-numbers" | "highlight-keywords")[];
@@ -42,6 +43,10 @@ export const Code: FC<CodeGroupProps> = ({
     if (language === "html") {
       // @ts-ignore
       await import(`prismjs/components/prism-markup`);
+    }
+    if (language === "solidity") {
+      // @ts-ignore
+      await import(`prismjs/components/prism-solidity`);
     }
     if (language !== "html") {
       await import(`prismjs/components/prism-${language}`);
