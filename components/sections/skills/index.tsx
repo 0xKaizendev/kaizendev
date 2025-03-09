@@ -20,7 +20,7 @@ const Skills = () => {
     "text-cyan-300",
   ];
   return (
-    <section id="skills" ref={ref} className="relative flex scroll-mt-36 h-screen flex-col items-center justify-center container ">
+    <section id="skills" ref={ref} className="relative flex scroll-mt-0 h-screen flex-col items-center justify-center container ">
       <div className="container mx-auto text-center space-y-4">
         <InfoButton title="Skills & Tools" />
 

@@ -1,39 +1,76 @@
 "use client";
-import { Card } from "@/components/card";
 import Image from "next/image";
 import React from "react";
-import { LinkIcon } from "../icons";
-import { Project } from "@/types";
+import { LinkIcon, GitHubIcon } from "@/components/icons";
+import Link from 'next/link';
 
-export default function ProjectCard({
-    project,
-}: {
-    project: Project;
-}): JSX.Element {
-    const [isImageLoading, setImageLoading] = React.useState(true);
-    return (
-        <Card>
-            {/* <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                <Image
-                    src={`/images/${project.logo.src}`}
-                    alt={project.logo.alt}
-                    height={32}
-                    width={32}
-                    onLoad={() => setImageLoading(false)}
-                    className={`${isImageLoading
-                        ? "blur-sm transition ease-in duration-100"
-                        : "blue-none transition ease-in duration-100"
-                        } h-8 w-8`}
-                />
-            </div> */}
-            <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                <Card.Link href={project.link.href}>{project.title}</Card.Link>
-            </h2>
-            <Card.Description>{project.description}</Card.Description>
-            <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-sky-500 dark:text-zinc-200">
-                <LinkIcon className="h-6 w-6 flex-none" />
-                <span className="ml-2">{project.link.label}</span>
-            </p>
-        </Card>
-    );
+interface ProjectCardProps {
+    title: string;
+    description: string;
+    links: {
+        github?: string;
+        project?: string;
+    };
+    logo: {
+        src: string;
+        alt: string;
+    };
+    stack: string[];
 }
+
+const ProjectCard = ({ title, description, links, logo, stack }: ProjectCardProps) => {
+    return (
+        <div className="group relative flex flex-col w-56 bg-white text-slate-600 dark:bg-slate-900 dark:text-slate-400 rounded-lg p-4">
+            <div className="relative w-full h-32 overflow-hidden rounded-lg mb-4">
+                <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+            </div>
+            <div className="w-full">
+                <h3 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100 min-h-[2.5rem] line-clamp-2">
+                    {title}
+                </h3>
+                <div className="flex flex-wrap gap-1 mt-2">
+                    {stack.map((tech, index) => (
+                        <span
+                            key={index}
+                            className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-100"
+                        >
+                            {tech}
+                        </span>
+                    ))}
+                </div>
+                <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
+                    {description}
+                </p>
+            </div>
+
+            <div className="relative mt-4 flex items-center gap-3 text-sm font-medium self-start">
+                {links.github && (
+                    <Link
+                        href={links.github}
+                        className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                        target="_blank"
+                    >
+                        <GitHubIcon className="h-5 w-5" />
+                    </Link>
+                )}
+                {links.project && (
+                    <Link
+                        href={links.project}
+                        className="flex items-center text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                        target="_blank"
+                    >
+                        <span>View Project</span>
+                        <LinkIcon className="ml-1 h-4 w-4 transform transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
+                    </Link>
+                )}
+            </div>
+        </div>
+    );
+};
+
+export default ProjectCard;

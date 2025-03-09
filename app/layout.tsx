@@ -18,6 +18,7 @@ import { ScrollBar } from "@/components/progress-bar";
 import Footer from "@/components/footer";
 import { TRPCReactProvider } from "@/_trpc/client";
 import { Container } from "@/components/container";
+import { ModeToggle } from '@/components/theme-toggle';
 import Header from "@/components/header";
 
 const fontSans = Plus_Jakarta_Sans({
@@ -107,7 +108,7 @@ export default async function LocaleLayout({
       <body
         className={cn(
           'relative antialiased flex items-center justify-center antialiase background-grid background-grid--fade-out font-sans',
-       
+
           fontSans.variable,
           fontCode.variable,
           fontPoppins.variable,
@@ -124,8 +125,19 @@ export default async function LocaleLayout({
               disableTransitionOnChange
             >
               <Header />
-
-                {children}
+              {children}
+              <Container className="mt-10 ">
+                {/* <Footer
+                  dictionary={{
+                    built_by: "Built by",
+                    hosted_on: "Hosted on",
+                    source_code: "Source code on",
+                  }}
+                /> */}
+              </Container>
+              <div className="fixed left-1 right-auto top-1 z-[99] sm:bottom-6 sm:left-6 sm:top-auto">
+                <ModeToggle />
+              </div>
             </ThemeProvider>
           </ActiveSectionContextProvider>
         </div>

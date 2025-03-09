@@ -6,7 +6,7 @@ import React from "react";
 const AboutKaizen = () => {
     const { ref } = useSectionInView("kaizen");
     return (
-        <section id="kaizen" ref={ref} className="relative flex scroll-mt-36 h-screen flex-col items-center justify-center container ">
+        <section id="kaizen" ref={ref} className="relative flex scroll-mt-0 h-screen flex-col items-center justify-center container ">
             <blockquote className="border flex justify-center items-center bg-white text-slate-600 dark:bg-slate-900 dark:text-slate-400 rounded-xl text-2xl md:text-3xl lg:pt-0 lg:text-4xl mb-10">
                 <div className="p-6  mx-auto">
                     <div className="relative flex items-center mb-4">

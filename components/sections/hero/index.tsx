@@ -20,7 +20,7 @@ const Hero = () => {
   const { ref } = useSectionInView("home");
   // const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   return (
-    <section id="home" ref={ref} className="relative flex scroll-mt-36 h-screen flex-col items-center justify-center container " >
+    <section id="home" ref={ref} className="relative flex scroll-mt-0 h-screen flex-col items-center justify-center container " >
 
 
       <div

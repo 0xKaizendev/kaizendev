@@ -8,12 +8,12 @@ import About from "@/components/sections/about";
 
 export default function Index() {
   return (
-    <main className="flex min-h-screen w-full flex-col items-center p-0 overflow-auto space-y-8 ">
+    <main className="flex min-h-screen w-full flex-col items-center p-0">
       <Hero />
       <Skills />
       <AboutKaizen />
       <Projects />
-      <About />
+      {/* <About /> */}
     </main>
   );
 }

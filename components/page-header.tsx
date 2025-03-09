@@ -28,7 +28,7 @@ function PageHeader({
     <header
       id="page-header"
       className={clsx(
-        'z-[900] mb-5 ',
+        'z-[900] mb-5',
       )}
     >
       <div >
