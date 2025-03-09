@@ -1,7 +1,9 @@
 import InfoButton from "@/components/ui/info-button";
 import { skills } from "@/config/use-data";
 import React from "react";
+import { useSectionInView } from "@/hooks/use-section-in-view";
 const Skills = () => {
+  const { ref } = useSectionInView("skills");
   const colors = [
     "text-black",
     "text-[#31648c]",
@@ -18,7 +20,7 @@ const Skills = () => {
     "text-cyan-300",
   ];
   return (
-    <div className="w-full">
+    <section id="skills" ref={ref} className="relative flex scroll-mt-36 h-screen flex-col items-center justify-center container ">
       <div className="container mx-auto text-center space-y-4">
         <InfoButton title="Skills & Tools" />
 
@@ -35,7 +37,7 @@ const Skills = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

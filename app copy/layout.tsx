@@ -1,6 +1,4 @@
 import "@/styles/globals.css";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
@@ -10,7 +8,6 @@ import {
   Plus_Jakarta_Sans,
   Poppins,
 } from "next/font/google";
-// import { SessionProvider } from "next-auth/react"
 import { siteConfig } from "@/config/site";
 import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
@@ -20,12 +17,7 @@ import { ScrollBar } from "@/components/progress-bar";
 import Footer from "@/components/footer";
 import { TRPCReactProvider } from "@/_trpc/client";
 import { Container } from "@/components/container";
-// Can be imported from a shared config
-// const locales = ['en', 'de'];
 
-// export function generateStaticParams() {
-//   return locales.map((locale) => ({ locale }));
-// }
 const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -46,7 +38,7 @@ const fontPoppins = Poppins({
 });
 
 const fontLogo = localFont({
-  src: "../../assets/fonts/AquataDisplay-SemiBold.woff2",
+  src: "../assets/fonts/AquataDisplay-SemiBold.woff2",
   variable: "--font-logo",
   adjustFontFallback: false,
 });
@@ -101,14 +93,11 @@ export const metadata: Metadata = {
 };
 export default async function LocaleLayout({
   children,
-  params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages();
 
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
@@ -123,7 +112,6 @@ export default async function LocaleLayout({
       >
         <TRPCReactProvider>
           {/* <SessionProvider> */}
-          <NextIntlClientProvider messages={messages}>
             <ThemeProvider
               attribute="class"
               defaultTheme="dark"
@@ -162,7 +150,6 @@ export default async function LocaleLayout({
                 </Container>
               </main>
             </ThemeProvider>
-          </NextIntlClientProvider>
           {/* </SessionProvider> */}
         </TRPCReactProvider>
 

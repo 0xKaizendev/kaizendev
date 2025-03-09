@@ -1,7 +1,7 @@
 "use client";
 import { projects } from "@/constants/projects";
-import PageHeader from "../page-header";
-import ProjectCard from "./project-card";
+import PageHeader from "@/components/page-header";
+import ProjectCard from "@/components/project/project-card";
 
 const Projects = () => {
     return (

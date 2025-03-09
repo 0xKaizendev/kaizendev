@@ -2,7 +2,7 @@
 import clsx from "clsx";
 import { motion as m } from "framer-motion";
 import HeaderCta from "./header-cta";
-
+import TextAnimation from "./text-animation";
 const animation = {
   hide: { x: -32, opacity: 0 },
   show: {
@@ -26,19 +26,7 @@ function HeaderTitle() {
         Hello World, I&apos;m
       </m.div>
       <div>
-        <m.span
-          className={clsx(
-            "mb-4 block text-[2.5rem]  leading-none font-logo",
-            "md:mb-6 md:text-7xl",
-          )}
-          initial={animation.hide}
-          animate={animation.show}
-          transition={{ delay: 0.2 }}
-        >
-          <strong className={clsx("text-sky-500")}>
-            Rozales <span className="text-foreground">a.k.a,</span> Kaizendev
-          </strong>{" "}
-        </m.span>
+        <TextAnimation delay={1} baseText="Rozales" />
         <m.h1
           className={clsx("block text-base", "md:text-lg")}
           initial={animation.hide}
