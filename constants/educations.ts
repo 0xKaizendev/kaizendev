@@ -1,4 +1,3 @@
-import { Education } from "@/types";
 
 export const educations: Education[] = [
     {

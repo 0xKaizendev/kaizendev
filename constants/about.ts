@@ -7,8 +7,7 @@ export const about = {
     "url": "https://gemach.io/"
   },
   "description": `I am a Fullstack Blockchain Developer at GemachDAO, where I work on decentralized solutions that drive innovation in the blockchain space. With a deep understanding of smart contracts, DeFi protocols, and Web3 technologies, I focus on creating efficient and scalable decentralized applications. My work spans the full development lifecycle, from smart contract development to front-end integration, ensuring seamless user experiences in decentralized ecosystems.
-
-In addition to my development role, I am passionate about educating others, conducting workshops, and mentoring aspiring developers. My goal is to contribute to the future of decentralized technologies and foster a collaborative environment where knowledge and innovation thrive.`,
+`,
   "socialLinks": [
     {
       "name": "github",

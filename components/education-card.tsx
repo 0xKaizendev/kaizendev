@@ -1,4 +1,3 @@
-import { Education } from "@/types";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +12,7 @@ export default function EducationCard({
     props: Education;
 }): JSX.Element {
     return (
-        <div
+        <section
             className={clsx(
                 "mb-4 hover:shadow-lg  transition-all duration-200 relative border-divider-light  flex h-full w-full select-none overflow-hidden rounded-xl border bg-white dark:border-divider-dark dark:bg-slate-900 ",
                 classNames
@@ -52,6 +51,6 @@ export default function EducationCard({
             </Link>
             <span className="absolute w-[50%] -bottom-px right-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"></span>
             <span className="absolute w-px -left-px top-[40%] h-[40%] bg-gradient-to-b from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"></span>
-        </div>
+        </section>
     );
 }

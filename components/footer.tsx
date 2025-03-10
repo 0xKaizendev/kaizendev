@@ -3,23 +3,16 @@ import SpotifyPlayingNow from "./spotify-playing-now";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import Logo from "./logo";
-interface footerProps {
-  className?: React.HtmlHTMLAttributes<Element>;
-  dictionary: {
-    built_by: string;
-    hosted_on: string;
-    source_code: string;
-  };
-}
-const Footer = ({ className, dictionary }: footerProps) => {
+
+const Footer = () => {
   return (
-    <footer className={cn(className,)}>
+    <footer >
       <div className="flex flex-col items-center md:items-start justify-center gap-4 md:h-24 ">
-      <SpotifyPlayingNow />
+        <SpotifyPlayingNow />
         <div className="flex flex-col items-center h-28 gap-4 px-8 md:flex-row md:gap-2 md:px-0 justify-center">
           <Logo />
           <p className="text-center text-sm  md:text-left">
-            {dictionary.built_by}{" "}
+            Built by{" "}
             <a
               href={siteConfig.links.twitter}
               target="_blank"
@@ -28,7 +21,7 @@ const Footer = ({ className, dictionary }: footerProps) => {
             >
               Rozales Assimpah
             </a>
-            . {dictionary.hosted_on}{" "}
+            . Hosted on{" "}
             <a
               href="https://vercel.com"
               target="_blank"
@@ -37,7 +30,7 @@ const Footer = ({ className, dictionary }: footerProps) => {
             >
               Vercel
             </a>
-            . {dictionary.source_code}{" "}
+            . Source Code{" "}
             <a
               href={siteConfig.links.github}
               target="_blank"

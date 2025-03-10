@@ -13,10 +13,8 @@ import { siteConfig } from "@/config/site";
 import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/logo";
-import MainNavbar from "@/components/layout/main-nav";
 import { ScrollBar } from "@/components/progress-bar";
 import Footer from "@/components/footer";
-import { TRPCReactProvider } from "@/_trpc/client";
 import { Container } from "@/components/container";
 import { ModeToggle } from '@/components/theme-toggle';
 import Header from "@/components/header";
@@ -127,13 +125,7 @@ export default async function LocaleLayout({
               <Header />
               {children}
               <Container className="mt-10 ">
-                {/* <Footer
-                  dictionary={{
-                    built_by: "Built by",
-                    hosted_on: "Hosted on",
-                    source_code: "Source code on",
-                  }}
-                /> */}
+                <Footer />
               </Container>
               <div className="fixed left-1 right-auto top-1 z-[99] sm:bottom-6 sm:left-6 sm:top-auto">
                 <ModeToggle />
@@ -141,51 +133,6 @@ export default async function LocaleLayout({
             </ThemeProvider>
           </ActiveSectionContextProvider>
         </div>
-
-
-
-
-        {/* <TRPCReactProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <ActiveSectionContextProvider>
-              <p className="text-center font-medium my-4">
-                🚧 Work in Progress! My portfolio is currently under
-                construction. Stay tuned! 🚧
-              </p>
-              <ScrollBar />
-              <header className="sticky top-2 z-40 w-full border-b bg-background/90 backdrop-blur-md">
-                <Container>
-                  <div className="flex h-20 items-center space-x-8 py-6">
-                    <Logo />
-                    <MainNavbar />
-                  </div>
-                </Container>
-              </header>
-              <main className="relative">
-                <Container className="mt-10">
-
-                  {children}
-
-                </Container>
-                <Container className="mt-10 ">
-                  <Footer
-                    dictionary={{
-                      built_by: "Built by",
-                      hosted_on: "Hosted on",
-                      source_code: "Source code on",
-                    }}
-                  />
-                </Container>
-              </main>
-            </ActiveSectionContextProvider>
-          </ThemeProvider>
-        </TRPCReactProvider> */}
-
         <Analytics />
         <SpeedInsights />
       </body>

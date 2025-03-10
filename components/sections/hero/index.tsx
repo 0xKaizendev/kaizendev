@@ -6,6 +6,7 @@ import { CodeEditor } from "./code-editor";
 import { motion as m } from "framer-motion";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { useActiveSectionContext } from "@/hooks/use-active-section";
+import SectionDivider from "@/components/section-divider";
 
 const animation = {
   hide: { x: 32, opacity: 0 },
@@ -20,15 +21,17 @@ const Hero = () => {
   const { ref } = useSectionInView("home");
   // const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   return (
-    <section id="home" ref={ref} className="relative flex scroll-mt-0 h-screen flex-col items-center justify-center container " >
+
+    <>
+      <section id="home" ref={ref} className="relative flex scroll-mt-0 h-screen flex-col items-center justify-center container " >
 
 
-      <div
-        className={clsx(
-          "relative z-10 flex flex-col  lg:flex-row gap-10  ",
-        )}
-      >
-        <HeaderTitle />
+        <div
+          className={clsx(
+            "relative z-10 flex flex-col  lg:flex-row gap-10  ",
+          )}
+        >
+          <HeaderTitle />
           <m.div
             initial={animation.hide}
             animate={animation.show}
@@ -59,9 +62,13 @@ contract MerkleVerifier  {
               language="solidity"
             />
           </m.div>
-      </div>
+        </div>
 
-    </section>
+      </section>
+      <div className="flex w-full justify-center">
+        <SectionDivider />
+      </div>
+    </>
   );
 };
 export default Hero;

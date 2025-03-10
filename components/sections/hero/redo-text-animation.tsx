@@ -11,15 +11,15 @@ export default function RedoTextAnimation({ delay }: IRedoTextAnimationProps) {
   const textIndex = useMotionValue(0);
 
   const texts = [
+    "My philosophy is learning by doing.",
+    "Kaizen: The art of making great and lasting change through small steps.",
     "Building the decentralized future, one block at a time!",
     "Continuous improvement through Kaizen, in code and life.",
     "Where blockchain meets philosophy, innovation thrives.",
     "Small steps daily, lead to remarkable transformations.",
     "Bridging Web2 and Web3 with elegant solutions.",
-    "Kaizen: The art of making great and lasting change through small steps.",
     "Transforming ideas into decentralized realities.",
     "Every line of code is an opportunity for improvement.",
-    "Philosophy teaches us to question, code lets us answer.",
     "Building trustless systems with mindful precision.",
   ];
 

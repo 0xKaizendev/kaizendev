@@ -20,7 +20,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ title, description, links, logo, stack }: ProjectCardProps) => {
     return (
-        <div className="group relative flex flex-col w-56 bg-white text-slate-600 dark:bg-slate-900 dark:text-slate-400 rounded-lg p-4">
+        <div className="border group relative flex flex-col w-full md:w-80  bg-white text-slate-600 dark:bg-slate-900 dark:text-slate-400 rounded-lg p-4">
             <div className="relative w-full h-32 overflow-hidden rounded-lg mb-4">
                 <Image
                     src={logo.src}

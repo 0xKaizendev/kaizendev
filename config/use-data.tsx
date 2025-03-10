@@ -1,4 +1,3 @@
-import { UseData } from "@/types";
 import { RiNextjsFill } from "react-icons/ri";
 import { FaHardHat, FaDocker } from "react-icons/fa";
 import { BiLogoPostgresql } from "react-icons/bi";
@@ -18,15 +17,7 @@ import {
   SiMongodb,
 } from "react-icons/si";
 import {
-  SiAngular,
-  SiApollographql,
-  SiCss3,
-  SiExpress,
-  SiGatsby,
-  SiGraphql,
-  SiJest,
-  SiJquery,
-  SiMui,
+
   SiNextdotjs,
   SiNginx,
   SiNodedotjs,
@@ -40,9 +31,7 @@ import {
   SiStyledcomponents,
   SiTailwindcss,
   SiTypescript,
-  SiVite,
-  SiVuedotjs,
-  SiWebpack,
+  SiIpfs 
 } from "react-icons/si";
 import Image from "next/image";
 import { SiVercel, SiSolidity } from "react-icons/si";
@@ -58,20 +47,7 @@ export const skills = [
     name: "TailwindCSS",
     icon: <SiTailwindcss size={iconSize} className="text-cyan-300" />,
   },
-  { name: "GraphQL", icon: <SiGraphql size={iconSize} className="text-pink-600" /> },
-  { name: "Apollo", icon: <SiApollographql size={iconSize} /> },
-  { name: "Artificial Intelligence", icon: <BsRobot size={iconSize} className="text-rose-500" /> },
-
-  { name: "Redux", icon: <SiRedux size={iconSize} className="text-purple-500" /> },
-  { name: "Webpack", icon: <SiWebpack size={iconSize} className="text-blue-500" /> },
-  { name: "PWA", icon: <SiPwa size={iconSize} className="text-amber-600" /> },
-  { name: "Nginx", icon: <SiNginx size={iconSize} className="text-green-500" /> },
-  { name: "Storybook", icon: <SiStorybook size={iconSize} className="text-amber-500" /> },
-  { name: "CSS", icon: <SiCss3 size={iconSize} className="text-blue-300" /> },
-  { name: "Socket", icon: <SiSocketdotio size={iconSize} /> },
-  { name: "Remix", icon: <SiRemix size={iconSize} /> },
-  { name: "Express", icon: <SiExpress size={iconSize} /> },
-  { name: "Jquery", icon: <SiJquery size={iconSize} /> },
+  { name: "IPFS", icon: <SiIpfs size={iconSize} /> },
 ];
 // create an array of all these colors
 export const colors = [

@@ -1,9 +1,11 @@
 "use client";
 import { ResumeIcon } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
+import { useActiveSectionContext } from "@/hooks/use-active-section";
 import clsx from "clsx";
 import { motion as m, useReducedMotion } from "framer-motion";
 import Link from "next/link";
+import { smoothScrollTo } from "@/lib/utils";
 
 const animation = {
   hide: {
@@ -22,14 +24,18 @@ interface HeaderCtaProps {
 }
 
 function ButtonContactMe() {
+  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
   return (
-    <Link
-      href="/work/contact"
-      // className={clsx('button button--solid min-w-[128px]', 'md:button--big')}
-      className={buttonVariants({ variant: "solid", size: "default" })}
+    <a
+      className={`${buttonVariants({ variant: "solid", size: "default" })} cursor-pointer`}
+      onClick={(e) => {
+        smoothScrollTo({ e, id: "contact" });
+        setActiveSection("contact");
+        setTimeOfLastClick(Date.now());
+      }}
     >
       Get in Touch
-    </Link>
+    </a>
   );
 }
 

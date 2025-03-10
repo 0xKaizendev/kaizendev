@@ -1,5 +1,4 @@
 "use client";
-import { Container } from "@/components/container";
 import EducationCard from "@/components/education-card";
 import { ChevronDownIcon, ChevronUpIcon } from "@/components/icons";
 import { useRef, useState } from "react";

@@ -33,10 +33,6 @@ declare global {
       };
        type NavItem = {
         title: string;
-        href?: string;
-        disabled?: boolean;
-        description?: string;
-        content?: ContentNavItem[];
         id: string;
       };
       
