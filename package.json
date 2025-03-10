@@ -35,7 +35,7 @@
     "next-themes": "^0.3.0",
     "prettier": "^3.3.3",
     "prisma": "^5.16.2",
-    "prismjs": "^1.29.0",
+    "prismjs": "^1.30.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.5.2",
