@@ -121,8 +121,9 @@ export default function About() {
                     src={'/images/me.jpg'}
                     alt="portfolio image"
                     // placeholder="blur"
-                    width={470}
-                    height={470}
+                    fill
+                    // width={470}
+                    // height={470}
                     className="z-10 rounded-full lg:h-[380px] lg:w-[380px] xl:h-[470px] xl:w-[470px]"
                   />
                 </div>
