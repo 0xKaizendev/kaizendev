@@ -2,7 +2,26 @@ import Link from "next/link";
 import { getNowPlaying, getRecentTrack } from "@/lib/spotify";
 import { SpotifyIcon } from "./social-icons";
 
+interface SpotifyTrack {
+    name: string;
+    artists: Array<{ name: string }>;
+    album: {
+        name: string;
+        images: Array<{ url: string }>;
+    };
+    external_urls: {
+        spotify: string;
+    };
+}
+
+interface SpotifyRecentResponse {
+    items: Array<{
+        track: SpotifyTrack;
+    }>;
+}
+
 async function getSpotifyPlayingNow() {
+    console.log("getSpotifyPlayingNow");
     let response = await getNowPlaying();
 
     let song = null;
@@ -13,15 +32,42 @@ async function getSpotifyPlayingNow() {
     let albumImageUrl = null;
     let songUrl = null;
 
+    console.log("response", response);
+
     if (response.status === 204 || response.status > 400) {
-        response = await getRecentTrack();
-        response = await response.json();
-        song = (response as any).items[0].track;
-        title = song.name;
-        artist = song.artists.map((artist: any) => artist.name).join(", ");
-        album = song.album.name;
-        albumImageUrl = song.album.images[0].url;
-        songUrl = song.external_urls.spotify;
+        try {
+            response = await getRecentTrack();
+            const recentData = await response.json() as SpotifyRecentResponse;
+
+            if (!recentData?.items?.[0]?.track) {
+                return {
+                    isPlaying: false,
+                    title: "Not playing",
+                    artist: "Spotify",
+                    album: "",
+                    albumImageUrl: "",
+                    songUrl: "https://open.spotify.com",
+                };
+            }
+
+            console.log("response", recentData);
+            song = recentData.items[0].track;
+            title = song.name;
+            artist = song.artists.map((artist) => artist.name).join(", ");
+            album = song.album.name;
+            albumImageUrl = song.album.images[0].url;
+            songUrl = song.external_urls.spotify;
+        } catch (error) {
+            console.error("Error fetching recent track:", error);
+            return {
+                isPlaying: false,
+                title: "Not playing",
+                artist: "Spotify",
+                album: "",
+                albumImageUrl: "",
+                songUrl: "https://open.spotify.com",
+            };
+        }
     } else {
         song = await response.json();
         isPlaying = song.is_playing;

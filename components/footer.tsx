@@ -1,7 +1,6 @@
 import * as React from "react";
 import SpotifyPlayingNow from "./spotify-playing-now";
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
 import Logo from "./logo";
 
 const Footer = () => {
