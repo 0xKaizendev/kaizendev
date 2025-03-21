@@ -21,7 +21,6 @@ interface SpotifyRecentResponse {
 }
 
 async function getSpotifyPlayingNow() {
-    console.log("getSpotifyPlayingNow");
     let response = await getNowPlaying();
 
     let song = null;
@@ -31,8 +30,6 @@ async function getSpotifyPlayingNow() {
     let album = null;
     let albumImageUrl = null;
     let songUrl = null;
-
-    console.log("response", response);
 
     if (response.status === 204 || response.status > 400) {
         try {
@@ -50,7 +47,6 @@ async function getSpotifyPlayingNow() {
                 };
             }
 
-            console.log("response", recentData);
             song = recentData.items[0].track;
             title = song.name;
             artist = song.artists.map((artist) => artist.name).join(", ");
