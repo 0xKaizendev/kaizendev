@@ -35,7 +35,7 @@ export default function About() {
         <div className="max-w-3xl mt-4">
             <PageHeader title= {about.name} caption="About me"  />
             <Avatar className="w-20 h-20">
-                <AvatarImage src="/images/me.jpg" />
+                <AvatarImage src="/images/me.png" />
                 <AvatarFallback>RA</AvatarFallback>
             </Avatar>
             <h2 className="text-gray-600 dark:text-gray-400 tracking-tighter mb-4">

@@ -21,9 +21,9 @@ function SocialLink({
   [key: string]: any;
 }): JSX.Element {
   return (
-      <a href={href} className="group -m-1 p-1" target={"_blank"} rel="noreferrer nofollow" {...props}>
-          <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-      </a>
+    <a href={href} className="group -m-1 p-1" target={"_blank"} rel="noreferrer nofollow" {...props}>
+      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+    </a>
   );
 }
 
@@ -92,11 +92,11 @@ export default function About() {
                         )}
                       </Link>
                     ))}
-                         <SocialLink
-                        href={about.resume}
-                        title="Download Resume"
-                        icon={ResumeIcon}
-                        download
+                    <SocialLink
+                      href={about.resume}
+                      title="Download Resume"
+                      icon={ResumeIcon}
+                      download
                     />
                   </div>
                   <Link
@@ -118,13 +118,13 @@ export default function About() {
                 <div className="absolute inset-0 z-20 rounded-full " />
                 <div className="absolute inset-0">
                   <Image
-                    src={'/images/me.jpg'}
+                    src={'/images/me.png'}
                     alt="portfolio image"
                     // placeholder="blur"
                     fill
                     // width={470}
                     // height={470}
-                    className="z-10 rounded-full lg:h-[380px] lg:w-[380px] xl:h-[470px] xl:w-[470px]"
+                    className="z-10 rounded-full object-cover object-center lg:h-[380px] lg:w-[380px] xl:h-[470px] xl:w-[470px]"
                   />
                 </div>
               </div>
