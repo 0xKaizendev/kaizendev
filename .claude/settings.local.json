@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm tsc *)",
+      "Bash(pnpm exec *)",
+      "Bash(/c/Users/rozal/Documents/kaizendev/node_modules/.bin/tsc --noEmit)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(curl -sS -o /dev/null -w \"HTTP=%{http_code}\\\\nSIZE=%{size_download}\\\\nTIME=%{time_total}\\\\n\" http://localhost:3458/)",
+      "Bash(curl -sS http://localhost:3458/)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp"
+    ]
+  }
+}

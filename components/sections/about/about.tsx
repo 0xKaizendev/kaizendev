@@ -1,138 +1,112 @@
-'use client';
+"use client";
 
-import { useSectionInView } from '@/hooks/use-section-in-view';
-// import portfolioImg from '@/../public/images/photo.jpg';
-import { smoothScrollTo } from '@/lib/utils';
-import SectionDivider from '@/components/section-divider';
-import SectionHeading from '@/components/section-heading';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
-import { useRef } from 'react';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
+import { useSectionInView } from "@/hooks/use-section-in-view";
 import { about } from "@/constants/about";
-import { GitHubIcon, LinkedInIcon, TwitterIcon } from '@/components/social-icons';
-import { ResumeIcon } from '@/components/icons';
 
-function SocialLink({
-  icon: Icon,
-  href,
-  ...props
-}: {
-  [key: string]: any;
-}): JSX.Element {
-  return (
-    <a href={href} className="group -m-1 p-1" target={"_blank"} rel="noreferrer nofollow" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </a>
-  );
-}
+const SOCIAL_BY_NAME: Record<string, JSX.Element> = {
+  github: (
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+  ),
+  twitter: (
+    <path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84 0 0 0 .497-3.753c-.002-.249 1.51-2.772 1.818-4.013z" />
+  ),
+  linkedin: (
+    <>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </>
+  ),
+};
+
+const EMAIL_ICON = (
+  <>
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+    <polyline points="22,6 12,13 2,6" />
+  </>
+);
 
 export default function About() {
-  const { ref } = useSectionInView('about', 0.4);
-  const divRef = useRef<HTMLDivElement>(null);
+  const { ref } = useSectionInView("about", 0.4);
 
-  const { scrollYProgress } = useScroll({
-    target: divRef,
-    offset: ['0 1', '1.33 1'],
-  });
-  const scaleProgess = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgess = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  const socials = [
+    ...about.socialLinks,
+    { name: "email", url: "mailto:rozales@kaizendev.me" },
+  ];
 
   return (
-    <motion.section
-      className="z-50 flex h-[1000px] w-full flex-col items-center justify-start leading-8 dark:bg-darkBg dark:text-white md:scroll-mt-4 lg:h-[1100px] lg:scroll-mt-24"
-      ref={ref}
-      initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.175, ease: 'easeInOut' }}
-      id="about"
-    >
-      <div className="flex w-full flex-col items-center pt-8">
-        <SectionHeading>About Me</SectionHeading>
-        <motion.div
-          className="w-full overflow-hidden px-4 py-12 sm:w-[60%] sm:text-center lg:h-[700px] lg:w-[1040px] xl:w-[1180px]"
-          ref={divRef}
-          style={{
-            scale: scaleProgess,
-            opacity: opacityProgess,
-            willChange: 'transform, opacity',
-            transform: 'translateZ(0)',
-          }}
-        >
-          <div className="antialiased group relative w-full">
-            <div className="text-md relative z-40 flex flex-col gap-3 font-semibold tracking-wide text-primary lg:absolute lg:right-0 lg:top-[27%] lg:block lg:max-w-[580px] lg:text-start lg:text-lg xl:top-1/3 xl:h-[442px] xl:max-w-[650px]">
-              <div className="flex h-full flex-col justify-center gap-6">
-                <span>
-                  I&apos;m a Fullstack Blockchain Developer at GemachDAO, where I work on decentralized solutions that drive innovation in the blockchain space. With a deep understanding of smart contracts, DeFi protocols, and Web3 technologies, I focus on creating efficient and scalable decentralized applications. My work spans the full development lifecycle, from smart contract development to front-end integration, ensuring seamless user experiences in decentralized ecosystems.
-                </span>
-                <span>
-                  Seeking for Web Development opportunities where I can leverage
-                  my skills to create meaningful connections between products
-                  and users.
-                </span>
-
-                <div className="flex flex-col items-start gap-4 sm:items-center lg:items-start">
-                  <div className="flex items-center gap-4">
-                    {about.socialLinks.map((link, index) => (
-                      <Link
-                        key={index}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group -m-1 p-1"
-                      >
-                        {link.name === 'github' && (
-                          <GitHubIcon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-                        )}
-                        {link.name === 'linkedin' && (
-                          <LinkedInIcon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-                        )}
-                        {link.name === 'twitter' && (
-                          <TwitterIcon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-                        )}
-                      </Link>
-                    ))}
-                    <SocialLink
-                      href={about.resume}
-                      title="Download Resume"
-                      icon={ResumeIcon}
-                      download
-                    />
-                  </div>
-                  <Link
-                    href={'contact'}
-                    onClick={(e) => {
-                      smoothScrollTo({ e, id: 'contact' });
-                    }}
-                    className="w-52 lg:w-40"
-                  >
-                    <span className="bg-sky-500 text-2xl font-bold uppercase lg:normal-case">
-                      Contact me!
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="absolute z-30 hidden lg:left-0 lg:top-1/4 lg:block">
-              <div className="relative h-72 w-72 lg:h-[380px] lg:w-[380px] xl:h-[470px] xl:w-[470px]">
-                <div className="absolute inset-0 z-20 rounded-full " />
-                <div className="absolute inset-0">
-                  <Image
-                    src={'/images/me.png'}
-                    alt="portfolio image"
-                    // placeholder="blur"
-                    fill
-                    // width={470}
-                    // height={470}
-                    className="z-10 rounded-full object-cover object-center lg:h-[380px] lg:w-[380px] xl:h-[470px] xl:w-[470px]"
-                  />
-                </div>
-              </div>
+    <section id="about" ref={ref} className="kz-section">
+      <div className="kz-page">
+        <p className="kz-eyebrow">About me</p>
+        <h2 className="kz-h2">A bit about <em>who I am</em>.</h2>
+        <p className="kz-section-lede">
+          Background, current focus, and why I do what I do.
+        </p>
+        <div className="kz-about-grid">
+          <div className="kz-about-photo">
+            <Image
+              src="/images/me.png"
+              alt="Rozales"
+              width={720}
+              height={720}
+              priority
+            />
+            <div className="kz-about-photo-corner">
+              <span className="pulse" />
+              Lomé, TG
             </div>
           </div>
-        </motion.div>
+          <div className="kz-about-body">
+            <p>
+              I&apos;m a <strong>Full-stack Blockchain Developer</strong> currently at <strong>RAAC Protocol</strong>,
+              building real-estate tokenization and onchain lending. Before that, I led
+              development of <strong>Gemach Onchain AI</strong> &mdash; a DeFi agent that
+              translates chat into onchain actions across chains.
+            </p>
+            <p>
+              My focus is the unglamorous stuff: solid smart contracts, careful integration
+              layers, and frontends that don&apos;t lie about what&apos;s happening underneath.
+              I care about practice over polish, reps over rhetoric.
+            </p>
+            <p>
+              Looking for product-minded teams where I can ship things that compound.
+            </p>
+            <div className="kz-about-stats">
+              <div className="kz-stat">
+                <div className="kz-stat-num"><em>4+</em></div>
+                <div className="kz-stat-label">Years onchain</div>
+              </div>
+              <div className="kz-stat">
+                <div className="kz-stat-num"><em>20+</em></div>
+                <div className="kz-stat-label">Projects shipped</div>
+              </div>
+              <div className="kz-stat">
+                <div className="kz-stat-num"><em>3</em></div>
+                <div className="kz-stat-label">Continents collab&apos;d</div>
+              </div>
+            </div>
+            <div className="kz-about-socials">
+              {socials.map((s) => (
+                <Link
+                  key={s.name}
+                  href={s.url}
+                  target={s.url.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="kz-social"
+                  title={s.name}
+                  aria-label={s.name}
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    {s.name === "email" ? EMAIL_ICON : SOCIAL_BY_NAME[s.name]}
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-      <SectionDivider />
-    </motion.section>
+    </section>
   );
 }

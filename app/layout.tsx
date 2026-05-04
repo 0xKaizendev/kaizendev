@@ -12,12 +12,9 @@ import {
 import { siteConfig } from "@/config/site";
 import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
-import Logo from "@/components/logo";
-import { ScrollBar } from "@/components/progress-bar";
 import Footer from "@/components/footer";
-import { Container } from "@/components/container";
-import { ModeToggle } from '@/components/theme-toggle';
 import Header from "@/components/header";
+import { Toaster } from "react-hot-toast";
 
 const fontSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -105,34 +102,26 @@ export default async function LocaleLayout({
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
         className={cn(
-          'relative antialiased flex items-center justify-center antialiase background-grid background-grid--fade-out font-sans',
-
+          'antialiased font-sans',
           fontSans.variable,
           fontCode.variable,
           fontPoppins.variable,
           fontLogo.variable,
         )}
       >
-
-        <div className="flex min-h-screen w-full flex-col">
-          <ActiveSectionContextProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <Header />
-              {children}
-              <Container className="mt-10 ">
-                <Footer />
-              </Container>
-              <div className="fixed left-1 right-auto top-1 z-[99] sm:bottom-6 sm:left-6 sm:top-auto">
-                <ModeToggle />
-              </div>
-            </ThemeProvider>
-          </ActiveSectionContextProvider>
-        </div>
+        <ActiveSectionContextProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+            <Footer />
+            <Toaster position="bottom-right" />
+          </ThemeProvider>
+        </ActiveSectionContextProvider>
         <Analytics />
         <SpeedInsights />
       </body>

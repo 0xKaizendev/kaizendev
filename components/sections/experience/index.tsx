@@ -1,71 +1,52 @@
-'use client';
+"use client";
 
-import React from 'react';
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from 'react-vertical-timeline-component';
-import 'react-vertical-timeline-component/style.min.css';
-import { useTheme } from 'next-themes';
-import { useSectionInView } from '@/hooks/use-section-in-view';
-import SectionHeading from '@/components/section-heading';
-import { experiencesData } from '@/constants/experience';
-import SectionDivider from '@/components/section-divider';
-import { useHasMounted } from '@/hooks/use-has-mounted';
-
+import Image from "next/image";
+import { useSectionInView } from "@/hooks/use-section-in-view";
+import { workExperiences } from "@/constants/experience";
 
 export default function Experience() {
-  const { ref } = useSectionInView('experience');
-  const { theme } = useTheme();
-  const ihasMounted = useHasMounted();
+  const { ref } = useSectionInView("experience");
 
   return (
-    <section
-      id="experience"
-      ref={ref}
-      className="w-full scroll-mt-20 dark:bg-darkBg dark:text-white"
-    >
-      <SectionHeading>My experience</SectionHeading>
-      <VerticalTimeline animate={false}>
-        {ihasMounted &&
-          experiencesData.map((item, index) => (
-            <React.Fragment key={index}>
-              <VerticalTimelineElement
-                contentStyle={{
-                  background:
-                    theme === 'light' ? '#f3f4f6' : 'rgba(255, 255, 255, 0.05)',
-                  boxShadow: 'none',
-                  border: '1px solid rgba(0, 0, 0, 0.05)',
-                  textAlign: 'left',
-                  padding: '1.3rem 2rem',
-                }}
-                contentArrowStyle={{
-                  borderRight:
-                    theme === 'light'
-                      ? '0.4rem solid #9ca3af'
-                      : '0.4rem solid rgba(255, 255, 255, 0.5)',
-                  display: theme === 'dark' ? 'none' : 'block',
-                }}
-                date={item.date}
-                icon={item.icon}
-                iconStyle={{
-                  background:
-                    theme === 'light' ? '#fff' : 'rgba(255, 255, 255, 0.15)',
-                  fontSize: '1.5rem',
-                  display: theme === 'dark' ? 'none' : 'flex',
-                }}
-              >
-                <h3 className="font-semibold">{item.title}</h3>
-                <p className="!mt-0 font-normal">{item.location}</p>
-                <p className="!mt-1 !font-normal text-gray-700 dark:text-white/75">
-                  {item.description}
-                </p>
-              </VerticalTimelineElement>
-            </React.Fragment>
-          ))}
-      </VerticalTimeline>
-      <div className="flex w-full justify-center">
-        <SectionDivider />
+    <section id="experience" ref={ref} className="kz-section">
+      <div className="kz-page">
+        <p className="kz-eyebrow" style={{ justifyContent: "center", display: "flex" }}>
+          Career
+        </p>
+        <h2 className="kz-h2" style={{ textAlign: "center" }}>
+          The <em>path</em> so far.
+        </h2>
+        <p className="kz-section-lede" style={{ textAlign: "center", margin: "0 auto 56px" }}>
+          A few teams, a lot of contracts.
+        </p>
+        <div className="kz-xp">
+          {workExperiences.map((x) => {
+            const isCurrent = /present/i.test(x.duration);
+            return (
+              <div key={x.id} className="kz-xp-row">
+                <div className="kz-xp-dot" data-current={isCurrent ? "1" : "0"}>
+                  {x.icon ? (
+                    <Image src={x.icon} alt="" width={22} height={22} />
+                  ) : (
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--kz-fg-2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="6" width="18" height="14" rx="2" />
+                      <path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                    </svg>
+                  )}
+                </div>
+                <div className="kz-xp-card">
+                  <div className="kz-xp-meta">
+                    <span>{x.duration}</span>
+                    {isCurrent && <span className="current">CURRENT</span>}
+                  </div>
+                  <h3 className="kz-xp-title">{x.name}</h3>
+                  <p className="kz-xp-role">{x.pos}</p>
+                  <p className="kz-xp-text">{x.title}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -1,59 +1,64 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { navbarLinks } from "@/config/nav-links";
 import { smoothScrollTo } from "@/lib/utils";
 import { useActiveSectionContext } from "@/hooks/use-active-section";
-import { motion } from "framer-motion";
-import Link from "next/link";
+
+const NAV_LABELS: Record<string, string> = {
+  home: "HOME",
+  kaizen: "改善",
+  about: "ABOUT",
+  projects: "WORK",
+  experience: "PATH",
+  skills: "STACK",
+  contact: "HIRE",
+};
 
 export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted && resolvedTheme === "dark";
 
   return (
-    <header className="relative z-[99]">
-      <motion.div
-        className="fixed left-1/2 top-0 h-[4.5rem] w-full  border border-[#f4f3ee] border-opacity-40 bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] sm:top-6 sm:h-[3.25rem] md:w-[46rem] md:rounded-lg"
-        initial={{ y: -100, x: "-50%", opacity: 0 }}
-        animate={{ y: 0, x: "-50%", opacity: 1 }}
-      ></motion.div>
-
-      <nav className="fixed left-1/2 top-[0.15rem] flex h-12 -translate-x-1/2 py-2 sm:top-[1.7rem] sm:h-[initial] sm:py-0">
-        <ul className="flex w-[22rem] flex-wrap items-center justify-center gap-y-2 text-[0.9rem] font-medium transition-colors sm:w-[initial] sm:flex-nowrap sm:gap-5">
-          {navbarLinks.map((link) => (
-            <motion.li
-              className="relative flex h-3/4 items-center justify-center text-black dark:text-white"
-              key={link.id}
-              initial={{ y: -100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-            >
-              <Link
-                className="flex w-full items-center justify-center px-3 py-3 uppercase transition"
-                href={link.id}
-                onClick={(e) => {
-                  smoothScrollTo({ e, id: link.id });
-                  setActiveSection(link.id);
-                  setTimeOfLastClick(Date.now());
-                }}
-              >
-                {link.title}
-
-                {link.id === activeSection && (
-                  <motion.span
-                    className="absolute inset-0 -z-10 rounded-full bg-sky-500 dark:sky-800"
-                    layoutId="activeSection"
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                  ></motion.span>
-                )}
-              </Link>
-            </motion.li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+    <nav className="kz-header" aria-label="Primary">
+      {navbarLinks.map((link) => (
+        <a
+          key={link.id}
+          href={`#${link.id}`}
+          className={activeSection === link.id ? "is-active" : ""}
+          onClick={(e) => {
+            smoothScrollTo({ e, id: link.id });
+            setActiveSection(link.id as SectionName);
+            setTimeOfLastClick(Date.now());
+          }}
+        >
+          {NAV_LABELS[link.id] ?? link.title.toUpperCase()}
+        </a>
+      ))}
+      <button
+        className="kz-header-mode"
+        onClick={() => setTheme(isDark ? "light" : "dark")}
+        aria-label="Toggle dark mode"
+        type="button"
+      >
+        {mounted && isDark ? (
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        )}
+      </button>
+    </nav>
   );
 }

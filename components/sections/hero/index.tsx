@@ -1,74 +1,92 @@
 "use client";
-import clsx from "clsx";
-import React from "react";
-import HeaderTitle from "./header-title";
-import { CodeEditor } from "./code-editor";
-import { motion as m } from "framer-motion";
+
 import { useSectionInView } from "@/hooks/use-section-in-view";
-import { useActiveSectionContext } from "@/hooks/use-active-section";
-import SectionDivider from "@/components/section-divider";
+import { smoothScrollTo } from "@/lib/utils";
 
-const animation = {
-  hide: { x: 32, opacity: 0 },
-  show: {
-    x: 0,
-    opacity: 1,
-  },
-};
+const SOLIDITY_HIGHLIGHTED = `<span class="cm">// SPDX-License-Identifier: MIT</span>
+<span class="kw">pragma</span> <span class="kw">solidity</span> <span class="num">^0.8.0</span>;
 
-const Hero = () => {
+<span class="kw">contract</span> <span class="ty">MerkleVerifier</span> {
+    <span class="ty">bytes32</span> <span class="kw">public</span> merkleRoot;
 
-  const { ref } = useSectionInView("home");
-  // const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
-  return (
-
-    <>
-      <section id="home" ref={ref} className="relative flex scroll-mt-0 h-screen flex-col items-center justify-center container " >
-
-
-        <div
-          className={clsx(
-            "relative z-10 flex flex-col  lg:flex-row gap-10  ",
-          )}
-        >
-          <HeaderTitle />
-          <m.div
-            initial={animation.hide}
-            animate={animation.show}
-            transition={{ delay: 0.1 }}
-            className=" md:w-full"
-          >
-            <CodeEditor
-              code={`// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-contract MerkleVerifier  {
-    bytes32 public merkleRoot;
-
-    constructor(bytes32 _merkleRoot) {
-        merkleRoot = _merkleRoot;
+    <span class="kw">constructor</span>(<span class="ty">bytes32</span> _root) {
+        merkleRoot = _root;
     }
 
-    function verify(bytes32[] memory proof, bytes32 leaf) public view returns (bool) {
-        bytes32 hash = leaf;
-        for (uint256 i = 0; i < proof.length; i++) {
-            hash = hash <= proof[i] ? keccak256(abi.encodePacked(hash, proof[i])) : keccak256(abi.encodePacked(proof[i], hash));
+    <span class="kw">function</span> <span class="fn">verify</span>(<span class="ty">bytes32</span>[] proof, <span class="ty">bytes32</span> leaf)
+        <span class="kw">public view returns</span> (<span class="ty">bool</span>)
+    {
+        <span class="ty">bytes32</span> hash = leaf;
+        <span class="kw">for</span> (<span class="ty">uint256</span> i = <span class="num">0</span>; i &lt; proof.length; i++) {
+            hash = hash &lt;= proof[i]
+                ? <span class="fn">keccak256</span>(<span class="fn">abi.encodePacked</span>(hash, proof[i]))
+                : <span class="fn">keccak256</span>(<span class="fn">abi.encodePacked</span>(proof[i], hash));
         }
-        return hash == merkleRoot;
+        <span class="kw">return</span> hash == merkleRoot;
     }
-}
+}`;
 
-`}
-              language="solidity"
-            />
-          </m.div>
+const HeroLeft = () => (
+  <div>
+    <p className="kz-hero-greet">
+      <span className="wave" role="img" aria-label="wave">👋</span>
+      Hello world, I&apos;m
+    </p>
+    <h1 className="kz-hero-name">
+      <span className="accent">Rozales</span>
+      <span className="alias">a.k.a, <strong>Kaizendev</strong></span>
+    </h1>
+    <p className="kz-hero-bio">
+      Full-stack engineer & smart-contract developer building practical web3 solutions.
+      I work in <strong>Solidity</strong>, <strong>TypeScript</strong>, and the spaces between chains.
+    </p>
+    <div className="kz-cta-row">
+      <a
+        className="kz-btn kz-btn-primary"
+        href="#contact"
+        onClick={(e) => smoothScrollTo({ e, id: "contact" })}
+      >
+        Get in touch <span className="arrow">→</span>
+      </a>
+      <a
+        className="kz-btn kz-btn-ghost"
+        href="#projects"
+        onClick={(e) => smoothScrollTo({ e, id: "projects" })}
+      >
+        View work
+      </a>
+      <span className="kz-status-pill">
+        <span className="pulse" />
+        Available for hire
+      </span>
+    </div>
+  </div>
+);
+
+const HeroIDE = () => (
+  <div className="kz-ide">
+    <div className="kz-ide-bar">
+      <div className="lights"><span /><span /><span /></div>
+      <div className="filename">~/contracts/MerkleVerifier.sol</div>
+      <div className="lang">SOLIDITY</div>
+    </div>
+    <div className="kz-ide-body">
+      <pre dangerouslySetInnerHTML={{ __html: SOLIDITY_HIGHLIGHTED + '<span class="kz-ide-cursor"></span>' }} />
+    </div>
+  </div>
+);
+
+export default function Hero() {
+  const { ref } = useSectionInView("home");
+  return (
+    <section id="home" ref={ref} className="kz-hero">
+      <div className="kz-dots" />
+      <div className="kz-page" style={{ width: "100%" }}>
+        <div className="kz-hero-grid">
+          <HeroLeft />
+          <HeroIDE />
         </div>
-
-      </section>
-      <div className="flex w-full justify-center">
-        <SectionDivider />
       </div>
-    </>
+    </section>
   );
-};
-export default Hero;
+}
