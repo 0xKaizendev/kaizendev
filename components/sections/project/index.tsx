@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/constants/projects";
 import { useSectionInView } from "@/hooks/use-section-in-view";
@@ -21,6 +20,13 @@ const FILTERS = [
 ] as const;
 
 type FilterId = (typeof FILTERS)[number]["id"];
+
+const ArrowOut = () => (
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <path d="M7 17 17 7" />
+    <path d="M7 7h10v10" />
+  </svg>
+);
 
 export default function Projects() {
   const { ref } = useSectionInView("projects");
@@ -55,36 +61,33 @@ export default function Projects() {
             ))}
           </div>
         </div>
-        <div className="kz-projects-grid">
-          {visible.map((p) => (
-            <article key={p.title} className="kz-project">
-              <div className="kz-project-cover">
-                <Image
-                  src={p.logo.src}
-                  alt={p.logo.alt || p.title}
-                  width={640}
-                  height={360}
-                />
-                <span className={`kz-project-tag ${p.category === "onchain" ? "is-onchain" : ""}`}>{p.tag}</span>
-              </div>
-              <div className="kz-project-body">
+        <div className="kz-projects-list">
+          {visible.map((p, i) => (
+            <article key={p.title} className="kz-project-row">
+              <div className="kz-project-num">{String(i + 1).padStart(2, "0")}</div>
+              <div className="kz-project-main">
+                <div className="kz-project-meta">
+                  <span className={`tag ${p.category === "onchain" ? "is-onchain" : ""}`}>
+                    {p.tag}
+                  </span>
+                </div>
                 <h3 className="kz-project-title">{p.title}</h3>
                 <p className="kz-project-summary">{p.description}</p>
                 <div className="kz-project-stack">
                   {p.stack.map((s) => <span key={s}>{s}</span>)}
                 </div>
-                <div className="kz-project-foot">
-                  {p.links.github && (
-                    <Link href={p.links.github} target="_blank" rel="noopener noreferrer">
-                      GitHub <span>↗</span>
-                    </Link>
-                  )}
-                  {p.links.project && (
-                    <Link href={p.links.project} target="_blank" rel="noopener noreferrer">
-                      Live <span>↗</span>
-                    </Link>
-                  )}
-                </div>
+              </div>
+              <div className="kz-project-links">
+                {p.links.github && (
+                  <Link href={p.links.github} target="_blank" rel="noopener noreferrer">
+                    GitHub <ArrowOut />
+                  </Link>
+                )}
+                {p.links.project && (
+                  <Link href={p.links.project} target="_blank" rel="noopener noreferrer">
+                    Live <ArrowOut />
+                  </Link>
+                )}
               </div>
             </article>
           ))}
