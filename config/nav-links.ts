@@ -26,6 +26,10 @@ export const navbarLinks: NavItem[] = [
     id: "skills",
   },
   {
+    title: "Writing",
+    id: "writing",
+  },
+  {
     title: "Contact",
     id: "contact",
   },

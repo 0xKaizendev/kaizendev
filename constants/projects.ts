@@ -35,20 +35,7 @@ export const projects = [
             "alt": "UChild Template with EIP-3009 Support"
         }
     },
-    {
-        "title": "GBot AI Security Integration",
-        "description": "Integration of GoPlus Security's API suite into GBot Ai, enhancing the security infrastructure of Web3 operations. This includes real-time security analysis, malicious address detection, NFT authenticity verification, token approval risk assessment, phishing detection, and more. The upgrade ensures a secure and dependable environment for users.",
-        "links": {
-            "github": "https://github.com/example-repo/gemach-dao-gbot-goplus-security",
-            "project": "https://t.me/GemachAlphaIntelligenceBot"
-        },
-        "stack": ["TypeScript", "Node.js", "GoPlus API"],
-        "logo": {
-            "src": "https://framerusercontent.com/images/q3buV1XMof499UYXpC264Narjv0.png",
-            "alt": "GEMACH DAO - GBot Ai Integration"
-        }
-    },
-    {
+{
         "title": "CDK LxLy x Lido Investment Manager",
         "description": "Enhancement of LxLy bridge contract to enable staking of ETH through Lido. Adds an InvestmentManager role with permissions to manage ETH and ERC-20 assets in LxLy, stake excess ETH in stETH, and manage yield distribution. Key functions include `invest()` for staking ETH based on target percentages, and `redeem()` to adjust balances by redeeming stETH as needed.",
         "links": {
