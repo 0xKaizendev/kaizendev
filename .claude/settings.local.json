@@ -7,7 +7,9 @@
       "Bash(echo \"EXIT=$?\")",
       "Bash(curl -sS -o /dev/null -w \"HTTP=%{http_code}\\\\nSIZE=%{size_download}\\\\nTIME=%{time_total}\\\\n\" http://localhost:3458/)",
       "Bash(curl -sS http://localhost:3458/)",
-      "mcp__Claude_in_Chrome__tabs_context_mcp"
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(grep -n \"</main>\\\\|</div>\\\\s*$\\\\|</article>\" C:/Users/rozal/Documents/kaizendev/.claude/worktrees/modest-darwin-b547b3/app/writing/blockchain-dev-guide/page.tsx)",
+      "Bash(ln -s ../../../node_modules node_modules)"
     ]
   }
 }
