@@ -6,6 +6,7 @@ import Projects from "@/components/sections/project";
 import About from "@/components/sections/about/about";
 import Contact from "@/components/sections/contact";
 import Experience from "@/components/sections/experience";
+import Writing from "@/components/sections/writing";
 
 export default function Index() {
   return (
@@ -16,6 +17,7 @@ export default function Index() {
       <Projects />
       <Experience />
       <Skills />
+      <Writing />
       <Contact />
     </main>
   );
