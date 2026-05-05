@@ -55,10 +55,15 @@ const HeroLeft = () => (
       >
         View work
       </a>
-      <span className="kz-status-pill">
+      <a
+        className="kz-status-pill"
+        href="https://raac.io/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <span className="pulse" />
-        Available for hire
-      </span>
+        Currently @ RAAC
+      </a>
     </div>
   </div>
 );

@@ -20,10 +20,15 @@ export const smoothScrollTo = ({
   id: string
 }) => {
   e.preventDefault()
-  const element = document.getElementById(id) as HTMLElement
-  element?.scrollIntoView({
-    block: 'start',
-  })
+  const element = document.getElementById(id)
+  if (element) {
+    element.scrollIntoView({ block: 'start' })
+    return
+  }
+  // Section not on current page — navigate to home with hash
+  if (typeof window !== 'undefined') {
+    window.location.href = `/#${id}`
+  }
 }
 
 export const validateString = (
