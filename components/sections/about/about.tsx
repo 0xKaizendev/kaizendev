@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { about } from "@/constants/about";
+import GamesShelf from "./games-shelf";
+import BooksShelf from "./books-shelf";
 
 const SOCIAL_BY_NAME: Record<string, JSX.Element> = {
   github: (
@@ -28,7 +30,11 @@ const EMAIL_ICON = (
   </>
 );
 
-export default function About() {
+export default function About({
+  nowSpinning,
+}: {
+  nowSpinning?: React.ReactNode;
+}) {
   const { ref } = useSectionInView("about", 0.4);
 
   const socials = [
@@ -106,6 +112,21 @@ export default function About() {
             </div>
           </div>
         </div>
+
+        <div className="kz-about-extra">
+          <p className="kz-about-eyebrow">On the shelf</p>
+          <div className="kz-about-shelves">
+            <GamesShelf />
+            <BooksShelf />
+          </div>
+        </div>
+
+        {nowSpinning && (
+          <div className="kz-about-extra">
+            <p className="kz-about-eyebrow">Now spinning</p>
+            {nowSpinning}
+          </div>
+        )}
       </div>
     </section>
   );

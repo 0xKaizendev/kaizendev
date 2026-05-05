@@ -653,6 +653,317 @@ html, body {
   .kz-about-photo { max-width: 320px; }
 }
 
+/* About — sub-sections (shelves + now spinning) */
+.kz-about-extra { margin-top: 56px; }
+.kz-about-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--kz-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--kz-fg-3);
+  margin: 0 0 20px;
+}
+.kz-about-eyebrow::before {
+  content: ""; width: 24px; height: 1px; background: currentColor;
+}
+
+.kz-about-shelves {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.kz-shelf {
+  background: var(--kz-bg);
+  border: 1px solid var(--kz-border);
+  border-radius: 14px;
+  padding: 18px 18px 12px;
+  transition: border-color .25s ease;
+}
+.kz-shelf:hover { border-color: var(--kz-border-strong); }
+.kz-shelf-head {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--kz-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--kz-fg-3);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--kz-border);
+}
+.kz-shelf-head .kz-shelf-count { color: var(--kz-accent); font-weight: 600; }
+.kz-shelf-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+
+.kz-shelf-row {
+  border-bottom: 1px solid var(--kz-border);
+}
+.kz-shelf-row:last-child { border-bottom: 0; }
+
+.kz-shelf-row > a,
+.kz-shelf-row > .kz-shelf-static {
+  display: grid;
+  grid-template-columns: 22px 56px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 4px;
+  text-decoration: none;
+  color: var(--kz-fg-2);
+  transition: padding .2s ease, background .2s ease, color .2s ease;
+}
+.kz-shelf-row > a:hover {
+  padding-left: 10px;
+  background: linear-gradient(90deg, var(--kz-accent-soft), transparent 70%);
+  color: var(--kz-fg);
+}
+.kz-shelf-row > a:hover .kz-shelf-arrow { color: var(--kz-accent); transform: translate(2px, -2px); }
+
+.kz-shelf-num {
+  font-family: var(--kz-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--kz-fg-4);
+}
+.kz-shelf-cover {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 56px; height: 42px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--kz-bg-3), var(--kz-bg-2));
+  border: 1px solid var(--kz-border);
+  flex-shrink: 0;
+}
+.kz-shelf-cover--book {
+  width: 36px; height: 50px;
+  border-radius: 3px;
+}
+.kz-shelf-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kz-shelf-tile {
+  font-family: var(--kz-logo);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--kz-fg-3);
+  letter-spacing: -0.02em;
+}
+.kz-shelf-cover--book .kz-shelf-tile { font-size: 16px; }
+
+.kz-shelf-meta {
+  display: flex; flex-direction: column;
+  min-width: 0;
+}
+.kz-shelf-title {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--kz-fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kz-shelf-sub {
+  font-family: var(--kz-mono);
+  font-size: 10.5px;
+  color: var(--kz-fg-3);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kz-shelf-sub em {
+  font-style: italic;
+  color: var(--kz-accent);
+  font-family: var(--kz-sans);
+  font-size: 12px;
+}
+.kz-shelf-arrow {
+  color: var(--kz-fg-4);
+  font-size: 14px;
+  transition: color .2s ease, transform .2s ease;
+}
+
+@media (max-width: 880px) {
+  .kz-about-shelves { grid-template-columns: 1fr; gap: 18px; }
+}
+
+/* About — now-spinning vinyl */
+@keyframes kz-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.kz-vinyl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 32px 28px;
+  background: var(--kz-bg);
+  border: 1px solid var(--kz-border);
+  border-radius: 18px;
+  transition: border-color .25s ease;
+}
+.kz-vinyl:hover { border-color: var(--kz-border-strong); }
+
+.kz-vinyl-stage {
+  position: relative;
+  width: 200px; height: 200px;
+  flex-shrink: 0;
+}
+
+.kz-vinyl-platter {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, #18181b 0%, #18181b 35%, transparent 35.5%),
+    repeating-radial-gradient(
+      circle at center,
+      #0a0a0c 0px,
+      #0a0a0c 1px,
+      #1c1c20 1.5px,
+      #1c1c20 2.5px
+    );
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.04);
+  animation: kz-spin 4s linear infinite;
+  animation-play-state: paused;
+}
+.kz-vinyl.is-playing .kz-vinyl-platter {
+  animation-play-state: running;
+}
+
+.kz-vinyl-grooves {
+  position: absolute; inset: 6%;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      transparent 0,
+      transparent 3px,
+      rgba(255,255,255,0.03) 4px,
+      rgba(255,255,255,0.03) 5px
+    );
+  pointer-events: none;
+}
+
+.kz-vinyl-label {
+  position: absolute;
+  inset: 32%;
+  border-radius: 50%;
+  background: var(--kz-accent);
+  display: grid; place-items: center;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,0.2);
+}
+.kz-vinyl-label img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.kz-vinyl-label-fallback {
+  font-family: var(--kz-logo);
+  font-size: 28px;
+  color: white;
+}
+.kz-vinyl-spindle {
+  position: absolute; top: 50%; left: 50%;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--kz-bg);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.5);
+}
+
+.kz-vinyl-tonearm {
+  position: absolute;
+  top: -12px; right: -22px;
+  width: 110px; height: 110px;
+  color: var(--kz-fg-2);
+  pointer-events: none;
+}
+
+.kz-now-caption {
+  display: flex; flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.kz-now-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--kz-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--kz-fg-3);
+  margin-bottom: 4px;
+}
+.kz-now-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--kz-fg-4);
+  flex-shrink: 0;
+}
+.kz-now-dot.is-live {
+  background: var(--kz-accent);
+  box-shadow: 0 0 0 0 var(--kz-accent-soft);
+  animation: kz-ping 1.6s cubic-bezier(0,0,.2,1) infinite;
+}
+.kz-now-track {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--kz-fg);
+  text-decoration: none;
+  transition: color .2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.kz-now-track:hover { color: var(--kz-accent); }
+.kz-now-artist {
+  font-size: 14px;
+  color: var(--kz-fg-3);
+}
+.kz-now-link {
+  margin-top: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  align-self: flex-start;
+  font-family: var(--kz-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--kz-fg-3);
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease;
+}
+.kz-now-link:hover { color: var(--kz-accent); transform: translateX(2px); }
+
+@media (max-width: 880px) {
+  .kz-vinyl {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+    text-align: left;
+  }
+  .kz-vinyl-stage {
+    width: 180px; height: 180px;
+    margin: 0 auto;
+  }
+  .kz-vinyl-tonearm {
+    width: 100px; height: 100px;
+    right: -16px;
+    top: -10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kz-vinyl-platter,
+  .kz-vinyl.is-playing .kz-vinyl-platter {
+    animation: none;
+  }
+  .kz-now-dot.is-live { animation: none; }
+}
+
 /* =============================================================================
    Projects
    ============================================================================= */
