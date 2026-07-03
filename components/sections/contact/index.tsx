@@ -4,6 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { sendEmail } from "@/actions/send-email";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/primitives";
 
 export default function Contact() {
   const { ref } = useSectionInView("contact");
@@ -27,17 +28,22 @@ export default function Contact() {
   return (
     <section id="contact" ref={ref} className="kz-section">
       <div className="kz-page">
-        <p className="kz-eyebrow">Get in touch</p>
-        <h2 className="kz-h2">Let&apos;s <em>build</em> something.</h2>
-        <p className="kz-section-lede">
-          Open to freelance &amp; full-time. Reply usually within a day.
-        </p>
+        <Reveal>
+          <p className="kz-eyebrow">Get in touch</p>
+          <h2 className="kz-h2">Let&apos;s <em>build</em> something.</h2>
+          <p className="kz-section-lede">
+            Open to freelance &amp; full-time. Reply usually within a day.
+          </p>
+        </Reveal>
         <div className="kz-contact">
-          <div className="kz-contact-info">
-            <p>
-              The fastest way is direct email — but the form below works too. I read everything.
-            </p>
+          <Stagger className="kz-contact-info" stagger={0.1}>
+            <StaggerItem>
+              <p>
+                The fastest way is direct email — but the form below works too. I read everything.
+              </p>
+            </StaggerItem>
             <div className="kz-contact-cards">
+              <StaggerItem>
               <a className="kz-contact-card" href="mailto:rozales@kaizendev.me">
                 <span className="kz-contact-card-icon">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -50,6 +56,8 @@ export default function Contact() {
                   <span className="kz-contact-card-value">rozales@kaizendev.me</span>
                 </span>
               </a>
+              </StaggerItem>
+              <StaggerItem>
               <a
                 className="kz-contact-card"
                 href="https://t.me/kaizendev"
@@ -66,6 +74,8 @@ export default function Contact() {
                   <span className="kz-contact-card-value">@kaizendev</span>
                 </span>
               </a>
+              </StaggerItem>
+              <StaggerItem>
               <span className="kz-contact-card">
                 <span className="kz-contact-card-icon">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -78,8 +88,10 @@ export default function Contact() {
                   <span className="kz-contact-card-value">Lomé · Togo (UTC+0)</span>
                 </span>
               </span>
+              </StaggerItem>
             </div>
-          </div>
+          </Stagger>
+          <Reveal delay={0.15}>
           <form className="kz-form" onSubmit={onSubmit}>
             <div className="kz-form-row">
               <div className="kz-field">
@@ -135,6 +147,7 @@ export default function Contact() {
               {submitting ? "Sending..." : "Send message"} <span className="arrow">→</span>
             </button>
           </form>
+          </Reveal>
         </div>
       </div>
     </section>

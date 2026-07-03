@@ -14,6 +14,7 @@ import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { ScrollBar } from "@/components/progress-bar";
 import { Toaster } from "react-hot-toast";
 
 const fontSans = Plus_Jakarta_Sans({
@@ -112,10 +113,10 @@ export default async function LocaleLayout({
         <ActiveSectionContextProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="dark"
             disableTransitionOnChange
           >
+            <ScrollBar />
             <Header />
             {children}
             <Footer />

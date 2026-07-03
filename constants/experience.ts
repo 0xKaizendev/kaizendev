@@ -9,7 +9,7 @@ export const workExperiences = [
     duration: "2025 - Present",
     title:
       "Developing complex smart contract systems for real estate tokenization and on-chain lending protocols. Building integration layers between real estate assets and DeFi infrastructure, advanced stablecoin mechanisms, and yield optimization strategies. Working on automated reward distribution systems and cross-protocol composability features with existing DeFi ecosystems like Curve, Convex, and f(x) protocol.",
-    icon: "/assets/raac_logo.svg",
+    icon: "/assets/raac-logo.svg",
     animation: "victory",
   },
   {

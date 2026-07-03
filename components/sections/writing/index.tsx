@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSectionInView } from "@/hooks/use-section-in-view";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/primitives";
 
 type Entry = {
   title: string;
@@ -37,16 +38,18 @@ export default function Writing() {
   return (
     <section id="writing" ref={ref} className="kz-section">
       <div className="kz-page">
-        <p className="kz-eyebrow">Notes</p>
-        <h2 className="kz-h2">
-          Things I&apos;ve <em>written</em>.
-        </h2>
-        <p className="kz-section-lede">
-          Process docs, deep-dives, references — the kind of thing I wish I&apos;d had on day one.
-        </p>
-        <div className="kz-projects-list">
+        <Reveal>
+          <p className="kz-eyebrow">Notes</p>
+          <h2 className="kz-h2">
+            Things I&apos;ve <em>written</em>.
+          </h2>
+          <p className="kz-section-lede">
+            Process docs, deep-dives, references — the kind of thing I wish I&apos;d had on day one.
+          </p>
+        </Reveal>
+        <Stagger className="kz-projects-list" stagger={0.1}>
           {ENTRIES.map((e, i) => (
-            <article key={e.title} className="kz-project-row">
+            <StaggerItem key={e.title} className="kz-project-row">
               <div className="kz-project-num">{String(i + 1).padStart(2, "0")}</div>
               <div className="kz-project-main">
                 <div className="kz-project-meta">
@@ -69,9 +72,9 @@ export default function Writing() {
                   Read <ArrowOut />
                 </Link>
               </div>
-            </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

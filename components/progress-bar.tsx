@@ -1,20 +1,20 @@
 "use client";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 
 export function ScrollBar() {
+  const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
+    stiffness: 120,
     damping: 30,
     restDelta: 0.001,
   });
 
+  if (reduced) return null;
+
   return (
-    <div className="fixed top-0 left-0 right-0 h-2 origin-left bg-background z-50 backdrop-blur-md">
-      <motion.div
-        className="top-0 left-0 right-0 h-2 origin-left bg-sky-500"
-        style={{ scaleX }}
-      />
+    <div className="kz-progress" aria-hidden>
+      <motion.div className="kz-progress-fill" style={{ scaleX }} />
     </div>
   );
 }

@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { about } from "@/constants/about";
 import GamesShelf from "./games-shelf";
 import BooksShelf from "./books-shelf";
+import { CountUp, EASE, Reveal, Stagger, StaggerItem } from "@/components/motion/primitives";
 
 const SOCIAL_BY_NAME: Record<string, JSX.Element> = {
   github: (
@@ -36,6 +38,7 @@ export default function About({
   nowSpinning?: React.ReactNode;
 }) {
   const { ref } = useSectionInView("about", 0.4);
+  const reduced = useReducedMotion();
 
   const socials = [
     ...about.socialLinks,
@@ -45,26 +48,36 @@ export default function About({
   return (
     <section id="about" ref={ref} className="kz-section">
       <div className="kz-page">
-        <p className="kz-eyebrow">About me</p>
-        <h2 className="kz-h2">A bit about <em>who I am</em>.</h2>
-        <p className="kz-section-lede">
-          Background, current focus, and why I do what I do.
-        </p>
-        <div className="kz-about-grid">
-          <div className="kz-about-photo">
-            <Image
-              src="/images/me.png"
-              alt="Rozales"
-              width={720}
-              height={720}
-              priority
-            />
+        <Reveal>
+          <p className="kz-eyebrow">About me</p>
+          <h2 className="kz-h2">A bit about <em>who I am</em>.</h2>
+          <p className="kz-section-lede">
+            Background, current focus, and why I do what I do.
+          </p>
+        </Reveal>
+        <Stagger className="kz-bento" stagger={0.09}>
+          <StaggerItem className="kz-bento-card kz-about-photo">
+            <motion.div
+              style={{ position: "absolute", inset: 0 }}
+              initial={reduced ? false : { scale: 1.12, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 1.1, ease: EASE }}
+            >
+              <Image
+                src="/images/me.png"
+                alt="Rozales"
+                width={720}
+                height={720}
+                priority
+              />
+            </motion.div>
             <div className="kz-about-photo-corner">
               <span className="pulse" />
               Lomé, TG
             </div>
-          </div>
-          <div className="kz-about-body">
+          </StaggerItem>
+          <StaggerItem className="kz-bento-card kz-about-bio">
             <p>
               I&apos;m a <strong>Full-stack Blockchain Developer</strong> currently at <strong>RAAC Protocol</strong>,
               building real-estate tokenization and onchain lending. Before that, I led
@@ -79,53 +92,53 @@ export default function About({
             <p>
               Looking for product-minded teams where I can ship things that compound.
             </p>
-            <div className="kz-about-stats">
-              <div className="kz-stat">
-                <div className="kz-stat-num"><em>4+</em></div>
-                <div className="kz-stat-label">Years onchain</div>
-              </div>
-              <div className="kz-stat">
-                <div className="kz-stat-num"><em>20+</em></div>
-                <div className="kz-stat-label">Projects shipped</div>
-              </div>
-              <div className="kz-stat">
-                <div className="kz-stat-num"><em>3</em></div>
-                <div className="kz-stat-label">Continents collab&apos;d</div>
-              </div>
-            </div>
-            <div className="kz-about-socials">
-              {socials.map((s) => (
-                <Link
-                  key={s.name}
-                  href={s.url}
-                  target={s.url.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="kz-social"
-                  title={s.name}
-                  aria-label={s.name}
-                >
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    {s.name === "email" ? EMAIL_ICON : SOCIAL_BY_NAME[s.name]}
-                  </svg>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+          </StaggerItem>
+          <StaggerItem className="kz-bento-card kz-stat">
+            <div className="kz-stat-num"><em><CountUp to={4} suffix="+" /></em></div>
+            <div className="kz-stat-label">Years onchain</div>
+          </StaggerItem>
+          <StaggerItem className="kz-bento-card kz-stat">
+            <div className="kz-stat-num"><em><CountUp to={20} suffix="+" /></em></div>
+            <div className="kz-stat-label">Projects shipped</div>
+          </StaggerItem>
+          <StaggerItem className="kz-bento-card kz-stat">
+            <div className="kz-stat-num"><em><CountUp to={3} /></em></div>
+            <div className="kz-stat-label">Continents collab&apos;d</div>
+          </StaggerItem>
+          <StaggerItem className="kz-bento-card kz-about-socials">
+            {socials.map((s) => (
+              <Link
+                key={s.name}
+                href={s.url}
+                target={s.url.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="kz-social"
+                title={s.name}
+                aria-label={s.name}
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  {s.name === "email" ? EMAIL_ICON : SOCIAL_BY_NAME[s.name]}
+                </svg>
+              </Link>
+            ))}
+          </StaggerItem>
+        </Stagger>
 
         <div className="kz-about-extra">
-          <p className="kz-about-eyebrow">On the shelf</p>
-          <div className="kz-about-shelves">
-            <GamesShelf />
-            <BooksShelf />
-          </div>
+          <Reveal>
+            <p className="kz-about-eyebrow">On the shelf</p>
+          </Reveal>
+          <Stagger className="kz-about-shelves" stagger={0.15}>
+            <StaggerItem><GamesShelf /></StaggerItem>
+            <StaggerItem><BooksShelf /></StaggerItem>
+          </Stagger>
         </div>
 
         {nowSpinning && (
-          <div className="kz-about-extra">
+          <Reveal className="kz-about-extra">
             <p className="kz-about-eyebrow">Now spinning</p>
             {nowSpinning}
-          </div>
+          </Reveal>
         )}
       </div>
     </section>

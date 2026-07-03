@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { navbarLinks } from "@/config/nav-links";
 import { smoothScrollTo } from "@/lib/utils";
@@ -21,6 +22,7 @@ export default function Header() {
   const { activeSection, setActiveSection, setTimeOfLastClick } =
     useActiveSectionContext();
   const { resolvedTheme, setTheme } = useTheme();
+  const reduced = useReducedMotion();
   const [mounted, setMounted] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
 
@@ -65,7 +67,13 @@ export default function Header() {
 
   return (
     <>
-      <nav className="kz-header" aria-label="Primary">
+      <motion.nav
+        className="kz-header"
+        aria-label="Primary"
+        initial={reduced ? false : { y: -72, opacity: 0, x: "-50%" }}
+        animate={{ y: 0, opacity: 1, x: "-50%" }}
+        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      >
         {navbarLinks.map((link) => (
           <a
             key={link.id}
@@ -73,7 +81,16 @@ export default function Header() {
             className={`kz-header-link ${activeSection === link.id ? "is-active" : ""}`}
             onClick={(e) => handleNavClick(e, link.id)}
           >
-            {NAV_LABELS[link.id] ?? link.title.toUpperCase()}
+            {activeSection === link.id && (
+              <motion.span
+                layoutId="header-active-pill"
+                className="kz-header-pill"
+                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              />
+            )}
+            <span className="kz-header-label">
+              {NAV_LABELS[link.id] ?? link.title.toUpperCase()}
+            </span>
           </a>
         ))}
 
@@ -103,7 +120,7 @@ export default function Header() {
         >
           {mounted && isDark ? SunIcon : MoonIcon}
         </button>
-      </nav>
+      </motion.nav>
 
       <div
         className={`kz-sheet-backdrop ${sheetOpen ? "is-open" : ""}`}

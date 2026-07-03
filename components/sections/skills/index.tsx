@@ -1,6 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useSectionInView } from "@/hooks/use-section-in-view";
+import { Reveal, Stagger, StaggerItem, staggerItemPop } from "@/components/motion/primitives";
 
 type Chip = { n: string; c: string; l: string; dark?: boolean };
 
@@ -48,23 +50,25 @@ export default function Skills() {
   return (
     <section id="skills" ref={ref} className="kz-section">
       <div className="kz-page">
-        <p className="kz-eyebrow">Stack</p>
-        <h2 className="kz-h2">Tools I <em>reach for</em>.</h2>
-        <p className="kz-section-lede">
-          Curated, not exhaustive — these are the ones I&apos;m fluent in.
-        </p>
-        <div className="kz-skills">
+        <Reveal>
+          <p className="kz-eyebrow">Stack</p>
+          <h2 className="kz-h2">Tools I <em>reach for</em>.</h2>
+          <p className="kz-section-lede">
+            Curated, not exhaustive — these are the ones I&apos;m fluent in.
+          </p>
+        </Reveal>
+        <Stagger className="kz-skills" stagger={0.1}>
           {SKILL_GROUPS.map((g, gi) => (
-            <div key={g.title} className="kz-skill-group">
+            <StaggerItem key={g.title} className="kz-skill-group">
               <div className="kz-skill-head">
                 <span>{g.title}</span>
                 <span className="num">
                   {String(gi + 1).padStart(2, "0")}/0{SKILL_GROUPS.length}
                 </span>
               </div>
-              <div className="kz-skill-list">
+              <Stagger className="kz-skill-list" stagger={0.06} delay={0.15}>
                 {g.items.map((it) => (
-                  <span key={it.n} className="kz-chip">
+                  <motion.span key={it.n} className="kz-chip" variants={staggerItemPop}>
                     <span
                       className="kz-chip-mark"
                       style={{ background: it.c, color: it.dark ? "#0a0a0a" : "white" }}
@@ -72,12 +76,12 @@ export default function Skills() {
                       {it.l}
                     </span>
                     {it.n}
-                  </span>
+                  </motion.span>
                 ))}
-              </div>
-            </div>
+              </Stagger>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );
