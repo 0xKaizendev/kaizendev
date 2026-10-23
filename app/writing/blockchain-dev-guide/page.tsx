@@ -1,4 +1,5 @@
 "use client";
+import "@/styles/writing.css";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -1461,7 +1462,7 @@ export default function BlockchainDevGuide() {
       </button>
 
       {tocOpen && (
-        <div className="kz-sheet-backdrop is-open" onClick={() => setTocOpen(false)} aria-hidden />
+        <div className="dg-toc-backdrop" onClick={() => setTocOpen(false)} aria-hidden />
       )}
       <div className={`dg-toc-sheet ${tocOpen ? "is-open" : ""}`} role="dialog" aria-label="Table of contents">
         <div className="dg-toc-sheet-head">

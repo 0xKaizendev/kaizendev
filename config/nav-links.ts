@@ -1,36 +1,11 @@
-const moreContent: ContentNavItem[] = [];
+// The ledger's sections, in reading order. The numeral is the entry number
+// written in the margin, as in a Japanese account book.
+export const ledgerSections = [
+  { id: "blocks", numeral: "一", title: "Blocks" },
+  { id: "transactions", numeral: "二", title: "Transactions" },
+  { id: "read", numeral: "三", title: "Read" },
+  { id: "notes", numeral: "四", title: "Notes" },
+  { id: "write", numeral: "五", title: "Write" },
+] as const;
 
-export const navbarLinks: NavItem[] = [
-  {
-    title: "Home",
-    id: "home",
-  },
-  {
-    title: "About",
-    id: "about",
-  },
-  {
-    title: "Kaizen",
-    id: "kaizen",
-  },
-  {
-    title: "Projects",
-    id: "projects",
-  },
-  {
-    title: "Experience",
-    id: "experience",
-  },
-  {
-    title: "Skills",
-    id: "skills",
-  },
-  {
-    title: "Writing",
-    id: "writing",
-  },
-  {
-    title: "Contact",
-    id: "contact",
-  },
-];
+export type LedgerSectionId = (typeof ledgerSections)[number]["id"];

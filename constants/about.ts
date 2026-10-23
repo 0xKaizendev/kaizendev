@@ -1,27 +1,22 @@
 import { server } from "@/config";
+
 export const about = {
-  "name": "Rozales Assimpah",
-  "designation": "Full Stack BlockChain Developer",
-  "company": {
-    "name": "Gemach DAO",
-    "url": "https://gemach.io/"
+  name: "Rozales Assimpah",
+  alias: "Kaizendev",
+  ens: "kaizendev.eth",
+  role: "Smart Contract Developer",
+  company: {
+    name: "RAAC Protocol",
+    url: "https://raac.io/",
   },
-  "description": `I am a Fullstack Blockchain Developer at GemachDAO, where I work on decentralized solutions that drive innovation in the blockchain space. With a deep understanding of smart contracts, DeFi protocols, and Web3 technologies, I focus on creating efficient and scalable decentralized applications. My work spans the full development lifecycle, from smart contract development to front-end integration, ensuring seamless user experiences in decentralized ecosystems.
-`,
-  "socialLinks": [
-    {
-      "name": "github",
-      "url": "https://github.com/0xKaizendev/kaizendev"
-    },
-    {
-      "name": "linkedin",
-      "url": "https://www.linkedin.com/in/kaizendev/"
-    },
-    {
-      "name": "twitter",
-      "url": "https://twitter.com/0xkaizendev"
-    }
+  location: "Lomé, Togo",
+  timezone: "UTC+0",
+  tagline:
+    "Smart contract developer in Lomé. One improvement a day, onchain. Right now: lending contracts for tokenized real estate at RAAC.",
+  stats: [
+    { label: "Onchain", value: "4+ years" },
+    { label: "Shipped", value: "20+ projects" },
+    { label: "Based in", value: "Lomé · UTC+0" },
   ],
-  "resume": `${server}/files/resume.pdf`,
-  "note": ""
-}
+  resume: `${server}/files/resume.pdf`,
+} as const;

@@ -1,24 +1,33 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { Seal } from "@/components/seal";
 
 export default function Footer() {
   return (
-    <footer className="kz-page">
-      <div className="kz-footer">
-        <div className="kz-foot-credit">
-          Built with care by{" "}
-          <Link href={siteConfig.links.twitter} target="_blank" rel="noopener noreferrer">
-            Rozales
-          </Link>{" "}
-          · Hosted on{" "}
-          <Link href="https://vercel.com" target="_blank" rel="noopener noreferrer">
-            Vercel
+    <footer className="kl-footer">
+      <div className="kl-page kl-footer-in">
+        <p className="kl-footer-end">
+          <Seal size="sm" />
+          End of ledger.
+        </p>
+        <p className="kl-footer-meta">
+          Written in Lomé by Rozales Assimpah ·{" "}
+          <Link href={siteConfig.links.github} target="_blank" rel="noopener noreferrer">
+            GitHub
           </Link>{" "}
           ·{" "}
-          <Link href={siteConfig.links.github} target="_blank" rel="noopener noreferrer">
+          <Link href={siteConfig.links.twitter} target="_blank" rel="noopener noreferrer">
+            X
+          </Link>{" "}
+          ·{" "}
+          <Link href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </Link>{" "}
+          ·{" "}
+          <Link href="https://github.com/0xKaizendev/kaizendev" target="_blank" rel="noopener noreferrer">
             Source
           </Link>
-        </div>
+        </p>
       </div>
     </footer>
   );

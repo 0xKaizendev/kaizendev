@@ -1,47 +1,28 @@
 "use client";
-import {
-  ClipboardDocumentCheckIcon,
-  ClipboardDocumentIcon,
-} from "@heroicons/react/24/solid";
-import clsx from "clsx";
-// import { useToast } from "components/toast";
-import { useCallback } from "react";
-import { useCopyToClipboard } from "react-use";
 
-export const CopyButton = ({
-  content,
-  className,
-}: {
-  className: string;
-  content: string;
-}) => {
-  const [state, copyToClipboard] = useCopyToClipboard();
-  // const { toasts, addToast } = useToast();
+import { useEffect, useState } from "react";
 
-  // const handleCopyCode = useCallback(() => {
-  //     copyToClipboard(content);
-  //     addToast({
-  //         id: "copy-code",
-  //         message: "Code Copied to Clipboard",
-  //         timestamp: Date.now(),
-  //     });
-  // }, [addToast, content, copyToClipboard]);
+export default function CopyButton({ value, label = "copy" }: { value: string; label?: string }) {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const t = window.setTimeout(() => setCopied(false), 1400);
+    return () => window.clearTimeout(t);
+  }, [copied]);
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+    } catch {
+      // clipboard refused (permissions, insecure context): the value stays visible to select by hand
+    }
+  };
 
   return (
-    <button
-      className={clsx(className, "h-5 w-5 transition-colors")}
-      // onClick={handleCopyCode}
-      type="button"
-    >
-      <span className="sr-only">Copy code</span>
-      {
-        //   toasts.some((notification) => notification.id === "copy-code")
-        content ? (
-          <ClipboardDocumentCheckIcon className="h-5 w-5 text-sky-400" />
-        ) : (
-          <ClipboardDocumentIcon className="h-5 w-5" />
-        )
-      }
+    <button type="button" className="kl-copy" onClick={copy} aria-label={`Copy ${value}`}>
+      <span aria-live="polite">{copied ? "copied" : label}</span>
     </button>
   );
-};
+}

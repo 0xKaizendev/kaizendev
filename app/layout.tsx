@@ -1,45 +1,29 @@
 import "@/styles/globals.css";
-import { Metadata } from "next";
-import { ThemeProvider } from "@/components/providers/theme-provider";
+import type { Metadata, Viewport } from "next";
+import { Martian_Mono, Shippori_Mincho } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import ActiveSectionContextProvider from '@/hooks/use-active-section';
-import {
-  Roboto_Mono as FontCode,
-  Plus_Jakarta_Sans,
-  Poppins,
-} from "next/font/google";
-import { siteConfig } from "@/config/site";
-import localFont from "next/font/local";
-import { cn } from "@/lib/utils";
-import Footer from "@/components/footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import InkProvider from "@/components/ink/ink-provider";
 import Header from "@/components/header";
-import { ScrollBar } from "@/components/progress-bar";
-import { Toaster } from "react-hot-toast";
+import Footer from "@/components/footer";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 
-const fontSans = Plus_Jakarta_Sans({
+// Brush serif for people: names, titles, answers, seals.
+const fontMincho = Shippori_Mincho({
   subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-  adjustFontFallback: false,
+  weight: ["400", "600", "800"],
+  variable: "--font-mincho",
+  display: "swap",
 });
 
-const fontCode = FontCode({
+// Mono for the machine: addresses, hashes, function signatures, block numbers.
+const fontMono = Martian_Mono({
   subsets: ["latin"],
-  variable: "--font-code",
-  adjustFontFallback: false,
-});
-const fontPoppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  adjustFontFallback: false,
-});
-
-const fontLogo = localFont({
-  src: "../assets/fonts/AquataDisplay-SemiBold.woff2",
-  variable: "--font-logo",
-  adjustFontFallback: false,
+  axes: ["wdth"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -49,24 +33,9 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
-  keywords: [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Server Components",
-    "Radix UI",
-  ],
-  authors: [
-    {
-      name: "Rozales Assimpah",
-      url: "https://kaizendev.me",
-    },
-  ],
-  creator: "Rozales ASSIMPAH",
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "white" },
-  //   { media: "(prefers-color-scheme: dark)", color: "black" },
-  // ],
+  keywords: ["Rozales Assimpah", "Kaizendev", "smart contract developer", "Solidity", "DeFi", "TypeScript", "Lomé"],
+  authors: [{ name: siteConfig.author.name, url: siteConfig.url }],
+  creator: siteConfig.author.name,
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -83,46 +52,27 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: siteConfig.handle,
   },
-  // icons: {
-  //   icon: "/favicon.ico",
-  //   shortcut: "/favicon-16x16.png",
-  //   apple: "/apple-touch-icon.png",
-  // },
-  // manifest: `${siteConfig.url}/site.webmanifest`,
 };
-// TODO: add notfound page
-export default async function LocaleLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // Providing all messages to the client
-  // side is the easiest way to get started
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#eae7df" },
+    { media: "(prefers-color-scheme: dark)", color: "#14120f" },
+  ],
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <body
-        className={cn(
-          'antialiased font-sans',
-          fontSans.variable,
-          fontCode.variable,
-          fontPoppins.variable,
-          fontLogo.variable,
-        )}
-      >
-        <ActiveSectionContextProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange
-          >
-            <ScrollBar />
+    // the font variables live on <html> so the tokens on :root can reference them
+    <html lang="en" className={cn(fontMincho.variable, fontMono.variable)} suppressHydrationWarning>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <InkProvider>
             <Header />
             {children}
             <Footer />
-            <Toaster position="bottom-right" />
-          </ThemeProvider>
-        </ActiveSectionContextProvider>
+          </InkProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>
