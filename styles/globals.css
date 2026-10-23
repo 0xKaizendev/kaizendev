@@ -1629,3 +1629,218 @@ a.kl-shelf-title:hover {
 .kl-note-read:hover {
   border-bottom-color: var(--seal);
 }
+
+/* ----------------------------------------------------------------------------
+   伍 Write
+   ---------------------------------------------------------------------------- */
+
+.kl-write {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+  padding-top: 22px;
+  border-top: 1.5px solid var(--ink);
+}
+
+.kl-hire {
+  display: grid;
+  gap: 20px;
+}
+
+.kl-field {
+  display: grid;
+  gap: 4px;
+}
+.kl-field label {
+  color: var(--ink-3);
+  font: 400 11px/1.4 var(--mono);
+  font-stretch: 87.5%;
+}
+.kl-field label em {
+  color: var(--ink-4);
+  font-style: normal;
+}
+.kl-field input,
+.kl-field textarea {
+  width: 100%;
+  padding: 6px 0;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: 400 18px/1.55 var(--serif);
+  outline: none;
+  resize: vertical;
+}
+.kl-field textarea {
+  min-height: 120px;
+}
+.kl-field input:focus,
+.kl-field textarea:focus {
+  border-bottom-color: var(--seal);
+}
+.kl-field input::placeholder,
+.kl-field textarea::placeholder {
+  color: var(--ink-4);
+}
+.kl-field [aria-invalid="true"] {
+  border-bottom: 2px solid var(--seal);
+}
+
+/* offscreen, not display:none, so naive bots still fill it */
+.kl-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.kl-hire-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-top: 4px;
+}
+
+.kl-btn {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 11px 22px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 16px/1.2 var(--serif);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.kl-btn:hover:not(:disabled) {
+  background: var(--seal-fill);
+  color: var(--seal-ink);
+}
+.kl-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.kl-hire-value {
+  color: var(--ink-3);
+  font: 400 11px/1.4 var(--mono);
+  font-stretch: 87.5%;
+}
+
+.kl-receipt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 300px;
+  padding: 18px;
+  border: 1px solid var(--rule);
+}
+.kl-receipt-title {
+  margin: 0;
+  color: var(--ink-3);
+  font: 400 10.5px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.kl-receipt ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.kl-receipt-call,
+.kl-receipt-pending,
+.kl-receipt-ok,
+.kl-receipt-err {
+  color: var(--ink-2);
+  font: 400 11.5px/1.55 var(--mono);
+  font-stretch: 87.5%;
+  overflow-wrap: anywhere;
+}
+.kl-receipt-call {
+  color: var(--ink);
+}
+.kl-receipt-pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.kl-receipt-ok,
+.kl-receipt-err {
+  color: var(--seal);
+  font-weight: 500;
+}
+.kl-receipt-note {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+/* where the seal lands, and what the ensō circles while the call is pending */
+.kl-receipt-mark {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+}
+.kl-receipt-stamp {
+  display: grid;
+  mix-blend-mode: var(--stamp-blend);
+  opacity: 0.9;
+  transform: rotate(var(--r));
+  animation: kl-stamp 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.25) both;
+}
+
+.kl-direct {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin: 36px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-soft);
+}
+.kl-direct dt {
+  color: var(--ink-3);
+  font: 400 10.5px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.kl-direct dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 3px 0 0;
+  font-weight: 600;
+  font-size: 17px;
+}
+.kl-direct a {
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+.kl-direct a:hover {
+  color: var(--seal);
+}
+
+@media (max-width: 860px) {
+  .kl-write {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kl-receipt {
+    min-height: 200px;
+  }
+}

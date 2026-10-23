@@ -3,6 +3,7 @@ import Blocks from "@/components/sections/blocks";
 import Transactions from "@/components/sections/transactions";
 import Read from "@/components/sections/read";
 import Notes from "@/components/sections/notes";
+import Write from "@/components/sections/write";
 
 export default function Index() {
   return (
@@ -12,6 +13,7 @@ export default function Index() {
       <Transactions />
       <Read />
       <Notes />
+      <Write />
     </main>
   );
 }

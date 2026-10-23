@@ -78,48 +78,56 @@ export default function Read() {
           },
         ]
       : []),
-    {
-      name: "shelf",
-      returns: "(Book[], Game[])",
-      result: (
-        <div className="kl-shelf">
-          <div>
-            <h3>Books</h3>
-            <ul>
-              {books.map((b) => (
-                <li key={b.title}>
-                  <span className="kl-shelf-title">{b.title}</span>
-                  <span className="kl-shelf-meta">
-                    {b.author} · {b.year}
-                  </span>
-                  {b.note && <span className="kl-shelf-note">{b.note}</span>}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3>Games</h3>
-            <ul>
-              {games.map((g) => (
-                <li key={g.title}>
-                  {g.link ? (
-                    <Link className="kl-shelf-title" href={g.link} target="_blank" rel="noopener noreferrer">
-                      {g.title} ↗
-                    </Link>
-                  ) : (
-                    <span className="kl-shelf-title">{g.title}</span>
-                  )}
-                  <span className="kl-shelf-meta">
-                    {g.studio} · {g.year}
-                  </span>
-                  {g.note && <span className="kl-shelf-note">{g.note}</span>}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ),
-    },
+    ...(books.length || games.length
+      ? [
+          {
+            name: "shelf",
+            returns: "(Book[], Game[])",
+            result: (
+              <div className="kl-shelf">
+                {books.length > 0 && (
+                  <div>
+                    <h3>Books</h3>
+                    <ul>
+                      {books.map((b) => (
+                        <li key={b.title}>
+                          <span className="kl-shelf-title">{b.title}</span>
+                          <span className="kl-shelf-meta">
+                            {b.author} · {b.year}
+                          </span>
+                          {b.note && <span className="kl-shelf-note">{b.note}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {games.length > 0 && (
+                  <div>
+                    <h3>Games</h3>
+                    <ul>
+                      {games.map((g) => (
+                        <li key={g.title}>
+                          {g.link ? (
+                            <Link className="kl-shelf-title" href={g.link} target="_blank" rel="noopener noreferrer">
+                              {g.title} ↗
+                            </Link>
+                          ) : (
+                            <span className="kl-shelf-title">{g.title}</span>
+                          )}
+                          <span className="kl-shelf-meta">
+                            {g.studio} · {g.year}
+                          </span>
+                          {g.note && <span className="kl-shelf-note">{g.note}</span>}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ),
+          },
+        ]
+      : []),
     { name: "nowSpinning", returns: "Track", result: <NowSpinning /> },
     {
       name: "availability",

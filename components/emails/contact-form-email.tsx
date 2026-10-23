@@ -13,28 +13,31 @@ import {
 import { Tailwind } from "@react-email/tailwind";
 
 type ContactFormEmailProps = {
+  team: string;
   message: string;
   senderEmail: string;
 };
 
 export default function ContactFormEmail({
+  team,
   message,
   senderEmail,
 }: ContactFormEmailProps) {
   return (
     <Html>
       <Head />
-      <Preview>New message from your portfolio site</Preview>
+      <Preview>hire() from {team || senderEmail}</Preview>
       <Tailwind>
         <Body className="bg-gray-100 text-black">
           <Container>
             <Section className="borderBlack my-10 rounded-md bg-white px-10 py-4">
               <Heading className="leading-tight">
-                You received the following message from the contact form
+                Someone called hire() on kaizendev.me
               </Heading>
-              <Text>{message}</Text>
+              <Text>Team: {team || "not given"}</Text>
+              <Text>Reply to: {senderEmail}</Text>
               <Hr />
-              <Text>The email of sender is: {senderEmail}</Text>
+              <Text className="whitespace-pre-wrap">{message}</Text>
             </Section>
           </Container>
         </Body>

@@ -8,35 +8,5 @@ export type Book = {
   current?: boolean;
 };
 
-// Placeholder list — replace with real entries.
-export const books: Book[] = [
-  {
-    title: "L'Étranger",
-    author: "Albert Camus",
-    year: 1942,
-    note: "absurdism, paragraph by paragraph",
-  },
-  {
-    title: "Pensées pour moi-même",
-    author: "Marc Aurèle",
-    year: 180,
-    note: "currently re-reading",
-    current: true,
-  },
-  {
-    title: "Ainsi parlait Zarathoustra",
-    author: "Friedrich Nietzsche",
-    year: 1883,
-  },
-  {
-    title: "La Nausée",
-    author: "Jean-Paul Sartre",
-    year: 1938,
-  },
-  {
-    title: "La Société de la fatigue",
-    author: "Byung-Chul Han",
-    year: 2010,
-    note: "must-read for anyone shipping",
-  },
-];
+// Only real entries: the shelf stays off the page while both lists are empty.
+export const books: Book[] = [];
