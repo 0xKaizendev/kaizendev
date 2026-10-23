@@ -27,7 +27,7 @@ export default function Write() {
           <dt>Telegram</dt>
           <dd>
             <Link href="https://t.me/kaizendev" target="_blank" rel="noopener noreferrer">
-              @kaizendev
+              @xKaizendev
             </Link>
           </dd>
         </div>

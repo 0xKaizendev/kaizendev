@@ -9,7 +9,9 @@
       "Bash(curl -sS http://localhost:3458/)",
       "mcp__Claude_in_Chrome__tabs_context_mcp",
       "Bash(grep -n \"</main>\\\\|</div>\\\\s*$\\\\|</article>\" C:/Users/rozal/Documents/kaizendev/.claude/worktrees/modest-darwin-b547b3/app/writing/blockchain-dev-guide/page.tsx)",
-      "Bash(ln -s ../../../node_modules node_modules)"
+      "Bash(ln -s ../../../node_modules node_modules)",
+      "Bash(python3 -c ' *)",
+      "Bash(node --check chk.js)"
     ]
   }
 }
