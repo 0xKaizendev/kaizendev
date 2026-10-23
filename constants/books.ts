@@ -4,6 +4,8 @@ export type Book = {
   year: number;
   cover?: string; // optional — drop a file in /public/images/books/ and reference it here
   note?: string;
+  /** The one on the nightstand right now. */
+  current?: boolean;
 };
 
 // Placeholder list — replace with real entries.
@@ -19,6 +21,7 @@ export const books: Book[] = [
     author: "Marc Aurèle",
     year: 180,
     note: "currently re-reading",
+    current: true,
   },
   {
     title: "Ainsi parlait Zarathoustra",

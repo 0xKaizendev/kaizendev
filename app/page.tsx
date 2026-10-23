@@ -1,6 +1,8 @@
 import Hero from "@/components/sections/hero";
 import Blocks from "@/components/sections/blocks";
 import Transactions from "@/components/sections/transactions";
+import Read from "@/components/sections/read";
+import Notes from "@/components/sections/notes";
 
 export default function Index() {
   return (
@@ -8,6 +10,8 @@ export default function Index() {
       <Hero />
       <Blocks />
       <Transactions />
+      <Read />
+      <Notes />
     </main>
   );
 }

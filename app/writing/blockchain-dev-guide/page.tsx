@@ -638,7 +638,8 @@ export default function BlockchainDevGuide() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible) setActiveId(visible.target.id);
       },
-      { rootMargin: "-30% 0px -60% 0px", threshold: [0.1, 0.4] }
+      // sections are far taller than this band, so any overlap counts
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
     );
 
     els.forEach((el) => obs.observe(el));
@@ -678,7 +679,7 @@ export default function BlockchainDevGuide() {
   ]);
 
   return (
-    <div className="dg-page">
+    <div className="dg-page" lang="fr">
       <div className="dg-progress" />
 
       <aside className="dg-rail" aria-label="Document outline">
