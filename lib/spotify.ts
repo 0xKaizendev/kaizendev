@@ -69,15 +69,10 @@ interface SpotifyRecentResponse {
   items: Array<{ track: SpotifyTrack }>;
 }
 
-const FALLBACK: SpotifyPlayingNow = {
-  isPlaying: false,
-  title: "Not playing",
-  artist: "Spotify",
-  songUrl: "https://open.spotify.com",
-  albumImageUrl: null,
-};
+// null when Spotify has nothing to report (not configured, no recent track, or an error)
+const FALLBACK = null;
 
-export async function getSpotifyPlayingNow(): Promise<SpotifyPlayingNow> {
+export async function getSpotifyPlayingNow(): Promise<SpotifyPlayingNow | null> {
   let response: Response;
   try {
     response = await getNowPlaying();

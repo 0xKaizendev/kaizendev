@@ -1,15 +1,14 @@
-
 export const siteConfig: SiteConfig = {
-  name: "Rozales Assimpah | Portfolio",
-  handle: "@kaizendev",
+  name: "Rozales Assimpah · Kaizendev",
+  handle: "@0xkaizendev",
   description:
-    "This website is my personal blog. I write about web/web3 development, JavaScript, TypeScript, React, Node.js, CSS, and more.",
+    "Rozales Assimpah, smart contract developer in Lomé. Solidity, TypeScript, and the spaces between chains.",
   url: "https://kaizendev.me/",
-  ogImage: "/images/og.png",
   links: {
     mail: "rozales@kaizendev.me",
     twitter: "https://x.com/0xkaizendev",
     github: "https://github.com/0xKaizendev",
+    linkedin: "https://www.linkedin.com/in/kaizendev/",
   },
   author: {
     name: "Rozales Assimpah",

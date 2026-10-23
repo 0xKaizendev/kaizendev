@@ -1,0 +1,946 @@
+/* =============================================================================
+   肆 Notes · Smart Contract Dev Process
+   The long-form page of the ledger: one reading column, an outline rail in the
+   right margin, section numbers stamped in faint vermilion.
+   ============================================================================= */
+
+.dg-page {
+  /* inks for checklists, alerts and phases, muted so they sit on the paper */
+  --dg-ok: #3a6435;
+  --dg-warn: #7d5409; /* both 4.5:1 on the code blocks' paper */
+  --dg-danger: var(--seal);
+  --dg-info: #3d4f8a;
+  --dg-content: 760px;
+  position: relative;
+  z-index: 1; /* above the ink layer */
+}
+.dark .dg-page {
+  --dg-ok: #8fbf7f;
+  --dg-warn: #d9a441;
+  --dg-info: #9aabe3;
+}
+
+/* Reading progress, drawn along the top edge */
+.dg-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: var(--dg-progress, 0%);
+  height: 2px;
+  background: var(--seal);
+  transition: width 0.12s linear;
+}
+
+.dg-article {
+  position: relative;
+  max-width: calc(var(--dg-content) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 72px) var(--gutter) 80px;
+}
+
+.dg-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 48px;
+  color: var(--ink-3);
+  font: 400 11px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s, transform 0.2s;
+}
+.dg-back:hover {
+  color: var(--seal);
+  transform: translateX(-3px);
+}
+
+/* ----------------------------------------------------------------------------
+   Outline rail: numbers only, labels open on hover or for the active section
+   ---------------------------------------------------------------------------- */
+
+.dg-rail {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-height: 76vh;
+  overflow-y: auto;
+  padding: 10px 6px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transform: translateY(-50%);
+}
+.dg-rail-group-label {
+  padding: 8px 8px 4px;
+  color: var(--ink-3);
+  font: 400 9px/1.3 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.dg-rail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 8px;
+  color: var(--ink-3);
+  font: 400 11px/1.3 var(--mono);
+  font-stretch: 87.5%;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.3s, background 0.3s;
+}
+.dg-rail-item .dg-rail-num {
+  min-width: 14px;
+  color: var(--ink-3);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s;
+}
+.dg-rail-item .dg-rail-dot {
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--rule);
+  transition: background 0.3s, transform 0.4s var(--ease);
+}
+.dg-rail-item .dg-rail-label {
+  max-width: 0;
+  margin-right: 0;
+  overflow: hidden;
+  opacity: 0;
+  font: 600 12.5px/1.3 var(--serif);
+  transition:
+    max-width 0.55s var(--ease),
+    opacity 0.35s ease 0.05s,
+    margin 0.55s var(--ease);
+}
+.dg-rail:hover .dg-rail-item .dg-rail-label,
+.dg-rail-item.is-active .dg-rail-label {
+  max-width: 200px;
+  margin-right: 4px;
+  opacity: 1;
+}
+.dg-rail-item:hover {
+  color: var(--ink);
+}
+.dg-rail-item:hover .dg-rail-dot,
+.dg-rail-item.is-active .dg-rail-dot {
+  background: var(--seal);
+  transform: rotate(45deg) scale(1.3);
+}
+.dg-rail-item.is-active {
+  background: var(--seal-wash);
+  color: var(--seal);
+}
+.dg-rail-item.is-active .dg-rail-num {
+  color: var(--seal);
+}
+
+/* ----------------------------------------------------------------------------
+   Title page
+   ---------------------------------------------------------------------------- */
+
+.dg-hero {
+  margin-bottom: 72px;
+  padding-bottom: 48px;
+  border-bottom: 1.5px solid var(--ink);
+}
+.dg-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+  color: var(--seal);
+  font: 400 11px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.dg-hero-eyebrow::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+.dg-hero h1 {
+  margin: 0 0 24px;
+  color: var(--ink);
+  font: 800 clamp(40px, 6vw, 68px) / 1.04 var(--serif);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+/* Mincho has no italic: the emphasis is the seal's red instead */
+.dg-hero h1 em {
+  color: var(--seal);
+  font-style: normal;
+}
+.dg-hero-lede {
+  max-width: 600px;
+  margin: 0 0 36px;
+  color: var(--ink-2);
+  font-size: 18px;
+  line-height: 1.75;
+}
+.dg-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dg-meta-pill {
+  padding: 5px 10px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  color: var(--ink-3);
+  font: 400 11px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.02em;
+}
+.dg-meta-pill strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Pipeline: the stages, ruled like a ledger row */
+.dg-pipeline {
+  display: flex;
+  margin: 0 0 80px;
+  overflow-x: auto;
+  border-block: 1px solid var(--rule);
+}
+.dg-pipe-step {
+  position: relative;
+  flex: 1;
+  min-width: 100px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.dg-pipe-step:not(:last-child) {
+  border-right: 1px dashed var(--rule-soft);
+}
+.dg-pipe-step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  right: -7px;
+  z-index: 1;
+  padding: 2px 0;
+  background: var(--paper);
+  color: var(--seal);
+  font-size: 12px;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+.dg-pipe-icon {
+  margin-bottom: 6px;
+  color: var(--ink-2);
+  font-size: 18px;
+}
+.dg-pipe-name {
+  color: var(--ink);
+  font: 600 13px/1.3 var(--serif);
+}
+.dg-pipe-desc {
+  margin-top: 2px;
+  color: var(--ink-3);
+  font: 400 10px/1.4 var(--mono);
+  font-stretch: 87.5%;
+}
+
+/* ----------------------------------------------------------------------------
+   Sections
+   ---------------------------------------------------------------------------- */
+
+.dg-section {
+  margin-bottom: 88px;
+}
+.dg-section-marker {
+  position: relative;
+  width: fit-content; /* the tag sits right after the number */
+  margin: 0 0 -18px -4px;
+  color: color-mix(in srgb, var(--seal) 22%, transparent);
+  font: 800 clamp(64px, 9vw, 112px) / 1 var(--serif);
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+.dg-section-marker::before {
+  content: attr(data-num);
+  content: attr(data-num) / ""; /* empty alt: screen readers skip the decoration */
+}
+.dg-section-marker .dg-section-tag {
+  position: absolute;
+  bottom: 18px;
+  left: calc(100% + 14px);
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font: 500 10px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dg-tag-required {
+  color: var(--dg-danger);
+}
+.dg-tag-optional {
+  color: var(--ink-3);
+}
+.dg-section-title {
+  margin: 0 0 30px;
+  color: var(--ink);
+  font: 800 clamp(28px, 3.4vw, 38px) / 1.15 var(--serif);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.dg-article p {
+  margin: 0 0 14px;
+  color: var(--ink-2);
+  font-size: 16.5px;
+  line-height: 1.85;
+}
+.dg-article code {
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--paper-2);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.8em;
+  font-stretch: 87.5%;
+}
+.dg-article h3 {
+  margin: 36px 0 12px;
+  color: var(--ink);
+  font: 700 19px/1.3 var(--serif);
+}
+
+/* Phase badge */
+.dg-phase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding: 3px 10px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font: 500 10px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.dg-phase-badge::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+.dg-pb-dev {
+  color: var(--ink);
+}
+.dg-pb-test {
+  color: var(--dg-ok);
+}
+.dg-pb-deploy {
+  color: var(--dg-warn);
+}
+.dg-pb-audit {
+  color: var(--dg-danger);
+}
+
+/* ----------------------------------------------------------------------------
+   Code
+   ---------------------------------------------------------------------------- */
+
+.dg-code-block {
+  margin: 18px 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--paper-2);
+}
+.dg-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-3);
+}
+.dg-code-lang {
+  color: var(--ink-3);
+  font: 400 10px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.dg-code-file {
+  color: var(--ink-2);
+  font: 400 11px/1.4 var(--mono);
+  font-stretch: 87.5%;
+}
+.dg-code-block pre {
+  margin: 0;
+  padding: 20px 22px;
+  overflow-x: auto;
+  color: var(--ink);
+  font: 400 12.5px/1.75 var(--mono);
+  font-stretch: 87.5%;
+  white-space: pre;
+}
+.dg-code-block pre code {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: inherit;
+}
+
+/* syntax: the seal marks the language, ochre and indigo the values */
+.dg-page .kw,
+.dg-page .op {
+  color: var(--seal);
+}
+.dg-page .kw {
+  font-weight: 600;
+}
+.dg-page .fn {
+  color: var(--ink);
+  font-weight: 600;
+}
+.dg-page .str,
+.dg-page .num {
+  color: var(--dg-warn);
+}
+.dg-page .ty {
+  color: var(--dg-info);
+}
+.dg-page .cm {
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+/* ----------------------------------------------------------------------------
+   Cards, checklists, tables, alerts
+   ---------------------------------------------------------------------------- */
+
+.dg-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 18px 0;
+}
+.dg-card {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--ink);
+  border-radius: 2px;
+}
+.dg-card h3,
+.dg-card h4 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font: 700 15.5px/1.3 var(--serif);
+}
+.dg-card p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+.dg-card.accent-blue {
+  border-top-color: var(--dg-info);
+}
+.dg-card.accent-green {
+  border-top-color: var(--dg-ok);
+}
+.dg-card.accent-amber {
+  border-top-color: var(--dg-warn);
+}
+.dg-card.accent-red,
+.dg-card.accent-purple {
+  border-top-color: var(--dg-danger);
+}
+
+.dg-checklist {
+  margin: 14px 0;
+  padding: 0;
+  list-style: none;
+}
+.dg-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--rule-soft);
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.dg-checklist li:last-child {
+  border-bottom: none;
+}
+.dg-check-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  border: 1px solid var(--ink-3);
+  border-radius: 2px;
+}
+.dg-check-box.done {
+  border-color: var(--dg-ok);
+}
+.dg-check-box.done::after {
+  content: "✓";
+  color: var(--dg-ok);
+  font-size: 11px;
+  font-weight: 700;
+}
+.dg-check-box.warn {
+  border-color: var(--dg-warn);
+}
+.dg-check-box.warn::after {
+  content: "!";
+  color: var(--dg-warn);
+  font-size: 11px;
+  font-weight: 700;
+}
+.dg-check-label {
+  flex: 1;
+}
+.dg-check-tag {
+  align-self: center;
+  margin-left: auto;
+  padding: 1px 6px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font: 600 9.5px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.dg-ct-critical {
+  color: var(--dg-danger);
+}
+.dg-ct-high {
+  color: var(--dg-warn);
+}
+.dg-ct-med {
+  color: var(--dg-info);
+}
+
+.dg-data-table {
+  width: 100%;
+  margin: 18px 0;
+  border-collapse: collapse;
+}
+.dg-data-table th {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-3);
+  font: 400 10px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.12em;
+  text-align: left;
+  text-transform: uppercase;
+}
+.dg-data-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--ink-2);
+  font-size: 14.5px;
+}
+.dg-data-table th + th,
+.dg-data-table td + td {
+  border-left: 1px solid var(--rule-soft);
+}
+.dg-data-table td:first-child {
+  color: var(--ink);
+  font: 400 12px/1.5 var(--mono);
+  font-stretch: 87.5%;
+}
+.dg-data-table tr:last-child td {
+  border-bottom: none;
+}
+.dg-data-table tr:hover td {
+  background: var(--seal-wash);
+}
+
+.dg-alert {
+  --tone: var(--dg-info);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 18px 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--tone);
+  background: color-mix(in srgb, var(--tone) 7%, transparent);
+}
+.dg-alert.danger {
+  --tone: var(--dg-danger);
+}
+.dg-alert.warning {
+  --tone: var(--dg-warn);
+}
+.dg-alert-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--tone);
+  font-size: 16px;
+}
+.dg-alert-body {
+  flex: 1;
+}
+.dg-alert-body strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--tone);
+  font: 700 15px/1.4 var(--serif);
+}
+.dg-alert-body p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+/* Coverage thresholds */
+.dg-threshold-grid {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+}
+.dg-threshold-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.dg-threshold-label {
+  min-width: 110px;
+  color: var(--ink-3);
+  font: 400 12px/1.4 var(--mono);
+  font-stretch: 87.5%;
+}
+.dg-threshold-bar-bg {
+  flex: 1;
+  height: 6px;
+  overflow: hidden;
+  background: var(--paper-3);
+}
+.dg-threshold-bar {
+  height: 100%;
+}
+.dg-threshold-val {
+  min-width: 40px;
+  font: 500 11px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  text-align: right;
+}
+.dg-bar-green {
+  background: var(--dg-ok);
+}
+.dg-bar-amber {
+  background: var(--dg-warn);
+}
+.dg-bar-blue {
+  background: var(--dg-info);
+}
+.dg-val-green {
+  color: var(--dg-ok);
+}
+.dg-val-amber {
+  color: var(--dg-warn);
+}
+.dg-val-blue {
+  color: var(--dg-info);
+}
+
+/* Tools */
+.dg-tool-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 18px 0;
+}
+.dg-tool-item {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+.dg-tool-name {
+  color: var(--ink);
+  font: 600 12px/1.4 var(--mono);
+  font-stretch: 87.5%;
+}
+.dg-tool-desc {
+  margin-top: 4px;
+  color: var(--ink-3);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.dg-divider {
+  margin: 40px 0;
+  border: none;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.dg-foot {
+  padding: 32px 0 0;
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-stretch: 87.5%;
+  text-align: center;
+}
+.dg-foot .v {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.dg-foot .sub {
+  margin-top: 8px;
+  font-size: 10.5px;
+  line-height: 1.5;
+}
+
+/* ----------------------------------------------------------------------------
+   Outline on small screens: a button and a sheet
+   ---------------------------------------------------------------------------- */
+
+.dg-toc-fab {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right, 0px));
+  bottom: max(20px, env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px 10px 12px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--ink);
+  color: var(--paper);
+  font: 600 11px/1 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 14px 30px -18px var(--shadow);
+}
+.dg-toc-fab svg {
+  flex-shrink: 0;
+}
+
+.dg-toc-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  background: color-mix(in srgb, var(--paper) 60%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.dg-toc-sheet {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  z-index: 96;
+  width: min(calc(100% - 24px), 480px);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--paper);
+  background-image: var(--grain);
+  box-shadow: 0 24px 48px -28px var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 16px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.dg-toc-sheet.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+.dg-toc-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding: 4px 8px 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.dg-toc-sheet-title {
+  color: var(--ink-3);
+  font: 400 11px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.dg-toc-sheet-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+.dg-toc-sheet-close:hover {
+  background: var(--paper-3);
+  color: var(--ink);
+}
+
+.dg-toc-sheet-list {
+  display: flex;
+  flex-direction: column;
+}
+.dg-toc-sheet-group {
+  padding: 14px 12px 6px;
+  color: var(--ink-3);
+  font: 400 9.5px/1.4 var(--mono);
+  font-stretch: 87.5%;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.dg-toc-sheet-list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 2px;
+  color: var(--ink-2);
+  font: 600 15px/1.3 var(--serif);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.dg-toc-sheet-list a:hover {
+  background: var(--paper-2);
+  color: var(--ink);
+}
+.dg-toc-sheet-list a.is-active {
+  background: var(--seal-wash);
+  color: var(--seal);
+}
+.dg-toc-sheet-list a .dg-toc-num {
+  min-width: 22px;
+  color: var(--ink-3);
+  font: 400 10.5px/1.4 var(--mono);
+  font-stretch: 87.5%;
+}
+.dg-toc-sheet-list a.is-active .dg-toc-num {
+  color: var(--seal);
+}
+
+/* ----------------------------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------------------------- */
+
+/* not enough margin to keep the active label open beside the text: numbers only until hovered */
+@media (max-width: 1320px) {
+  .dg-rail-item.is-active .dg-rail-label {
+    max-width: 0;
+    margin-right: 0;
+    opacity: 0;
+  }
+  .dg-rail:hover .dg-rail-item .dg-rail-label {
+    max-width: 200px;
+    margin-right: 4px;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1180px) {
+  .dg-rail {
+    right: 10px;
+    padding: 8px 4px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .dg-rail {
+    display: none;
+  }
+  .dg-toc-fab {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 880px) {
+  .dg-section-marker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 -8px;
+    font-size: 64px;
+  }
+  .dg-section-marker .dg-section-tag {
+    position: static;
+    font-size: 9.5px;
+  }
+  .dg-section-title {
+    margin-bottom: 24px;
+    font-size: 27px;
+  }
+  .dg-section {
+    margin-bottom: 64px;
+  }
+  .dg-hero {
+    margin-bottom: 52px;
+    padding-bottom: 36px;
+  }
+  .dg-hero h1 {
+    font-size: clamp(34px, 9vw, 48px);
+  }
+  .dg-hero-lede {
+    font-size: 16.5px;
+  }
+  .dg-card-grid,
+  .dg-tool-list {
+    grid-template-columns: 1fr;
+  }
+  .dg-data-table th,
+  .dg-data-table td {
+    padding: 10px;
+    font-size: 13.5px;
+  }
+  .dg-code-block pre {
+    padding: 16px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .dg-data-table {
+    display: block;
+    overflow-x: auto;
+  }
+  .dg-data-table th,
+  .dg-data-table td {
+    padding: 8px 10px;
+  }
+}

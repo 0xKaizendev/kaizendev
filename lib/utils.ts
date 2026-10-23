@@ -5,43 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function truncateText(text: string, length: number = 50) {
-  if (text.length > length) {
-    return text.substring(0, length) + "...";
-  }
-  return text;
-}
-
-export const smoothScrollTo = ({
-  e,
-  id,
-}: {
-  e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  id: string
-}) => {
-  e.preventDefault()
-  const element = document.getElementById(id)
-  if (element) {
-    element.scrollIntoView({ block: 'start' })
-    return
-  }
-  // Section not on current page — navigate to home with hash
-  if (typeof window !== 'undefined') {
-    window.location.href = `/#${id}`
-  }
-}
-
-export const validateString = (
-  value: unknown,
-  maxLength: number
-): value is string => {
-  if (!value || typeof value !== 'string' || value.length > maxLength) {
-    return false
-  }
-
-  return true
-}
-
 export const getErrorMessage = (error: unknown): string => {
   let message: string
 

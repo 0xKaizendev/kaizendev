@@ -1,24 +1,19 @@
 import Hero from "@/components/sections/hero";
-import Skills from "@/components/sections/skills";
-import AboutKaizen from "@/components/sections/kaizen";
-import Projects from "@/components/sections/project";
-import About from "@/components/sections/about/about";
-import NowSpinning from "@/components/sections/about/now-spinning";
-import Contact from "@/components/sections/contact";
-import Experience from "@/components/sections/experience";
-import Writing from "@/components/sections/writing";
+import Blocks from "@/components/sections/blocks";
+import Transactions from "@/components/sections/transactions";
+import Read from "@/components/sections/read";
+import Notes from "@/components/sections/notes";
+import Write from "@/components/sections/write";
 
 export default function Index() {
   return (
-    <main>
+    <main className="kl-main">
       <Hero />
-      <AboutKaizen />
-      <About nowSpinning={<NowSpinning />} />
-      <Projects />
-      <Experience />
-      <Skills />
-      <Writing />
-      <Contact />
+      <Blocks />
+      <Transactions />
+      <Read />
+      <Notes />
+      <Write />
     </main>
   );
 }
