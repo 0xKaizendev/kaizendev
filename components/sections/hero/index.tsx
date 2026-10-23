@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { about } from "@/constants/about";
-import { resolveEns, shortAddress } from "@/lib/ens";
+import { resolveEns } from "@/lib/ens";
+import { shortHex } from "@/lib/format";
 import { Kenin } from "@/components/seal";
 import CopyButton from "@/components/copy-button";
 import HeroMark from "./hero-mark";
@@ -22,7 +23,7 @@ export default async function Hero() {
                   rel="noopener noreferrer"
                   title={address}
                 >
-                  {shortAddress(address)}
+                  {shortHex(address)}
                 </Link>
                 <CopyButton value={address} />
               </>

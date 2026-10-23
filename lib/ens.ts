@@ -22,7 +22,3 @@ export async function resolveEns(name: string): Promise<Address | null> {
     return null;
   }
 }
-
-export function shortAddress(address: string) {
-  return `${address.slice(0, 6)}…${address.slice(-4)}`;
-}
