@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# pnpm 10+ keeps its build-script approvals in this file; Vercel installs with pnpm 9,
+# which reads it as a workspace definition and stops on the missing `packages` field
+pnpm-workspace.yaml
