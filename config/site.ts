@@ -4,7 +4,6 @@ export const siteConfig: SiteConfig = {
   description:
     "Rozales Assimpah, smart contract developer in Lomé. Solidity, TypeScript, and the spaces between chains.",
   url: "https://kaizendev.me/",
-  ogImage: "/images/og.png",
   links: {
     mail: "rozales@kaizendev.me",
     twitter: "https://x.com/0xkaizendev",

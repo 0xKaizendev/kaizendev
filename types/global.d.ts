@@ -4,7 +4,6 @@ declare global {
     handle: string;
     description: string;
     url: string;
-    ogImage: string;
     links: {
       mail: string;
       twitter: string;

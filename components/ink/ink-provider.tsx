@@ -26,6 +26,8 @@ export const useInk = () => useContext(InkContext);
 
 const TRAIL_LIFE = 2000;
 const TRAIL_MAX_WIDTH = 12;
+// Steps of the evaporation fade. Too few and the fading tail shows bands.
+const OPACITY_LEVELS = 14;
 
 /**
  * One fixed canvas behind the page. A mouse leaves a water-brush trail that
@@ -49,8 +51,19 @@ export default function InkProvider({ children }: { children: React.ReactNode })
       reduced.current = e.matches;
     };
 
+    // Strokes are laid down one opacity level at a time: each level is painted opaque on a
+    // scratch layer, then copied once at that level's opacity. Overlapping segments merge
+    // into one shape instead of stacking their transparency into darker beads.
+    const scratch = document.createElement("canvas");
+    const sctx = scratch.getContext("2d");
+    // everything inked so far this frame
+    const cover = document.createElement("canvas");
+    const cctx = cover.getContext("2d");
+    if (!sctx || !cctx) return;
+
     let width = 0;
     let height = 0;
+    let dpr = 1;
     let frame = 0;
     let rgb = "24,20,15";
 
@@ -59,33 +72,83 @@ export default function InkProvider({ children }: { children: React.ReactNode })
       if (value) rgb = value.split(/\s+/).join(",");
     };
     const resize = () => {
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      dpr = Math.min(2, window.devicePixelRatio || 1);
       width = canvas.clientWidth;
       height = canvas.clientHeight;
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      for (const c of [canvas, scratch, cover]) {
+        c.width = Math.round(width * dpr);
+        c.height = Math.round(height * dpr);
+      }
     };
+
+    type Level = { lines: number[]; x0: number; y0: number; x1: number; y1: number };
     const draw = (now: number) => {
       const list = segments.current;
       for (let i = list.length - 1; i >= 0; i--) {
         if (now - list[i].t > list[i].life) list.splice(i, 1);
       }
-      ctx.clearRect(0, 0, width, height);
-      ctx.lineCap = "round";
+
       const sx = window.scrollX;
       const sy = window.scrollY;
+      const levels: (Level | undefined)[] = [];
       for (const s of list) {
         const age = now - s.t;
         if (age < 0) continue;
         const a = 1 - age / s.life;
-        ctx.strokeStyle = `rgba(${rgb},${(0.86 * a * a).toFixed(3)})`;
-        ctx.lineWidth = Math.max(0.5, s.w * (0.55 + 0.45 * a));
-        ctx.beginPath();
-        ctx.moveTo(s.x1 - sx, s.y1 - sy);
-        ctx.lineTo(s.x2 - sx, s.y2 - sy);
-        ctx.stroke();
+        const level = Math.ceil(0.86 * a * a * OPACITY_LEVELS);
+        if (level < 1) continue;
+        const w = Math.max(0.5, s.w * (0.55 + 0.45 * a));
+        const x1 = s.x1 - sx;
+        const y1 = s.y1 - sy;
+        const x2 = s.x2 - sx;
+        const y2 = s.y2 - sy;
+        const pad = w / 2 + 2;
+        const box = levels[level] ?? (levels[level] = { lines: [], x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity });
+        box.lines.push(x1, y1, x2, y2, w);
+        box.x0 = Math.min(box.x0, x1 - pad, x2 - pad);
+        box.y0 = Math.min(box.y0, y1 - pad, y2 - pad);
+        box.x1 = Math.max(box.x1, x1 + pad, x2 + pad);
+        box.y1 = Math.max(box.y1, y1 + pad, y2 + pad);
       }
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      cctx.clearRect(0, 0, cover.width, cover.height);
+      // most opaque first: each level gives up the pixels a darker one already inked,
+      // so no pixel is inked twice where two levels meet
+      for (let level = levels.length - 1; level >= 1; level--) {
+        const box = levels[level];
+        if (!box) continue;
+        // only the part of the layer this level touches, clipped to the screen, in device pixels
+        const x = Math.max(0, Math.floor(box.x0 * dpr));
+        const y = Math.max(0, Math.floor(box.y0 * dpr));
+        const w = Math.min(canvas.width, Math.ceil(box.x1 * dpr)) - x;
+        const h = Math.min(canvas.height, Math.ceil(box.y1 * dpr)) - y;
+        if (w <= 0 || h <= 0) continue;
+
+        sctx.setTransform(1, 0, 0, 1, 0, 0);
+        sctx.clearRect(x, y, w, h);
+        sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        sctx.strokeStyle = `rgb(${rgb})`;
+        sctx.lineCap = "round";
+        for (let i = 0; i < box.lines.length; i += 5) {
+          sctx.lineWidth = box.lines[i + 4];
+          sctx.beginPath();
+          sctx.moveTo(box.lines[i], box.lines[i + 1]);
+          sctx.lineTo(box.lines[i + 2], box.lines[i + 3]);
+          sctx.stroke();
+        }
+        sctx.setTransform(1, 0, 0, 1, 0, 0);
+        sctx.globalCompositeOperation = "destination-out";
+        sctx.drawImage(cover, x, y, w, h, x, y, w, h);
+        sctx.globalCompositeOperation = "source-over";
+
+        ctx.globalAlpha = level / OPACITY_LEVELS;
+        ctx.drawImage(scratch, x, y, w, h, x, y, w, h);
+        cctx.drawImage(scratch, x, y, w, h, x, y, w, h);
+      }
+      ctx.globalAlpha = 1;
+
       frame = list.length ? requestAnimationFrame(draw) : 0;
     };
     start.current = () => {
@@ -151,19 +214,31 @@ export default function InkProvider({ children }: { children: React.ReactNode })
     const from = -Math.PI * (0.5 + Math.random() * 0.2);
     const sweep = Math.PI * 1.84;
     const t0 = performance.now() + 40;
-    let prev: [number, number] | null = null;
-    for (let i = 0; i <= steps; i++) {
-      const f = i / steps;
+    const point = (f: number, offset: number) => {
       const angle = from + sweep * f;
-      const r = radius * (1 + 0.035 * Math.sin(f * 9));
-      const x = cx + Math.cos(angle) * r;
-      const y = cy + Math.sin(angle) * r;
-      // heavy where the brush lands, dry at the tail
-      const w = 1.5 + weight * Math.sin(Math.PI * Math.min(1, f * 1.1)) * (1 - f * 0.55);
-      if (prev) {
-        segments.current.push({ x1: prev[0], y1: prev[1], x2: x, y2: y, w: Math.max(1.5, w), t: t0 + duration * f, life });
+      const r = radius * (1 + 0.035 * Math.sin(f * 9)) + offset;
+      return [cx + Math.cos(angle) * r, cy + Math.sin(angle) * r];
+    };
+    const brush = (f0: number, f: number, w: number, offset = 0) => {
+      const [x1, y1] = point(f0, offset);
+      const [x2, y2] = point(f, offset);
+      segments.current.push({ x1, y1, x2, y2, w, t: t0 + duration * f, life });
+    };
+
+    // as the ink runs out, the last stretch splits into a few dry bristles
+    const spread = Math.max(2, weight * 0.18);
+    const bristles = [-1, 0, 1].map((side) => ({ offset: side * spread, end: 0.94 + Math.random() * 0.06 }));
+    for (let i = 1; i <= steps; i++) {
+      const f0 = (i - 1) / steps;
+      const f = i / steps;
+      if (f <= 0.92) {
+        // heavy where the brush lands, thinning as it travels
+        const w = 1.5 + weight * Math.sin(Math.PI * Math.min(1, f * 1.1)) * (1 - f * 0.55);
+        brush(f0, f, Math.max(1.5, w));
       }
-      prev = [x, y];
+      if (f >= 0.8) {
+        for (const b of bristles) if (f <= b.end) brush(f0, f, 1.1, b.offset);
+      }
     }
     start.current();
     return new Promise((resolve) => window.setTimeout(resolve, duration + 40));

@@ -27,8 +27,8 @@ export default function Notes() {
               <p className="kl-note-sum">{n.summary}</p>
               <p className="kl-note-foot">
                 <span>{n.tags.join(" · ")}</span>
-                <Link href={n.href} hrefLang={n.lang} className="kl-note-read" aria-label={`Read ${n.title}`}>
-                  Read the note →
+                <Link href={n.href} hrefLang={n.lang} className="kl-note-read">
+                  Read the note<span className="sr-only">: {n.title}</span> →
                 </Link>
               </p>
             </article>

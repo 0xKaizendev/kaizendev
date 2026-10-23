@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { Metadata, Viewport } from "next";
-import { Martian_Mono, Shippori_Mincho } from "next/font/google";
+import { Martian_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -10,10 +11,14 @@ import Footer from "@/components/footer";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
-// Brush serif for people: names, titles, answers, seals.
-const fontMincho = Shippori_Mincho({
-  subsets: ["latin"],
-  weight: ["400", "600", "800"],
+// Brush serif for people: names, titles, answers, seals. A subset (Latin, accents and the
+// kanji the site uses) made by scripts/fetch-fonts.mjs: the full Japanese font is megabytes.
+const fontMincho = localFont({
+  src: [
+    { path: "../assets/fonts/web/ShipporiMincho-400.woff2", weight: "400" },
+    { path: "../assets/fonts/web/ShipporiMincho-600.woff2", weight: "600" },
+    { path: "../assets/fonts/web/ShipporiMincho-800.woff2", weight: "800" },
+  ],
   variable: "--font-mincho",
   display: "swap",
 });
@@ -43,13 +48,11 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
-    images: siteConfig.ogImage,
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
     creator: siteConfig.handle,
   },
 };

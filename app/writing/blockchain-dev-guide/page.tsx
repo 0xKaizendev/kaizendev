@@ -73,8 +73,8 @@ function Section({
     tag === "required" ? "dg-tag-required" : tag ? "dg-tag-optional" : "";
   return (
     <section id={id} className="dg-section">
-      <div className="dg-section-marker">
-        {num}
+      {/* the big faint number is decoration (the title and the outline carry it): drawn in CSS */}
+      <div className="dg-section-marker" data-num={num}>
         {tag && <span className={`dg-section-tag ${tagClass}`}>{tag}</span>}
       </div>
       <h2 className="dg-section-title">{title}</h2>
@@ -90,7 +90,8 @@ function Code({ lang, file, html }: { lang: string; file: string; html: string }
         <span className="dg-code-lang">{lang}</span>
         <span className="dg-code-file">{file}</span>
       </div>
-      <pre dangerouslySetInnerHTML={{ __html: html }} />
+      {/* wide code scrolls sideways: focusable so a keyboard can scroll it too */}
+      <pre tabIndex={0} role="region" aria-label={`${lang} · ${file}`} dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   );
 }
@@ -679,7 +680,7 @@ export default function BlockchainDevGuide() {
   ]);
 
   return (
-    <div className="dg-page" lang="fr">
+    <main className="dg-page" lang="fr">
       <div className="dg-progress" />
 
       <aside className="dg-rail" aria-label="Document outline">
@@ -741,19 +742,19 @@ export default function BlockchainDevGuide() {
           <Section id="s0" num="00" title="Stack & Structure de Projet" tag="required">
             <div className="dg-card-grid">
               <div className="dg-card accent-blue">
-                <h4>Framework</h4>
+                <h3>Framework</h3>
                 <p>Hardhat · ethers.js v6 · TypeScript · Chai / Mocha</p>
               </div>
               <div className="dg-card accent-green">
-                <h4>Sécurité</h4>
+                <h3>Sécurité</h3>
                 <p>Slither · Mythril · solhint · hardhat-gas-reporter</p>
               </div>
               <div className="dg-card accent-amber">
-                <h4>Coverage</h4>
+                <h3>Coverage</h3>
                 <p>solidity-coverage · lcov · Istanbul thresholds</p>
               </div>
               <div className="dg-card accent-purple">
-                <h4>Déploiement</h4>
+                <h3>Déploiement</h3>
                 <p>hardhat-deploy · Tenderly · Safe Multisig</p>
               </div>
             </div>
@@ -1305,14 +1306,14 @@ export default function BlockchainDevGuide() {
 
             <div className="dg-card-grid">
               <div className="dg-card accent-green">
-                <h4>Branch protection rules</h4>
+                <h3>Branch protection rules</h3>
                 <p>
                   Toutes les branches <code>main</code> et <code>develop</code>{" "}
                   requièrent: lint ✓ tests ✓ coverage ✓ slither ✓ avant merge.
                 </p>
               </div>
               <div className="dg-card accent-amber">
-                <h4>Secrets GitHub requis</h4>
+                <h3>Secrets GitHub requis</h3>
                 <p>
                   <code>MAINNET_RPC_URL</code> · <code>CODECOV_TOKEN</code> ·{" "}
                   <code>ETHERSCAN_API_KEY</code> · <code>CMC_API_KEY</code>
@@ -1452,11 +1453,10 @@ export default function BlockchainDevGuide() {
       <button
         type="button"
         className="dg-toc-fab"
-        aria-label="Open table of contents"
         aria-expanded={tocOpen}
         onClick={() => setTocOpen((v) => !v)}
       >
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
           <path d="M3 6h18M3 12h12M3 18h18" />
         </svg>
         On this page
@@ -1498,6 +1498,6 @@ export default function BlockchainDevGuide() {
           ))}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

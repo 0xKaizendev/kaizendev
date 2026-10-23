@@ -14,8 +14,7 @@
   --paper-3: #d8d3c7;
   --ink: #17140f;
   --ink-2: #48433a;
-  --ink-3: #6b655a;
-  --ink-4: #9a9386;
+  --ink-3: #615b50; /* 4.5:1 on every paper tone, code blocks included */
   --ink-rgb: 24 20 15; /* read by the ink canvas */
   --seal: #b4262d; /* seal red for text and lines */
   --seal-fill: #b4262d; /* seal red for stamped surfaces */
@@ -45,7 +44,6 @@
   --ink: #ece6da;
   --ink-2: #c4bdb0;
   --ink-3: #9a9385;
-  --ink-4: #6e685d;
   --ink-rgb: 236 230 218;
   --seal: #e05a60;
   --seal-fill: #b8323a;
@@ -299,6 +297,9 @@ a {
     width: calc(100% + 2 * var(--gutter));
     margin: 0 calc(-1 * var(--gutter));
     padding: 0 var(--gutter) 4px;
+    /* the last entries run off the edge: fade them so the row reads as scrollable */
+    -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent);
+    mask-image: linear-gradient(90deg, #000 82%, transparent);
   }
   .kl-nav a:first-child {
     padding-left: 0;
@@ -341,6 +342,8 @@ a {
 }
 .kl-footer-meta a {
   color: var(--ink-2);
+  /* Tailwind's reset drops link underlines: these sit in running text and need one */
+  text-decoration: underline;
   text-decoration-color: var(--rule);
   text-underline-offset: 3px;
 }
@@ -953,7 +956,7 @@ a {
   border-bottom-color: var(--seal);
 }
 .kl-search input::placeholder {
-  color: var(--ink-4);
+  color: var(--ink-3);
 }
 .kl-search kbd {
   padding: 1px 6px;
@@ -1041,7 +1044,7 @@ a {
 }
 .kl-tx-id {
   margin-top: 4px;
-  color: var(--ink-4);
+  color: var(--ink-3);
   font: 400 10.5px/1.4 var(--mono);
   font-stretch: 87.5%;
 }
@@ -1361,7 +1364,7 @@ a {
 }
 .kl-arg-form label em {
   font-style: normal;
-  color: var(--ink-4);
+  color: var(--ink-3);
 }
 .kl-arg-form input {
   flex: 1 1 180px;
@@ -1380,7 +1383,7 @@ a {
   border-bottom-color: var(--seal);
 }
 .kl-arg-form input::placeholder {
-  color: var(--ink-4);
+  color: var(--ink-3);
 }
 
 .kl-arg-try {
@@ -1658,7 +1661,7 @@ a.kl-shelf-title:hover {
   font-stretch: 87.5%;
 }
 .kl-field label em {
-  color: var(--ink-4);
+  color: var(--ink-3);
   font-style: normal;
 }
 .kl-field input,
@@ -1683,7 +1686,7 @@ a.kl-shelf-title:hover {
 }
 .kl-field input::placeholder,
 .kl-field textarea::placeholder {
-  color: var(--ink-4);
+  color: var(--ink-3);
 }
 .kl-field [aria-invalid="true"] {
   border-bottom: 2px solid var(--seal);
@@ -1842,5 +1845,35 @@ a.kl-shelf-title:hover {
   }
   .kl-receipt {
     min-height: 200px;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   404
+   ---------------------------------------------------------------------------- */
+
+.kl-404 {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(24px, 6vw, 88px);
+  align-items: center;
+  min-height: 62vh;
+  padding-block: clamp(48px, 10vw, 120px);
+}
+.kl-404-mark {
+  margin: 0;
+  color: color-mix(in srgb, var(--seal) 24%, transparent);
+  font: 800 clamp(120px, 22vw, 280px) / 1 var(--serif);
+  user-select: none;
+}
+.kl-404-back {
+  margin-top: 28px;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .kl-404 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
   }
 }
